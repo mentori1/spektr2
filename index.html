@@ -1,0 +1,1355 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="theme-color" content="#07090c" />
+<title>Спектр Металла — кровля, фасад и металлоизделия по вашим размерам</title>
+<meta name="description" content="Кровельные и фасадные материалы, профнастил, металлочерепица, евроштакетник, водостоки и металлоизделия по размерам клиента. Изготовление от 30 минут, честная толщина, доставка." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;500;600;700;800&family=Manrope:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+/* ============================================================
+   СПЕКТР МЕТАЛЛА — B2C коммерческий лендинг (clean)
+   ============================================================ */
+
+:root{
+  --bg-0:#070a0d;
+  --bg-1:#0b0f14;
+  --bg-2:#11161d;
+  --bg-3:#171d26;
+  --steel:#242c38;
+  --line:rgba(255,255,255,.06);
+  --line-strong:rgba(255,255,255,.12);
+  --glass:rgba(20,26,34,.55);
+
+  --silver:#c5ccd6;
+  --silver-bright:#eef2f7;
+  --silver-dim:#8c95a3;
+  --silver-deep:#5d6573;
+
+  /* холодный бирюзовый */
+  --turq:#2DD4BF;
+  --turq-2:#5EEAD4;
+  --turq-soft:rgba(45,212,191,.16);
+  --turq-glow:rgba(45,212,191,.4);
+  --wa:#25D366;
+
+  --gut:clamp(18px, 4vw, 64px);
+  --section-y:clamp(72px, 9vw, 140px);
+
+  --r-sm:8px;
+  --r-md:14px;
+  --r-lg:22px;
+  --r-xl:28px;
+
+  --f-display:"Unbounded","Manrope",system-ui,sans-serif;
+  --f-body:"Manrope",system-ui,sans-serif;
+  --f-mono:"JetBrains Mono",ui-monospace,monospace;
+
+  --ease:cubic-bezier(.2,.7,.2,1);
+}
+
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--f-body);
+  font-weight:400;
+  font-size:16px;
+  line-height:1.55;
+  color:var(--silver);
+  background:var(--bg-0);
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  overflow-x:hidden;
+  text-rendering:optimizeLegibility;
+}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none;transition:color .25s var(--ease)}
+button{font-family:inherit;cursor:pointer}
+
+/* ─── BG ATMOSPHERE ─── */
+.bg-stage{
+  position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:
+    radial-gradient(1100px 700px at 85% -10%, rgba(45,212,191,.08), transparent 60%),
+    radial-gradient(900px 600px at -10% 30%, rgba(45,212,191,.05), transparent 60%),
+    radial-gradient(1100px 800px at 50% 110%, rgba(45,212,191,.04), transparent 60%),
+    linear-gradient(180deg,#070a0d 0%, #0a0e13 50%, #070a0d 100%);
+}
+.bg-grid{
+  position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.3;
+  background-image:
+    linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px);
+  background-size:64px 64px;
+  mask-image:radial-gradient(ellipse at center, #000 30%, transparent 90%);
+  animation:gridDrift 60s linear infinite;
+}
+@keyframes gridDrift{
+  from{background-position:0 0,0 0}
+  to{background-position:64px 64px,64px 64px}
+}
+.bg-noise{
+  position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.04;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 .8 0'/></filter><rect width='160' height='160' filter='url(%23n)'/></svg>");
+}
+
+/* ─── SHELL ─── */
+.shell{position:relative;z-index:2}
+.container{max-width:1320px;margin:0 auto;padding:0 var(--gut)}
+
+/* ─── TYPE ─── */
+h1,h2,h3,h4{font-family:var(--f-display);color:var(--silver-bright);font-weight:600;letter-spacing:-.015em;margin:0}
+h1{font-size:clamp(36px, 6.6vw, 88px);line-height:1;letter-spacing:-.028em;font-weight:700}
+h2{font-size:clamp(28px, 4vw, 52px);line-height:1.05;letter-spacing:-.022em}
+h3{font-size:clamp(18px, 1.8vw, 24px);line-height:1.2}
+h4{font-size:16px}
+p{margin:0}
+
+.eyebrow{
+  display:inline-flex;align-items:center;gap:10px;
+  font-family:var(--f-mono);text-transform:uppercase;
+  font-size:11px;letter-spacing:.22em;color:var(--turq);
+  padding:7px 12px;border:1px solid var(--turq-soft);border-radius:999px;
+  background:rgba(45,212,191,.05);
+  backdrop-filter:blur(6px);
+}
+.eyebrow::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--turq);box-shadow:0 0 12px var(--turq)}
+.lead{color:var(--silver);font-size:clamp(15px,1.15vw,18px);line-height:1.65;max-width:62ch}
+
+/* ─── BUTTONS ─── */
+.btn{
+  position:relative;display:inline-flex;align-items:center;gap:10px;
+  padding:13px 22px;border-radius:12px;
+  font-weight:600;font-size:14px;letter-spacing:.005em;
+  border:none;outline:none;
+  transition:transform .25s var(--ease), box-shadow .25s var(--ease), filter .25s var(--ease), background .25s var(--ease), color .25s var(--ease), border-color .25s var(--ease);
+  overflow:hidden;white-space:nowrap;
+  text-decoration:none;
+}
+.btn svg{width:16px;height:16px;flex:0 0 auto}
+.btn-primary{
+  background:linear-gradient(135deg, #2DD4BF 0%, #14B8A6 100%);
+  color:#02201c;
+  box-shadow:0 0 0 1px rgba(45,212,191,.4), 0 12px 30px -10px rgba(45,212,191,.55);
+}
+.btn-primary::before{
+  content:"";position:absolute;inset:0;border-radius:inherit;
+  background:linear-gradient(120deg,transparent 30%, rgba(255,255,255,.5) 50%, transparent 70%);
+  transform:translateX(-120%);transition:transform .9s var(--ease);
+  pointer-events:none;
+}
+.btn-primary:hover::before{transform:translateX(120%)}
+.btn-primary:hover{transform:translateY(-1px);filter:brightness(1.08)}
+
+.btn-ghost{
+  background:rgba(255,255,255,.02);color:var(--silver-bright);
+  border:1px solid var(--line-strong);
+}
+.btn-ghost:hover{border-color:var(--turq);color:var(--turq-2);background:rgba(45,212,191,.05)}
+
+.btn-wa{
+  background:linear-gradient(135deg, #25D366 0%, #1FA855 100%);
+  color:#022;
+  box-shadow:0 0 0 1px rgba(37,211,102,.4), 0 12px 30px -10px rgba(37,211,102,.55);
+}
+.btn-wa:hover{transform:translateY(-1px);filter:brightness(1.08)}
+
+.btn-sm{padding:10px 16px;font-size:13px;border-radius:10px}
+.btn-block{width:100%;justify-content:center}
+
+/* ─── HEADER ─── */
+.header{
+  position:fixed;top:0;left:0;right:0;z-index:50;
+  padding:14px 0;
+  background:linear-gradient(180deg, rgba(7,10,13,.85), rgba(7,10,13,.55) 70%, transparent);
+  backdrop-filter:blur(14px) saturate(140%);
+  -webkit-backdrop-filter:blur(14px) saturate(140%);
+  transition:padding .3s var(--ease), background .3s var(--ease), border-color .3s var(--ease);
+  border-bottom:1px solid transparent;
+}
+.header.scrolled{
+  padding:10px 0;background:rgba(7,10,13,.82);
+  border-bottom-color:var(--line);
+}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:24px}
+.wordmark{
+  font-family:var(--f-display);font-weight:700;
+  font-size:15px;letter-spacing:.08em;color:var(--silver-bright);
+  text-transform:uppercase;
+  position:relative;padding-left:14px;
+}
+.wordmark::before{
+  content:"";position:absolute;left:0;top:50%;transform:translateY(-50%);
+  width:6px;height:6px;background:var(--turq);border-radius:50%;
+  box-shadow:0 0 12px var(--turq);
+}
+
+.nav-list{display:flex;align-items:center;gap:6px;list-style:none;margin:0;padding:0}
+.nav-list a{
+  display:inline-block;padding:10px 16px;border-radius:8px;
+  font-size:14px;font-weight:500;color:var(--silver);
+  position:relative;
+}
+.nav-list a:hover{color:var(--silver-bright);background:rgba(255,255,255,.03)}
+.nav-list a::after{
+  content:"";position:absolute;left:16px;right:16px;bottom:6px;height:1px;
+  background:var(--turq);transform:scaleX(0);transform-origin:left;transition:transform .35s var(--ease);
+}
+.nav-list a:hover::after{transform:scaleX(.5)}
+
+.nav-actions{display:flex;align-items:center;gap:10px}
+.phone-link{
+  font-family:var(--f-display);font-weight:600;font-size:14px;color:var(--silver-bright);
+  letter-spacing:.01em;
+}
+.phone-link:hover{color:var(--turq-2)}
+
+.burger{display:none;background:transparent;border:1px solid var(--line-strong);width:42px;height:42px;border-radius:11px;color:var(--silver-bright);align-items:center;justify-content:center}
+.burger svg{width:18px;height:18px}
+
+/* ─── FLOATING WHATSAPP FAB ─── */
+.fab{
+  position:fixed;right:22px;bottom:22px;z-index:60;
+  display:flex;align-items:center;gap:10px;
+  padding:14px 18px 14px 14px;
+  border-radius:999px;
+  background:linear-gradient(135deg,#25D366,#1FA855);
+  color:#022;font-weight:600;font-size:14px;
+  box-shadow:0 12px 36px -8px rgba(37,211,102,.6), 0 0 0 1px rgba(37,211,102,.5);
+  transition:transform .3s var(--ease), box-shadow .3s var(--ease), filter .3s var(--ease);
+  text-decoration:none;
+}
+.fab::after{
+  content:"";position:absolute;inset:-6px;border-radius:999px;
+  border:2px solid rgba(37,211,102,.5);
+  animation:fabPing 2.2s ease-out infinite;
+  pointer-events:none;
+}
+@keyframes fabPing{
+  0%{transform:scale(.85);opacity:.7}
+  100%{transform:scale(1.25);opacity:0}
+}
+.fab svg{width:22px;height:22px;flex:0 0 auto}
+.fab:hover{transform:translateY(-2px);filter:brightness(1.08)}
+
+/* ─── HERO ─── */
+.hero{
+  position:relative;
+  padding:calc(var(--section-y) + 40px) 0 var(--section-y);
+  min-height:100vh;
+  display:flex;align-items:center;
+}
+.hero-inner{position:relative;display:block;width:100%;max-width:880px}
+.hero-text{position:relative;z-index:3}
+.hero-title{margin:22px 0 24px}
+.hero-title .accent{
+  background:linear-gradient(180deg, #eef2f7 0%, #a3aab5 100%);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.hero-title .glow{
+  background:linear-gradient(135deg, #5EEAD4 0%, #2DD4BF 50%, #14B8A6 100%);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  filter:drop-shadow(0 0 24px rgba(45,212,191,.4));
+}
+.hero-lead{max-width:54ch}
+.hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:36px}
+
+/* ─── HERO LOGO STAGE ─── */
+.hero-stage{
+  position:relative;aspect-ratio:1/1;width:100%;max-width:540px;justify-self:end;
+}
+.logo-stage{
+  position:absolute;inset:0;
+  border-radius:50%;
+  background:
+    radial-gradient(circle at 50% 50%, rgba(45,212,191,.18) 0%, rgba(45,212,191,.04) 35%, transparent 60%),
+    radial-gradient(circle at 50% 50%, #0e1218 0%, #07090c 60%);
+  box-shadow:
+    inset 0 0 0 1px rgba(45,212,191,.15),
+    inset 0 0 80px rgba(45,212,191,.08),
+    0 30px 100px -30px rgba(45,212,191,.35);
+  overflow:hidden;
+}
+.logo-stage::before{
+  content:"";position:absolute;inset:-10%;
+  background:conic-gradient(from 0deg, transparent 0deg, rgba(45,212,191,.32) 40deg, transparent 90deg, transparent 360deg);
+  filter:blur(20px);
+  animation:sweep 10s linear infinite;
+  opacity:.6;
+}
+@keyframes sweep{to{transform:rotate(360deg)}}
+
+.rings{position:absolute;inset:0;display:grid;place-items:center;pointer-events:none}
+.rings svg{width:96%;height:96%}
+.ring{fill:none;stroke:rgba(45,212,191,.25);stroke-width:1;stroke-dasharray:3 5}
+.ring.solid{stroke:rgba(255,255,255,.06);stroke-dasharray:none;stroke-width:1}
+.rings .r1{animation:spin 60s linear infinite}
+.rings .r2{animation:spin 90s linear infinite reverse}
+.rings .r3{animation:spin 120s linear infinite}
+@keyframes spin{to{transform:rotate(360deg);transform-origin:center}}
+
+.logo-frame{
+  position:absolute;inset:16%;
+  border-radius:50%;
+  background:radial-gradient(circle at 50% 30%, #1a2029, #0a0d12 75%);
+  display:grid;place-items:center;
+  box-shadow:
+    inset 0 0 0 1px rgba(255,255,255,.06),
+    inset 0 6px 30px rgba(0,0,0,.6),
+    0 20px 60px rgba(0,0,0,.55);
+  overflow:hidden;
+  transition:transform .4s var(--ease);
+}
+.logo-frame img{
+  width:88%;height:auto;
+  filter:contrast(1.05) brightness(1.05) drop-shadow(0 0 22px rgba(45,212,191,.22));
+}
+.logo-frame::after{
+  content:"";position:absolute;inset:-30%;
+  background:linear-gradient(115deg, transparent 35%, rgba(255,255,255,.08) 47%, rgba(45,212,191,.18) 50%, rgba(255,255,255,.08) 53%, transparent 65%);
+  transform:translateX(-100%);
+  animation:metalSweep 6.5s var(--ease) infinite;
+  pointer-events:none;
+}
+@keyframes metalSweep{
+  0%{transform:translateX(-100%)}
+  60%{transform:translateX(100%)}
+  100%{transform:translateX(100%)}
+}
+
+.chip{
+  position:absolute;display:flex;align-items:center;gap:8px;
+  padding:9px 13px;border-radius:999px;
+  background:rgba(15,19,25,.78);backdrop-filter:blur(10px);
+  border:1px solid var(--line-strong);
+  font-family:var(--f-mono);font-size:11px;letter-spacing:.06em;color:var(--silver);
+  white-space:nowrap;
+  box-shadow:0 10px 30px rgba(0,0,0,.4);
+}
+.chip i{width:6px;height:6px;background:var(--turq);border-radius:50%;box-shadow:0 0 8px var(--turq);display:inline-block;animation:pulse 1.8s ease-in-out infinite}
+@keyframes pulse{50%{opacity:.4}}
+.chip.t1{top:6%;left:-4%;animation:float 9s ease-in-out infinite}
+.chip.t2{top:30%;right:-6%;animation:float 11s ease-in-out infinite reverse}
+.chip.t3{bottom:14%;left:-2%;animation:float 13s ease-in-out infinite}
+.chip.t4{bottom:-2%;right:8%;animation:float 10s ease-in-out infinite reverse}
+@keyframes float{50%{transform:translateY(-10px)}}
+
+/* ─── USP STRIP ─── */
+.usp{
+  position:relative;
+  margin-top:calc(var(--section-y) * -.6);
+  background:linear-gradient(180deg, rgba(20,26,34,.6), rgba(11,15,20,.6));
+  border:1px solid var(--line);
+  border-radius:var(--r-lg);
+  padding:8px;
+  backdrop-filter:blur(10px);
+  box-shadow:0 30px 80px -40px rgba(0,0,0,.7);
+}
+.usp-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border-radius:18px;overflow:hidden}
+.usp-cell{
+  background:linear-gradient(180deg, rgba(20,26,34,.6), rgba(11,15,20,.4));
+  padding:24px 22px;
+  display:flex;flex-direction:column;gap:10px;
+  transition:background .3s var(--ease);
+}
+.usp-cell:hover{background:linear-gradient(180deg, rgba(45,212,191,.05), rgba(11,15,20,.4))}
+.usp-ico{
+  width:42px;height:42px;border-radius:10px;
+  background:rgba(45,212,191,.08);border:1px solid var(--turq-soft);
+  display:grid;place-items:center;color:var(--turq);
+}
+.usp-ico svg{width:20px;height:20px}
+.usp-title{font-family:var(--f-display);font-weight:600;color:var(--silver-bright);font-size:16px;line-height:1.2}
+.usp-desc{font-size:12.5px;color:var(--silver-dim);line-height:1.5}
+
+/* ─── SECTION FRAME ─── */
+.section{position:relative;padding:var(--section-y) 0}
+.section-head{display:flex;align-items:flex-end;justify-content:space-between;gap:32px;margin-bottom:48px;flex-wrap:wrap}
+.section-head h2{max-width:18ch}
+.section-head .lead{max-width:48ch}
+.section-index{font-family:var(--f-mono);font-size:11px;letter-spacing:.25em;color:var(--silver-deep);display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.section-index::before{content:"";width:28px;height:1px;background:var(--turq)}
+
+/* ─── CATEGORIES ─── */
+.cats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--r-lg);overflow:hidden}
+.cat{
+  position:relative;background:var(--bg-1);padding:28px 24px;min-height:230px;
+  display:flex;flex-direction:column;justify-content:space-between;gap:20px;
+  transition:background .35s var(--ease);
+  overflow:hidden;
+}
+.cat::before{
+  content:"";position:absolute;inset:0;
+  background:radial-gradient(120% 100% at 100% 0%, rgba(45,212,191,.12), transparent 60%);
+  opacity:0;transition:opacity .4s var(--ease);
+  pointer-events:none;
+}
+.cat:hover{background:var(--bg-2)}
+.cat:hover::before{opacity:1}
+.cat-head{display:flex;justify-content:space-between;align-items:flex-start;gap:16px}
+.cat-icon{
+  width:48px;height:48px;border-radius:12px;
+  background:linear-gradient(135deg,#1a2029,#0e1217);
+  display:grid;place-items:center;color:var(--turq);
+  border:1px solid var(--line-strong);
+  box-shadow:inset 0 0 12px rgba(45,212,191,.15);
+}
+.cat-icon svg{width:22px;height:22px}
+.cat-num{font-family:var(--f-mono);font-size:11px;letter-spacing:.22em;color:var(--silver-deep)}
+.cat-name{font-family:var(--f-display);font-size:18px;font-weight:600;color:var(--silver-bright);line-height:1.2;letter-spacing:-.01em}
+.cat-desc{font-size:13px;color:var(--silver-dim);line-height:1.55;margin-top:6px}
+.cat-foot{display:flex;justify-content:space-between;align-items:center;gap:14px}
+.cat-price{font-family:var(--f-mono);font-size:11.5px;color:var(--turq);letter-spacing:.05em}
+.cat-arrow{
+  width:34px;height:34px;border-radius:50%;
+  border:1px solid var(--line-strong);display:grid;place-items:center;color:var(--silver-dim);
+  transition:all .3s var(--ease);
+}
+.cat:hover .cat-arrow{border-color:var(--turq);color:var(--turq);background:rgba(45,212,191,.05);transform:rotate(-45deg)}
+.cat-arrow svg{width:14px;height:14px}
+
+/* ─── POPULAR PRODUCTS ─── */
+.products{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.product{
+  position:relative;display:flex;flex-direction:column;
+  background:linear-gradient(180deg, rgba(23,29,38,.7), rgba(11,15,20,.7));
+  border:1px solid var(--line);
+  border-radius:var(--r-md);
+  overflow:hidden;
+  transition:transform .35s var(--ease), border-color .35s var(--ease);
+}
+.product:hover{transform:translateY(-4px);border-color:rgba(45,212,191,.25)}
+.product-visual{
+  position:relative;aspect-ratio:16/10;
+  background:
+    radial-gradient(80% 80% at 50% 40%, rgba(45,212,191,.12), transparent 70%),
+    linear-gradient(135deg, #1a2029 0%, #0a0d12 100%);
+  display:grid;place-items:center;overflow:hidden;
+}
+.product-visual svg{width:60%;height:auto;color:rgba(238,242,247,.6)}
+.product-visual::after{
+  content:"";position:absolute;inset:0;
+  background:repeating-linear-gradient(90deg, rgba(255,255,255,.03) 0 1px, transparent 1px 5px);
+  pointer-events:none;mix-blend-mode:overlay;
+}
+.product-tag{
+  position:absolute;top:14px;left:14px;
+  padding:5px 10px;border-radius:999px;
+  background:rgba(45,212,191,.14);border:1px solid var(--turq-soft);
+  color:var(--turq-2);font-family:var(--f-mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;
+}
+.product-body{padding:22px 22px 24px;display:flex;flex-direction:column;gap:14px;flex:1}
+.product-name{font-family:var(--f-display);font-size:18px;color:var(--silver-bright);font-weight:600;letter-spacing:-.01em}
+.product-meta{font-size:13px;color:var(--silver-dim);line-height:1.5;flex:1}
+.product-specs{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+.product-specs span{font-family:var(--f-mono);font-size:10.5px;letter-spacing:.04em;color:var(--silver);padding:4px 8px;border:1px solid var(--line-strong);border-radius:6px;background:rgba(7,10,13,.4)}
+.product-price{display:flex;align-items:baseline;gap:8px;margin-top:4px}
+.price-from{font-family:var(--f-mono);font-size:11px;letter-spacing:.18em;color:var(--silver-deep);text-transform:uppercase}
+.price-val{font-family:var(--f-display);font-size:22px;color:var(--silver-bright);font-weight:600;letter-spacing:-.01em}
+.price-unit{font-size:13px;color:var(--silver-dim)}
+.product-actions{display:flex;gap:8px;margin-top:6px}
+.product-actions .btn{flex:1;justify-content:center;padding:11px 14px;font-size:13px}
+
+/* ─── CUSTOM SIZING BLOCK ─── */
+.custom{
+  position:relative;border-radius:var(--r-xl);overflow:hidden;
+  background:
+    radial-gradient(70% 100% at 100% 0%, rgba(45,212,191,.18), transparent 60%),
+    linear-gradient(135deg, #11161d 0%, #070a0d 100%);
+  border:1px solid var(--line);
+  padding:clamp(36px, 5.5vw, 72px);
+  display:grid;grid-template-columns:1.05fr .95fr;gap:48px;align-items:center;
+}
+.custom::before{
+  content:"";position:absolute;inset:0;
+  background:repeating-linear-gradient(45deg, rgba(255,255,255,.02) 0 1px, transparent 1px 14px);
+  pointer-events:none;
+}
+.custom-eyebrow{color:var(--turq)}
+.custom h2{margin-top:18px}
+.custom .lead{margin-top:18px;max-width:50ch}
+.custom-points{margin:32px 0;display:grid;grid-template-columns:1fr 1fr;gap:16px 24px;list-style:none;padding:0}
+.custom-points li{display:flex;gap:12px;align-items:flex-start;font-size:14px;color:var(--silver)}
+.custom-points svg{width:18px;height:18px;color:var(--turq);flex:0 0 auto;margin-top:3px}
+.custom-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:8px}
+
+.custom-visual{
+  position:relative;aspect-ratio:1/1;max-width:480px;justify-self:end;
+  border-radius:var(--r-lg);
+  background:
+    radial-gradient(80% 80% at 30% 30%, rgba(45,212,191,.18), transparent 60%),
+    linear-gradient(135deg, #1a2029 0%, #07090c 100%);
+  border:1px solid var(--line-strong);
+  overflow:hidden;display:grid;place-items:center;
+}
+.custom-visual::before{
+  content:"";position:absolute;left:0;right:0;bottom:30px;height:36px;
+  background:
+    repeating-linear-gradient(90deg, rgba(238,242,247,.55) 0 1px, transparent 1px 18px),
+    repeating-linear-gradient(90deg, rgba(238,242,247,.25) 0 1px, transparent 1px 6px);
+  -webkit-mask:linear-gradient(180deg, transparent, #000 30%, #000 80%, transparent);
+  mask:linear-gradient(180deg, transparent, #000 30%, #000 80%, transparent);
+}
+.custom-visual::after{
+  content:attr(data-len);
+  position:absolute;left:50%;bottom:78px;transform:translateX(-50%);
+  font-family:var(--f-mono);font-size:13px;color:var(--turq);letter-spacing:.18em;
+  padding:6px 12px;border:1px solid var(--turq-soft);border-radius:8px;
+  background:rgba(7,10,13,.6);backdrop-filter:blur(6px);
+}
+.custom-visual .blueprint{
+  width:78%;height:auto;color:rgba(45,212,191,.55);
+  filter:drop-shadow(0 0 24px rgba(45,212,191,.2));
+}
+.custom-badge{
+  position:absolute;top:22px;right:22px;
+  padding:10px 14px;border-radius:12px;
+  background:rgba(7,10,13,.7);backdrop-filter:blur(8px);
+  border:1px solid var(--turq-soft);
+  display:flex;align-items:center;gap:10px;
+}
+.custom-badge .dot{width:8px;height:8px;border-radius:50%;background:var(--turq);box-shadow:0 0 10px var(--turq);animation:pulse 1.8s ease-in-out infinite}
+.custom-badge .txt{font-family:var(--f-mono);font-size:11px;letter-spacing:.16em;color:var(--silver-bright);text-transform:uppercase}
+
+/* ─── HOW TO ORDER ─── */
+.steps{
+  position:relative;display:grid;grid-template-columns:repeat(4,1fr);gap:20px;
+}
+.steps::before{
+  content:"";position:absolute;left:48px;right:48px;top:38px;height:1px;
+  background:linear-gradient(90deg, transparent, var(--turq-soft) 10%, var(--turq-soft) 90%, transparent);
+  pointer-events:none;
+}
+.step{
+  position:relative;
+  background:linear-gradient(180deg, rgba(23,29,38,.55), rgba(11,15,20,.55));
+  border:1px solid var(--line);
+  border-radius:var(--r-md);
+  padding:26px 22px 24px;
+}
+.step-num{
+  width:38px;height:38px;border-radius:12px;
+  background:linear-gradient(135deg, rgba(45,212,191,.25), rgba(45,212,191,.06));
+  border:1px solid var(--turq-soft);
+  display:grid;place-items:center;
+  font-family:var(--f-display);font-weight:700;font-size:14px;color:var(--turq-2);
+  position:relative;z-index:2;
+  box-shadow:0 0 18px rgba(45,212,191,.15);
+}
+.step h3{font-size:17px;margin:18px 0 8px}
+.step p{font-size:13px;color:var(--silver-dim);line-height:1.55}
+
+/* ─── DELIVERY (переработан) ─── */
+.delivery{
+  display:grid;grid-template-columns:1.2fr .8fr;gap:22px;
+}
+.del-hero{
+  position:relative;border-radius:var(--r-xl);overflow:hidden;
+  background:
+    radial-gradient(80% 120% at 100% 0%, rgba(45,212,191,.22), transparent 60%),
+    linear-gradient(135deg, #11161d 0%, #070a0d 100%);
+  border:1px solid var(--line);
+  padding:clamp(32px, 4.5vw, 52px);
+  display:flex;flex-direction:column;justify-content:space-between;gap:28px;
+  min-height:420px;
+}
+.del-hero::before{
+  content:"";position:absolute;inset:0;
+  background:repeating-linear-gradient(45deg, rgba(255,255,255,.02) 0 1px, transparent 1px 14px);
+  pointer-events:none;
+}
+.del-hero-top{position:relative;z-index:1}
+.del-hero-top h3{font-family:var(--f-display);font-size:clamp(24px,2.8vw,32px);line-height:1.1;color:var(--silver-bright);margin:14px 0 14px;font-weight:600;letter-spacing:-.02em}
+.del-hero-top p{font-size:14px;color:var(--silver-dim);max-width:42ch;line-height:1.6}
+.del-hero-bot{position:relative;z-index:1;display:flex;flex-wrap:wrap;gap:16px;align-items:center;justify-content:space-between}
+.del-hero-actions{display:flex;flex-wrap:wrap;gap:10px}
+.del-price{
+  font-family:var(--f-mono);font-size:12px;letter-spacing:.16em;
+  color:var(--silver-deep);text-transform:uppercase;
+}
+.del-price strong{
+  font-family:var(--f-display);font-size:22px;color:var(--turq);
+  letter-spacing:-.02em;font-weight:600;display:inline-block;margin-right:6px;
+}
+
+.del-truck{
+  position:absolute;right:-30px;bottom:-30px;width:60%;max-width:380px;opacity:.18;
+  color:var(--turq);
+  pointer-events:none;
+}
+
+.del-side{display:grid;grid-template-rows:repeat(3,1fr);gap:16px}
+.del-card{
+  position:relative;padding:22px 22px;border-radius:var(--r-md);
+  background:linear-gradient(180deg, rgba(23,29,38,.65), rgba(11,15,20,.65));
+  border:1px solid var(--line);
+  transition:border-color .3s var(--ease), transform .3s var(--ease);
+  display:flex;gap:16px;align-items:flex-start;
+}
+.del-card:hover{border-color:rgba(45,212,191,.3);transform:translateX(3px)}
+.del-card .ico{
+  width:46px;height:46px;border-radius:12px;
+  background:rgba(45,212,191,.08);border:1px solid var(--turq-soft);
+  display:grid;place-items:center;color:var(--turq);flex:0 0 auto;
+}
+.del-card .ico svg{width:22px;height:22px}
+.del-card h4{font-family:var(--f-display);font-size:16px;color:var(--silver-bright);font-weight:600;margin-bottom:4px;letter-spacing:-.01em}
+.del-card p{font-size:13px;color:var(--silver-dim);line-height:1.55}
+
+.del-extra{
+  margin-top:22px;display:grid;grid-template-columns:repeat(3,1fr);gap:16px;
+}
+
+/* ─── FAQ ─── */
+.faq{
+  display:grid;gap:10px;
+  max-width:920px;margin:0 auto;
+}
+.faq-item{
+  position:relative;border:1px solid var(--line);border-radius:var(--r-md);
+  background:linear-gradient(180deg, rgba(23,29,38,.55), rgba(11,15,20,.55));
+  transition:border-color .3s var(--ease), background .3s var(--ease);
+  overflow:hidden;
+}
+.faq-item[open]{border-color:rgba(45,212,191,.25);background:linear-gradient(180deg, rgba(45,212,191,.04), rgba(11,15,20,.55))}
+.faq-item summary{
+  list-style:none;cursor:pointer;
+  padding:22px 26px;
+  display:flex;align-items:center;justify-content:space-between;gap:20px;
+  font-family:var(--f-display);font-weight:600;color:var(--silver-bright);
+  font-size:clamp(16px,1.3vw,18px);
+  letter-spacing:-.01em;
+  transition:color .25s var(--ease);
+}
+.faq-item summary::-webkit-details-marker{display:none}
+.faq-item summary:hover{color:var(--turq-2)}
+.faq-item .plus{
+  width:34px;height:34px;border-radius:50%;
+  border:1px solid var(--line-strong);
+  display:grid;place-items:center;color:var(--silver);
+  position:relative;flex:0 0 auto;
+  transition:background .3s var(--ease), border-color .3s var(--ease), color .3s var(--ease), transform .3s var(--ease);
+}
+.faq-item .plus::before,
+.faq-item .plus::after{
+  content:"";position:absolute;background:currentColor;border-radius:1px;
+  transition:transform .3s var(--ease), opacity .3s var(--ease);
+}
+.faq-item .plus::before{width:12px;height:1.4px}
+.faq-item .plus::after{width:1.4px;height:12px}
+.faq-item[open] .plus{background:var(--turq);border-color:var(--turq);color:#02201c;transform:rotate(180deg)}
+.faq-item[open] .plus::after{opacity:0}
+.faq-item .answer{
+  padding:0 26px 24px;
+  font-size:14.5px;color:var(--silver);line-height:1.65;max-width:72ch;
+}
+.faq-item .answer strong{color:var(--silver-bright);font-weight:600}
+.faq-item .answer a{color:var(--turq-2);text-decoration:underline;text-underline-offset:3px}
+
+/* ─── CONTACTS (упрощены) ─── */
+.contact-wrap{
+  display:grid;grid-template-columns:1.2fr .8fr;gap:32px;
+  align-items:start;
+}
+.contact-card{
+  position:relative;border-radius:var(--r-xl);overflow:hidden;
+  background:
+    radial-gradient(80% 100% at 0% 100%, rgba(45,212,191,.12), transparent 60%),
+    linear-gradient(135deg, #0e1218 0%, #07090c 100%);
+  border:1px solid var(--line);
+  padding:clamp(28px, 4vw, 44px);
+}
+.contact-grid{
+  display:grid;grid-template-columns:1fr 1fr;gap:14px;
+  margin-top:6px;
+}
+.contact-item{
+  display:flex;gap:14px;align-items:flex-start;
+  padding:18px 18px;
+  border-radius:var(--r-md);
+  background:rgba(7,10,13,.45);
+  border:1px solid var(--line);
+  transition:border-color .3s var(--ease);
+}
+.contact-item:hover{border-color:rgba(45,212,191,.25)}
+.contact-item .ico{
+  width:42px;height:42px;border-radius:10px;
+  background:rgba(45,212,191,.06);border:1px solid var(--turq-soft);
+  display:grid;place-items:center;color:var(--turq);flex:0 0 auto;
+}
+.contact-item .ico svg{width:18px;height:18px}
+.contact-item .label{font-family:var(--f-mono);font-size:10.5px;letter-spacing:.22em;color:var(--silver-deep);text-transform:uppercase;margin-bottom:4px}
+.contact-item .value{color:var(--silver-bright);font-size:15px;font-weight:500;line-height:1.35}
+.contact-item a.value:hover{color:var(--turq-2)}
+.contact-item .meta{font-size:12px;color:var(--silver-dim);margin-top:3px}
+
+.contact-cta{
+  display:flex;flex-wrap:wrap;gap:10px;margin-top:22px;
+}
+.contact-cta .btn{flex:1;min-width:160px;justify-content:center}
+
+.form{
+  background:rgba(7,10,13,.55);
+  border:1px solid var(--line-strong);
+  border-radius:var(--r-xl);
+  padding:clamp(24px, 3vw, 32px);
+  backdrop-filter:blur(6px);
+}
+.form h3{font-size:20px;margin-bottom:6px;letter-spacing:-.01em}
+.form > p{font-size:13px;color:var(--silver-dim);margin-bottom:20px}
+.field{margin-bottom:12px}
+.field label{display:block;font-family:var(--f-mono);font-size:10.5px;letter-spacing:.22em;color:var(--silver-deep);text-transform:uppercase;margin-bottom:6px}
+.field input,.field textarea{
+  width:100%;background:rgba(7,10,13,.6);
+  border:1px solid var(--line-strong);
+  border-radius:10px;padding:13px 14px;
+  color:var(--silver-bright);font-family:var(--f-body);font-size:14px;
+  transition:border-color .25s var(--ease), background .25s var(--ease);
+  outline:none;
+}
+.field textarea{min-height:88px;resize:vertical}
+.field input:focus,.field textarea:focus{border-color:var(--turq);background:rgba(45,212,191,.04)}
+.form-hint{font-size:11px;color:var(--silver-deep);margin-top:12px;line-height:1.5}
+.form-hint a{color:var(--silver-dim);text-decoration:underline;text-underline-offset:2px}
+
+/* ─── FOOTER ─── */
+.footer{
+  position:relative;border-top:1px solid var(--line);
+  padding:48px 0 28px;margin-top:var(--section-y);
+}
+.footer-row{
+  display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap;
+}
+.footer-nav{display:flex;gap:18px;flex-wrap:wrap;list-style:none;padding:0;margin:0;font-size:13.5px}
+.footer-nav a{color:var(--silver)}
+.footer-nav a:hover{color:var(--turq-2)}
+.footer-bot{margin-top:28px;padding-top:20px;border-top:1px solid var(--line);
+  display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap;
+  font-size:12px;color:var(--silver-deep);font-family:var(--f-mono);letter-spacing:.04em;
+}
+
+/* ─── REVEAL ANIMATIONS ─── */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .9s var(--ease), transform .9s var(--ease)}
+.reveal.in{opacity:1;transform:translateY(0)}
+.reveal.d1{transition-delay:.08s}
+.reveal.d2{transition-delay:.16s}
+.reveal.d3{transition-delay:.24s}
+.reveal.d4{transition-delay:.32s}
+
+/* ─── SCROLL PROGRESS ─── */
+.progress{position:fixed;top:0;left:0;right:0;height:2px;z-index:60;pointer-events:none}
+.progress span{display:block;height:100%;width:0;background:linear-gradient(90deg, transparent, var(--turq) 40%, var(--turq-2));box-shadow:0 0 12px var(--turq)}
+
+/* ─── RESPONSIVE ─── */
+@media (max-width:1100px){
+  .cats,.usp-grid{grid-template-columns:repeat(2,1fr)}
+  .products{grid-template-columns:repeat(2,1fr)}
+  .steps{grid-template-columns:repeat(2,1fr)}
+  .steps::before{display:none}
+  .custom,.delivery,.contact-wrap{grid-template-columns:1fr}
+  .hero-inner{grid-template-columns:1fr}
+  .hero-stage{justify-self:center;max-width:440px}
+  .custom-visual{max-width:100%;justify-self:stretch}
+  .del-extra{grid-template-columns:repeat(2,1fr)}
+}
+@media (max-width:720px){
+  .nav-list,.phone-link{display:none}
+  .burger{display:inline-flex}
+  .nav-actions .btn{display:none}
+  .cats,.products,.steps,.usp-grid,.custom-points,.contact-grid,.del-extra{grid-template-columns:1fr}
+  .hero{padding-top:120px;min-height:auto}
+  .section-head{flex-direction:column;align-items:flex-start}
+  .fab{right:14px;bottom:14px;padding:13px 16px 13px 13px}
+  .fab .label{display:none}
+  .usp{margin-top:-32px}
+  .section{padding:64px 0}
+  .hero-actions{width:100%}
+  .hero-actions .btn{flex:1;justify-content:center;min-width:140px}
+  .faq-item summary{padding:18px 20px;font-size:15px;gap:14px}
+  .faq-item .answer{padding:0 20px 20px;font-size:14px}
+}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.001ms !important;animation-iteration-count:1 !important;transition-duration:.001ms !important;scroll-behavior:auto !important}
+}
+</style>
+</head>
+<body>
+
+<div class="bg-stage" aria-hidden="true"></div>
+<div class="bg-grid"  aria-hidden="true"></div>
+<div class="bg-noise" aria-hidden="true"></div>
+
+<div class="progress" aria-hidden="true"><span id="progressBar"></span></div>
+
+<!-- HEADER -->
+<header class="header" id="header">
+  <div class="container nav">
+    <a href="#top" class="wordmark" aria-label="Спектр Металла — на главную">Спектр&nbsp;Металла</a>
+
+    <nav>
+      <ul class="nav-list">
+        <li><a href="#catalog">Каталог</a></li>
+        <li><a href="#delivery">Доставка</a></li>
+        <li><a href="#contacts">Контакты</a></li>
+      </ul>
+    </nav>
+
+    <div class="nav-actions">
+      <a href="tel:+74950000000" class="phone-link">+7 (495) 000-00-00</a>
+      <a href="#contacts" class="btn btn-primary btn-sm">
+        Получить расчёт
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+      <button class="burger" aria-label="Меню">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main class="shell" id="top">
+
+  <!-- HERO -->
+  <section class="hero container">
+    <div class="hero-inner">
+      <div class="hero-text">
+        <span class="eyebrow reveal">Своё производство</span>
+        <h1 class="hero-title reveal d1">
+          <span class="accent">Металл для дома</span><br/>
+          <span class="accent">по вашим</span>
+          <span class="glow">размерам.</span>
+        </h1>
+        <p class="lead hero-lead reveal d2">
+          Кровля, фасад, водостоки, евроштакетник и металлоизделия на заказ. Честная толщина, прозрачный расчёт и доставка по адресу.
+        </p>
+
+        <div class="hero-actions reveal d3">
+          <a href="#contacts" class="btn btn-primary">
+            Получить расчёт
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- USP STRIP (преимущества — без изменений) -->
+  <section class="container">
+    <div class="usp reveal">
+      <div class="usp-grid">
+        <div class="usp-cell">
+          <div class="usp-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
+          <div class="usp-title">Изготовление от 30 минут</div>
+          <div class="usp-desc">Свой цех — режем, гнём и красим без ожидания склада.</div>
+        </div>
+        <div class="usp-cell">
+          <div class="usp-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h4l2-6 4 12 2-6h6"/></svg></div>
+          <div class="usp-title">Честная толщина</div>
+          <div class="usp-desc">0.45 — это 0.45, а не 0.4 «с минусом». Проверяется микрометром.</div>
+        </div>
+        <div class="usp-cell">
+          <div class="usp-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h14l3 4v8h-3"/><circle cx="7" cy="18" r="2"/><circle cx="17" cy="18" r="2"/></svg></div>
+          <div class="usp-title">Доставка по адресу</div>
+          <div class="usp-desc">Привезём на участок, разгрузим. Цены без накруток.</div>
+        </div>
+        <div class="usp-cell">
+          <div class="usp-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h16M4 12h16M4 16h10"/><path d="M18 16l2 2 3-3" stroke-width="2"/></svg></div>
+          <div class="usp-title">Под ваши размеры</div>
+          <div class="usp-desc">Любая длина листа, индивидуальная гибка, точно по проекту.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- CATALOG -->
+  <section class="section container" id="catalog">
+    <div class="section-head">
+      <div>
+        <div class="section-index">01 — Каталог</div>
+        <h2 class="reveal">Всё для кровли,<br/>фасада и забора.</h2>
+      </div>
+      <p class="lead reveal d2">Семь направлений под один проект — от листа профнастила до металлоизделия по чертежу заказчика.</p>
+    </div>
+
+    <div class="cats reveal">
+      <a href="#popular" class="cat">
+        <div class="cat-head">
+          <div class="cat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 7h18M3 12h18M3 17h18"/><path d="M5 7v10M19 7v10" stroke-opacity=".6"/></svg></div>
+          <span class="cat-num">01</span>
+        </div>
+        <div>
+          <div class="cat-name">Профнастил</div>
+          <div class="cat-desc">С8, С21, Н35, Н60 — кровля и забор любой высоты.</div>
+        </div>
+        <div class="cat-foot">
+          <span class="cat-price">от 380 ₽/м²</span>
+          <span class="cat-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </div>
+      </a>
+
+      <a href="#popular" class="cat">
+        <div class="cat-head">
+          <div class="cat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 18 L8 12 L12 18 L16 12 L20 18"/><path d="M4 14 L8 8 L12 14 L16 8 L20 14" stroke-opacity=".6"/></svg></div>
+          <span class="cat-num">02</span>
+        </div>
+        <div>
+          <div class="cat-name">Металлочерепица</div>
+          <div class="cat-desc">Монтеррей, Каскад, Модерн — Polyester, MAT, PURAL.</div>
+        </div>
+        <div class="cat-foot">
+          <span class="cat-price">от 540 ₽/м²</span>
+          <span class="cat-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </div>
+      </a>
+
+      <a href="#popular" class="cat">
+        <div class="cat-head">
+          <div class="cat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="1"/><path d="M3 9h18M3 15h18M9 3v18M15 3v18" stroke-opacity=".5"/></svg></div>
+          <span class="cat-num">03</span>
+        </div>
+        <div>
+          <div class="cat-name">Фасадные панели</div>
+          <div class="cat-desc">Сайдинг, линеарные панели, металлокассеты.</div>
+        </div>
+        <div class="cat-foot">
+          <span class="cat-price">от 690 ₽/м²</span>
+          <span class="cat-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </div>
+      </a>
+
+      <a href="#popular" class="cat">
+        <div class="cat-head">
+          <div class="cat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 12h18M7 6l-4 6 4 6M17 6l4 6-4 6"/></svg></div>
+          <span class="cat-num">04</span>
+        </div>
+        <div>
+          <div class="cat-name">Доборные элементы</div>
+          <div class="cat-desc">Коньки, ендовы, отливы, планки — точная гибка.</div>
+        </div>
+        <div class="cat-foot">
+          <span class="cat-price">от 120 ₽/м.п.</span>
+          <span class="cat-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </div>
+      </a>
+
+      <a href="#popular" class="cat">
+        <div class="cat-head">
+          <div class="cat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 3v8a3 3 0 0 0 3 3h6a3 3 0 0 1 3 3v4"/><circle cx="6" cy="3" r="1"/></svg></div>
+          <span class="cat-num">05</span>
+        </div>
+        <div>
+          <div class="cat-name">Водосточные системы</div>
+          <div class="cat-desc">Полукруглые и прямоугольные · Ø 125–150.</div>
+        </div>
+        <div class="cat-foot">
+          <span class="cat-price">от 290 ₽/м.п.</span>
+          <span class="cat-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </div>
+      </a>
+
+      <a href="#popular" class="cat">
+        <div class="cat-head">
+          <div class="cat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 4v16M9 4v16M14 4v16M19 4v16"/></svg></div>
+          <span class="cat-num">06</span>
+        </div>
+        <div>
+          <div class="cat-name">Евроштакетник</div>
+          <div class="cat-desc">М, П, Т-профиль · одно- и двустороннее покрытие.</div>
+        </div>
+        <div class="cat-foot">
+          <span class="cat-price">от 65 ₽/шт</span>
+          <span class="cat-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </div>
+      </a>
+
+      <a href="#custom" class="cat">
+        <div class="cat-head">
+          <div class="cat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 16l5-9 4 5 3-4 4 6"/><path d="M3 20h18"/></svg></div>
+          <span class="cat-num">07</span>
+        </div>
+        <div>
+          <div class="cat-name">Металлоизделия под заказ</div>
+          <div class="cat-desc">По вашим размерам и чертежу — за 30 минут.</div>
+        </div>
+        <div class="cat-foot">
+          <span class="cat-price">расчёт за 30 мин</span>
+          <span class="cat-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </div>
+      </a>
+
+      <a href="#contacts" class="cat">
+        <div class="cat-head">
+          <div class="cat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="8"/><path d="M12 8v5l3 2"/></svg></div>
+          <span class="cat-num">08</span>
+        </div>
+        <div>
+          <div class="cat-name">Не нашли позицию?</div>
+          <div class="cat-desc">Напишите менеджеру — подберём аналог под бюджет.</div>
+        </div>
+        <div class="cat-foot">
+          <span class="cat-price">бесплатно</span>
+          <span class="cat-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </div>
+      </a>
+    </div>
+  </section>
+
+
+
+  <!-- CUSTOM SIZING -->
+  <section class="section container" id="custom">
+    <div class="custom reveal">
+      <div>
+        <span class="eyebrow custom-eyebrow">Изготовление под ваши размеры</span>
+        <h2>Гнём, режем и красим<br/>прямо под ваш проект.</h2>
+        <p class="lead">Свой цех — это значит, что мы не «ждём поставку», а делаем нужную длину, угол и цвет сразу. Большинство нестандартных позиций готовы за 30 минут.</p>
+
+        <ul class="custom-points">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Любая длина листа до 12 м</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Гибка по чертежу заказчика</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Цвет точно по RAL</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Точность ±0.5° и ±1 мм</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Готово от 30 минут</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Без минимальной партии</li>
+        </ul>
+
+        <div class="custom-actions">
+          <a href="#contacts" class="btn btn-primary">
+            Заказать по размерам
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+          <a href="https://wa.me/74950000000?text=Здравствуйте,%20хочу%20изготовить%20по%20размерам" target="_blank" rel="noopener" class="btn btn-wa">
+            <svg viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M16 3C9.4 3 4 8.4 4 15c0 2.4.7 4.6 1.9 6.5L4 29l7.7-1.8c1.8 1 3.8 1.5 5.9 1.5h.4C24.6 28.7 30 23.3 30 16.7 30 9.4 24.6 3 16 3Z"/></svg>
+            Скинуть чертёж в WhatsApp
+          </a>
+        </div>
+      </div>
+
+      <div class="custom-visual" data-len="3200 мм">
+        <div class="custom-badge"><span class="dot"></span><span class="txt">Готово через 30 мин</span></div>
+        <svg class="blueprint" viewBox="0 0 220 220" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M20 140 L20 100 L70 60 L150 60 L200 100 L200 140"/>
+          <path d="M20 145 L20 105 L72 65 L148 65 L200 105 L200 145" stroke-opacity=".4" stroke-dasharray="4 4"/>
+          <path d="M20 170 L200 170" stroke-opacity=".5"/>
+          <path d="M20 160 L20 180 M200 160 L200 180" stroke-opacity=".5"/>
+          <path d="M40 100 A20 20 0 0 1 60 80" stroke-opacity=".6"/>
+          <text x="46" y="98" font-family="JetBrains Mono" font-size="9" fill="currentColor" stroke="none">45°</text>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- DELIVERY (переработан под акцент на доставку) -->
+  <section class="section container" id="delivery">
+    <div class="section-head">
+      <div>
+        <div class="section-index">04 — Доставка</div>
+        <h2 class="reveal">Привозим металл<br/>прямо на ваш участок.</h2>
+      </div>
+      <p class="lead reveal d2">Доставляем по Москве и области своим транспортом, по России — проверенными ТК. Цену доставки называем до оплаты — без сюрпризов на адресе.</p>
+    </div>
+
+    <div class="delivery reveal">
+      <!-- LEFT: featured -->
+      <div class="del-hero">
+        <svg class="del-truck" viewBox="0 0 200 120" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M10 80 H120 V40 H10 Z"/>
+          <path d="M120 55 H160 L180 75 V80 H120 Z"/>
+          <circle cx="40" cy="92" r="10"/>
+          <circle cx="155" cy="92" r="10"/>
+          <path d="M10 50 H120 M10 60 H120 M10 70 H120" stroke-opacity=".4"/>
+        </svg>
+
+        <div class="del-hero-top">
+          <span class="eyebrow">Доставка по области</span>
+          <h3>Своя логистика — привезём любой объём на ваш адрес.</h3>
+          <p>Газель, бортовой манипулятор, фура — выберем подходящий транспорт под объём заказа и подъезд к участку. Согласуем удобное время.</p>
+        </div>
+
+        <div class="del-hero-bot">
+          <div class="del-price">
+            <strong>от 1 500 ₽</strong> по Москве и области
+          </div>
+          <div class="del-hero-actions">
+            <a href="https://wa.me/74950000000?text=Здравствуйте,%20нужна%20доставка" target="_blank" rel="noopener" class="btn btn-wa btn-sm">
+              <svg viewBox="0 0 32 32" fill="currentColor"><path d="M16 3C9.4 3 4 8.4 4 15c0 2.4.7 4.6 1.9 6.5L4 29l7.7-1.8c1.8 1 3.8 1.5 5.9 1.5h.4C24.6 28.7 30 23.3 30 16.7 30 9.4 24.6 3 16 3Z"/></svg>
+              Узнать цену доставки
+            </a>
+            <a href="#contacts" class="btn btn-ghost btn-sm">Рассчитать заявкой</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT: 3 quick cards -->
+      <div class="del-side">
+        <div class="del-card">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
+          <div>
+            <h4>Быстрая отправка</h4>
+            <p>Заказ из наличия — день в день. Под размер — от 30 минут после согласования.</p>
+          </div>
+        </div>
+        <div class="del-card">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h14l4 4v6H3z"/><path d="M14 8V4H3v4"/><circle cx="8" cy="18" r="2"/><circle cx="17" cy="18" r="2"/></svg></div>
+          <div>
+            <h4>Крупные заказы</h4>
+            <p>Возим длинномеры до 12 м фурой или манипулятором. Без доплат за тоннаж.</p>
+          </div>
+        </div>
+        <div class="del-card">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="11" r="3"/><path d="M12 22s8-7 8-13a8 8 0 0 0-16 0c0 6 8 13 8 13Z"/></svg></div>
+          <div>
+            <h4>Удобно для клиента</h4>
+            <p>Привезём в указанное время, разгрузим вручную или манипулятором.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- bottom row -->
+    <div class="del-extra reveal">
+      <div class="del-card">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M7 9h10M7 13h6"/></svg></div>
+        <div>
+          <h4>Поможем с расчётом доставки</h4>
+          <p>Назовите адрес — менеджер посчитает стоимость до заказа. Без скрытых наценок.</p>
+        </div>
+      </div>
+      <div class="del-card">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7l8-4 8 4v10l-8 4-8-4Z"/><path d="M4 7l8 4 8-4M12 11v10"/></svg></div>
+        <div>
+          <h4>Самовывоз со склада</h4>
+          <p>Можно забрать самому — подготовим заказ к приезду, поможем загрузить.</p>
+        </div>
+      </div>
+      <div class="del-card">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h4l2-6 4 12 2-6h6"/></svg></div>
+        <div>
+          <h4>Доставка по России</h4>
+          <p>Работаем с проверенными ТК. Отправим в ваш город удобной службой.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- FAQ -->
+  <section class="section container" id="faq">
+    <div class="section-head">
+      <div>
+        <div class="section-index">05 — Частые вопросы</div>
+        <h2 class="reveal">Частые вопросы<br/>покупателей.</h2>
+      </div>
+      <p class="lead reveal d2">Собрали ответы на то, что чаще всего спрашивают. Не нашли свой вопрос — напишите в WhatsApp, ответим за пару минут.</p>
+    </div>
+
+    <div class="faq reveal">
+      <details class="faq-item" open>
+        <summary>Есть ли доставка по области?<span class="plus" aria-hidden="true"></span></summary>
+        <div class="answer">
+          <p>Да, доставляем по <strong>Москве и Московской области</strong> своим транспортом — Газель, бортовой манипулятор или фура в зависимости от объёма. Цену называем заранее, до оплаты заказа. По России отправляем проверенными транспортными компаниями.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>Можно ли изготовить изделия по своим размерам?<span class="plus" aria-hidden="true"></span></summary>
+        <div class="answer">
+          <p>Конечно — это <strong>наше основное направление</strong>. Делаем профнастил любой длины, доборные элементы, отливы, коньки, ендовы и металлоизделия по вашему чертежу. Точность гибки ±0.5°, без минимальной партии.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>Сколько занимает производство?<span class="plus" aria-hidden="true"></span></summary>
+        <div class="answer">
+          <p>Стандартные позиции отгружаем <strong>из наличия в день обращения</strong>. Изготовление под размер — <strong>от 30 минут</strong> после подтверждения заявки. Большие партии (от 1000 м²) — 1–3 рабочих дня.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>Помогаете ли с расчётом материалов?<span class="plus" aria-hidden="true"></span></summary>
+        <div class="answer">
+          <p>Да, расчёт — <strong>бесплатно</strong>. Достаточно прислать размеры кровли или забора (можно от руки или фото с участка). Менеджер посчитает количество листов, доборку и крепёж, чтобы вы не покупали лишнего.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>Есть ли самовывоз?<span class="plus" aria-hidden="true"></span></summary>
+        <div class="answer">
+          <p>Да, можно <strong>забрать самостоятельно</strong> со склада. Мы подготовим заказ к вашему приезду, поможем загрузить, выдадим документы. График работы склада — Пн–Сб, 09:00–19:00.</p>
+        </div>
+      </details>
+    </div>
+  </section>
+
+
+  <!-- CONTACTS (упрощённый + форма) -->
+  <section class="section container" id="contacts">
+    <div class="section-head">
+      <div>
+        <div class="section-index">06 — Контакты</div>
+        <h2 class="reveal">Свяжитесь<br/>любым способом.</h2>
+      </div>
+      <p class="lead reveal d2">Менеджер отвечает в рабочее время. В WhatsApp и Telegram — быстрее всего: туда же можно скидывать фото и чертежи.</p>
+    </div>
+
+    <div class="contact-wrap reveal">
+      <div class="contact-card">
+        <div class="contact-grid">
+          <div class="contact-item">
+            <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92V21a1 1 0 0 1-1.11 1A19.86 19.86 0 0 1 2 4.11 1 1 0 0 1 3 3h4.09a1 1 0 0 1 1 .75l1 4a1 1 0 0 1-.27 1L7.21 10.79a16 16 0 0 0 6 6l2.06-1.61a1 1 0 0 1 1-.27l4 1a1 1 0 0 1 .75 1Z"/></svg></div>
+            <div>
+              <div class="label">Телефон</div>
+              <a href="tel:+74950000000" class="value">+7 (495) 000-00-00</a>
+              <div class="meta">Звонок бесплатный</div>
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <div class="ico"><svg viewBox="0 0 32 32" fill="currentColor"><path d="M16 3C9.4 3 4 8.4 4 15c0 2.4.7 4.6 1.9 6.5L4 29l7.7-1.8c1.8 1 3.8 1.5 5.9 1.5h.4C24.6 28.7 30 23.3 30 16.7 30 9.4 24.6 3 16 3Z"/></svg></div>
+            <div>
+              <div class="label">Мессенджеры</div>
+              <a href="https://wa.me/74950000000" target="_blank" rel="noopener" class="value">WhatsApp · Telegram</a>
+              <div class="meta">Ответим в течение 10 минут</div>
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="11" r="3"/><path d="M12 22s8-7 8-13a8 8 0 0 0-16 0c0 6 8 13 8 13Z"/></svg></div>
+            <div>
+              <div class="label">Адрес</div>
+              <div class="value">Россия, Московская область</div>
+              <div class="meta">Производство и склад в одном месте</div>
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
+            <div>
+              <div class="label">Режим работы</div>
+              <div class="value">Пн–Сб · 09:00 — 19:00</div>
+              <div class="meta">Вс — по согласованию</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-cta">
+          <a href="https://wa.me/74950000000?text=Здравствуйте,%20хочу%20рассчитать%20стоимость" target="_blank" rel="noopener" class="btn btn-wa">
+            <svg viewBox="0 0 32 32" fill="currentColor"><path d="M16 3C9.4 3 4 8.4 4 15c0 2.4.7 4.6 1.9 6.5L4 29l7.7-1.8c1.8 1 3.8 1.5 5.9 1.5h.4C24.6 28.7 30 23.3 30 16.7 30 9.4 24.6 3 16 3Z"/></svg>
+            Написать в WhatsApp
+          </a>
+          <a href="https://t.me/spectrum_metal" target="_blank" rel="noopener" class="btn btn-ghost">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21.5 4.2 2.9 11.4c-1.1.4-1.1 1.1-.2 1.4l4.7 1.5 1.8 5.5c.2.6.4.8.8.8.4 0 .6-.2.9-.4l2.6-2.5 4.8 3.5c.9.5 1.5.2 1.7-.8l3.2-15c.3-1.2-.5-1.7-1.7-1.2Z"/></svg>
+            Telegram
+          </a>
+          <a href="tel:+74950000000" class="btn btn-ghost">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92V21a1 1 0 0 1-1.11 1A19.86 19.86 0 0 1 2 4.11 1 1 0 0 1 3 3h4.09a1 1 0 0 1 1 .75l1 4a1 1 0 0 1-.27 1L7.21 10.79a16 16 0 0 0 6 6l2.06-1.61a1 1 0 0 1 1-.27l4 1a1 1 0 0 1 .75 1Z"/></svg>
+            Позвонить
+          </a>
+        </div>
+      </div>
+
+      <form class="form" id="leadForm" onsubmit="event.preventDefault();this.querySelector('button[type=submit]').innerHTML='✓ Заявка отправлена'">
+        <h3>Получить расчёт</h3>
+        <p>Заполните форму — перезвоним в течение 30 минут с готовой ценой.</p>
+        <div class="field">
+          <label for="f-name">Имя</label>
+          <input id="f-name" type="text" placeholder="Как к Вам обращаться" required />
+        </div>
+        <div class="field">
+          <label for="f-phone">Телефон</label>
+          <input id="f-phone" type="tel" placeholder="+7 ___ ___-__-__" required />
+        </div>
+        <div class="field">
+          <label for="f-msg">Что считаем?</label>
+          <textarea id="f-msg" placeholder="Например: профнастил С8, забор 40 м, высота 2 м, RAL 6005"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary btn-block">
+          Рассчитать стоимость
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </button>
+        <p class="form-hint">Отправляя форму, вы соглашаетесь с <a href="#">политикой обработки персональных данных</a>.</p>
+      </form>
+    </div>
+  </section>
+
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-row">
+        <span class="wordmark">Спектр&nbsp;Металла</span>
+        <ul class="footer-nav">
+          <li><a href="#catalog">Каталог</a></li>
+          <li><a href="#delivery">Доставка</a></li>
+          <li><a href="#faq">Вопросы</a></li>
+          <li><a href="#contacts">Контакты</a></li>
+          <li><a href="tel:+74950000000">+7 (495) 000-00-00</a></li>
+        </ul>
+      </div>
+      <div class="footer-bot">
+        <span>© <span id="yr">2026</span> · СПЕКТР МЕТАЛЛА · Все права защищены</span>
+        <span>SM // SPECTRUM-METAL</span>
+      </div>
+    </div>
+  </footer>
+</main>
+
+<script>
+/* Year */
+document.getElementById('yr').textContent = new Date().getFullYear();
+
+/* Scroll progress + header state */
+const bar = document.getElementById('progressBar');
+const header = document.getElementById('header');
+function onScroll(){
+  const h = document.documentElement;
+  const max = h.scrollHeight - h.clientHeight;
+  const p = max > 0 ? (h.scrollTop / max) : 0;
+  bar.style.width = (p*100).toFixed(2)+'%';
+  if(h.scrollTop > 20) header.classList.add('scrolled'); else header.classList.remove('scrolled');
+}
+document.addEventListener('scroll', onScroll, {passive:true});
+onScroll();
+
+/* Reveal on scroll */
+const io = new IntersectionObserver((entries)=>{
+  for(const e of entries){
+    if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+  }
+},{threshold:.12, rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+/* FAQ: только один открытый одновременно */
+document.querySelectorAll('.faq-item').forEach(item=>{
+  item.addEventListener('toggle',()=>{
+    if(item.open){
+      document.querySelectorAll('.faq-item[open]').forEach(o=>{ if(o!==item) o.open = false; });
+    }
+  });
+});
+
+/* Smooth anchor offset for fixed header */
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',(e)=>{
+    const id = a.getAttribute('href');
+    if(id.length < 2) return;
+    const el = document.querySelector(id);
+    if(!el) return;
+    e.preventDefault();
+    const y = el.getBoundingClientRect().top + window.scrollY - 64;
+    window.scrollTo({top:y, behavior:'smooth'});
+  });
+});
+</script>
+
+</body>
+</html>
