@@ -1,0 +1,21 @@
+# robots.txt для spectr-metalla.ru
+# Замени spectr-metalla.ru на свой реальный домен после публикации.
+
+User-agent: *
+Allow: /
+Disallow: /backups/
+Disallow: /сайт металл/
+Disallow: /assets/photo-*
+Disallow: /*.bak
+Disallow: /*копия*
+
+# Яндекс — отдельные правила
+User-agent: Yandex
+Allow: /
+Disallow: /backups/
+Disallow: /сайт металл/
+Clean-param: utm_source&utm_medium&utm_campaign&utm_content&utm_term&yclid
+Crawl-delay: 1
+
+Sitemap: https://spectr-metalla.ru/sitemap.xml
+Host: spectr-metalla.ru

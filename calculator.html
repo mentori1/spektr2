@@ -1,0 +1,584 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="theme-color" content="#06070a" />
+<title>Калькулятор стоимости · Спектр Металла</title>
+<meta name="description" content="Калькуляторы кровли, забора и водосточной системы. Рассчитайте ориентировочную стоимость онлайн и получите точный расчёт от менеджера за 30 минут." />
+
+<!-- canonical + Open Graph -->
+<link rel="canonical" href="https://spectr-metalla.ru/calculator.html" />
+<meta property="og:type" content="website" />
+<meta property="og:locale" content="ru_RU" />
+<meta property="og:site_name" content="Спектр Металла" />
+<meta property="og:title" content="Калькулятор стоимости — Спектр Металла, Омск" />
+<meta property="og:description" content="Рассчитайте кровлю, забор или водосток онлайн. Цена с доставкой по Омску." />
+<meta property="og:url" content="https://spectr-metalla.ru/calculator.html" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@500;700;800;900&family=Unbounded:wght@400;500;600;700&family=Manrope:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg-dark:#06070a;--bg-graphite:#0f1115;--bg-card:#14171c;--bg-near-black:#04050a;
+  --text-on-dark:#c9ccd2;--text-on-dark-bright:#f3f4f6;--text-on-dark-dim:#7d828a;--text-on-dark-deep:#4a4f57;
+  --accent:#b91c1c;--accent-hover:#dc2626;--accent-glow:rgba(220,38,38,.35);
+  --line:rgba(255,255,255,.07);--line-strong:rgba(255,255,255,.14);
+  --f-display:"Big Shoulders Display","Unbounded",system-ui,sans-serif;
+  --f-secondary:"Unbounded","Manrope",system-ui,sans-serif;
+  --f-body:"Manrope",system-ui,sans-serif;
+  --f-mono:"JetBrains Mono",ui-monospace,monospace;
+  --gut:clamp(20px,4vw,80px);--section-y:clamp(80px,11vw,180px);
+  --r-sm:4px;--r-md:10px;--r-lg:18px;
+  --ease:cubic-bezier(.2,.7,.2,1);--ease-out:cubic-bezier(.16,1,.3,1);
+}
+*{box-sizing:border-box}html,body{margin:0;padding:0}html{scroll-behavior:smooth}
+body{font-family:var(--f-body);font-size:16px;line-height:1.55;color:var(--text-on-dark);background:var(--bg-dark);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{max-width:100%;display:block}a{color:inherit;text-decoration:none;transition:color .25s var(--ease)}button{font-family:inherit;cursor:pointer}
+
+.bg-stage{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.bg-stage .glow{position:absolute;border-radius:50%;filter:blur(120px);opacity:.4}
+.bg-stage .g1{width:55vw;height:55vw;top:-15vw;left:-15vw;background:radial-gradient(circle, color-mix(in srgb, var(--accent) 26%, transparent), transparent 60%);animation:drift1 28s ease-in-out infinite}
+.bg-stage .g2{width:60vw;height:60vw;bottom:-20vw;right:-20vw;background:radial-gradient(circle, color-mix(in srgb, #4b5563 50%, transparent), transparent 60%);animation:drift2 36s ease-in-out infinite}
+@keyframes drift1{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(8vw,6vw) scale(1.1)}}
+@keyframes drift2{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(-6vw,-4vw) scale(.95)}}
+body::after{content:"";position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.06;mix-blend-mode:overlay;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .85 0'/></filter><rect width='160' height='160' filter='url(%23n)'/></svg>")}
+
+.shell{position:relative;z-index:2}
+.container{max-width:1440px;margin:0 auto;padding:0 var(--gut)}
+
+h1,h2,h3,h4{margin:0;color:var(--text-on-dark-bright);font-weight:600;letter-spacing:-.015em}
+h1{font-family:var(--f-display);font-weight:900;font-size:clamp(40px,7vw,104px);line-height:.92;letter-spacing:-.03em;text-transform:uppercase}
+h2{font-family:var(--f-display);font-weight:800;font-size:clamp(24px,2.8vw,38px);line-height:1.05;letter-spacing:-.015em;text-transform:uppercase}
+
+.lead{font-size:clamp(14px,1.05vw,17px);line-height:1.65;max-width:62ch;color:var(--text-on-dark)}
+.eyebrow{display:inline-flex;align-items:center;gap:12px;font-family:var(--f-mono);text-transform:uppercase;font-size:11px;letter-spacing:.28em;color:var(--text-on-dark-dim)}
+.eyebrow::before{content:"";width:24px;height:1px;background:var(--accent)}
+
+.btn{position:relative;display:inline-flex;align-items:center;gap:12px;padding:14px 28px;border-radius:999px;font-family:var(--f-secondary);font-weight:500;font-size:12.5px;letter-spacing:.04em;border:1px solid transparent;text-decoration:none;text-transform:uppercase;backdrop-filter:blur(14px) saturate(160%);-webkit-backdrop-filter:blur(14px) saturate(160%);transition:all .3s var(--ease);cursor:pointer}
+.btn svg{width:15px;height:15px;flex:0 0 auto}
+.btn-primary{background:rgba(243,244,246,.14);color:var(--text-on-dark-bright);border-color:rgba(255,255,255,.22)}
+.btn-primary:hover{background:rgba(243,244,246,.24);border-color:rgba(255,255,255,.4)}
+.btn-accent{background:color-mix(in srgb, var(--accent) 65%, transparent);color:#fff;border-color:color-mix(in srgb, var(--accent) 80%, transparent)}
+.btn-accent:hover{background:color-mix(in srgb, var(--accent-hover) 80%, transparent);transform:translateY(-1px)}
+.btn-ghost{background:rgba(255,255,255,.04);color:var(--text-on-dark-bright);border-color:rgba(255,255,255,.16)}
+.btn-ghost:hover{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.32)}
+.btn-block{width:100%;justify-content:center}
+
+.header{position:fixed;top:0;left:0;right:0;z-index:50;padding:16px 0;background:transparent;border-bottom:1px solid transparent;transition:all .3s var(--ease)}
+.header.scrolled{padding:10px 0;background:rgba(6,7,10,.82);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom-color:var(--line)}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:24px}
+.wordmark{font-family:var(--f-display);font-weight:800;font-size:14px;letter-spacing:.22em;color:var(--text-on-dark-bright);text-transform:uppercase;display:inline-flex;align-items:center;gap:12px}
+.wordmark::before{content:"";width:8px;height:8px;background:var(--accent);display:inline-block}
+.nav-list{display:flex;align-items:center;gap:2px;list-style:none;margin:0;padding:0}
+.nav-list a{display:inline-block;padding:10px 18px;font-family:var(--f-secondary);font-size:12.5px;font-weight:500;color:var(--text-on-dark-dim);letter-spacing:.12em;text-transform:uppercase;position:relative}
+.nav-list a:hover,.nav-list a.active{color:var(--text-on-dark-bright)}
+.nav-list a.active::after{content:"";position:absolute;left:18px;right:18px;bottom:5px;height:1px;background:var(--accent)}
+.nav-tel{font-family:var(--f-mono);font-size:13px;color:var(--text-on-dark);letter-spacing:.04em}
+.burger{display:none;background:transparent;border:1px solid var(--line-strong);width:42px;height:42px;border-radius:var(--r-sm);color:var(--text-on-dark-bright);align-items:center;justify-content:center;cursor:pointer}
+.burger svg{width:18px;height:18px}
+
+.hero{padding:clamp(96px,11vw,160px) 0 clamp(40px,5vw,72px)}
+.hero-inner{max-width:1100px}
+.hero h1{margin-bottom:24px}
+.hero h1 em{font-style:normal;color:var(--accent)}
+.hero-desc{font-size:clamp(14px,1.05vw,18px);color:var(--text-on-dark);max-width:62ch;line-height:1.6}
+
+.section{padding:clamp(40px,6vw,80px) 0 var(--section-y)}
+
+/* ─── CALCULATORS ─── */
+.calc-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:36px}
+.calc-tab{
+  padding:11px 20px;border-radius:999px;
+  background:rgba(255,255,255,.04);backdrop-filter:blur(12px) saturate(140%);-webkit-backdrop-filter:blur(12px) saturate(140%);
+  border:1px solid rgba(255,255,255,.10);font-family:var(--f-secondary);font-size:12px;font-weight:500;
+  color:var(--text-on-dark);letter-spacing:.06em;text-transform:uppercase;cursor:pointer;
+  transition:all .3s var(--ease);
+}
+.calc-tab:hover{border-color:rgba(255,255,255,.25);color:var(--text-on-dark-bright)}
+.calc-tab.active{background:color-mix(in srgb, var(--accent) 28%, transparent);border-color:color-mix(in srgb, var(--accent) 60%, transparent);color:#fff}
+
+.calc-card{
+  border-radius:var(--r-md);
+  background:rgba(255,255,255,.025);
+  backdrop-filter:blur(16px) saturate(140%);-webkit-backdrop-filter:blur(16px) saturate(140%);
+  border:1px solid rgba(255,255,255,.08);
+  padding:clamp(28px,4vw,52px);
+  display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start;
+}
+.calc-form{display:grid;gap:20px}
+.calc-form h3{font-family:var(--f-display);font-weight:800;font-size:22px;color:var(--text-on-dark-bright);text-transform:uppercase;letter-spacing:-.01em;margin-bottom:6px}
+.calc-form p{font-size:13.5px;color:var(--text-on-dark-dim);line-height:1.6}
+
+.field{display:flex;flex-direction:column;gap:8px}
+.field label{font-family:var(--f-mono);font-size:10.5px;letter-spacing:.22em;color:var(--text-on-dark-dim);text-transform:uppercase}
+.field input,.field select{
+  background:rgba(0,0,0,.4);border:1px solid var(--line-strong);
+  border-radius:10px;padding:13px 14px;
+  color:var(--text-on-dark-bright);font-family:var(--f-body);font-size:14px;outline:none;
+  transition:border-color .25s ease;
+}
+.field input:focus,.field select:focus{border-color:var(--accent)}
+.field-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+
+.calc-result{
+  border-radius:var(--r-md);
+  background:linear-gradient(160deg, color-mix(in srgb, var(--accent) 14%, transparent), rgba(255,255,255,.02));
+  border:1px solid color-mix(in srgb, var(--accent) 30%, transparent);
+  padding:28px 28px 32px;
+  display:flex;flex-direction:column;gap:20px;
+  position:sticky;top:96px;
+}
+.calc-result .label{font-family:var(--f-mono);font-size:11px;letter-spacing:.24em;color:var(--text-on-dark-dim);text-transform:uppercase;margin-bottom:6px}
+.calc-result .price{
+  font-family:var(--f-display);font-weight:900;font-size:clamp(40px,5vw,64px);
+  color:var(--text-on-dark-bright);line-height:1;letter-spacing:-.02em;
+}
+.calc-result .price em{font-style:normal;color:var(--accent)}
+.calc-result .unit{font-family:var(--f-mono);font-size:12px;color:var(--text-on-dark-dim);letter-spacing:.06em;margin-top:6px}
+
+.calc-breakdown{padding-top:16px;border-top:1px solid rgba(255,255,255,.08);display:grid;gap:10px}
+.calc-row{display:flex;justify-content:space-between;align-items:baseline;gap:14px;font-family:var(--f-mono);font-size:12px;color:var(--text-on-dark)}
+.calc-row .key{color:var(--text-on-dark-dim);letter-spacing:.06em}
+.calc-row .val{color:var(--text-on-dark-bright);font-weight:500}
+
+.calc-note{font-size:11.5px;color:var(--text-on-dark-dim);line-height:1.55;padding:14px 16px;background:rgba(0,0,0,.3);border-radius:8px;border-left:2px solid var(--accent)}
+
+.calc-actions{display:grid;gap:10px;margin-top:6px}
+
+/* ─── FOOTER ─── */
+.footer{background:var(--bg-near-black);padding:48px 0 32px;position:relative;z-index:2;color:var(--text-on-dark-dim)}
+.footer-row{display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap}
+.footer-nav{display:flex;gap:32px;flex-wrap:wrap;list-style:none;padding:0;margin:0;font-family:var(--f-secondary);font-size:12px;letter-spacing:.12em;text-transform:uppercase}
+.footer-nav a:hover{color:var(--text-on-dark-bright)}
+.footer-bot{margin-top:32px;padding-top:20px;border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap;font-size:11px;font-family:var(--f-mono);letter-spacing:.06em;text-transform:uppercase}
+
+.progress{position:fixed;top:0;left:0;right:0;height:1px;z-index:60;pointer-events:none}
+.progress span{display:block;height:100%;width:0;background:var(--accent);transition:width .15s linear}
+
+@media (max-width:1024px){.calc-card{grid-template-columns:1fr;gap:32px}.calc-result{position:static}}
+@media (max-width:720px){
+  .nav-list,.nav-tel{display:none}.burger{display:inline-flex}
+  .field-row{grid-template-columns:1fr}
+  .footer-row{flex-direction:column;align-items:flex-start;gap:20px}
+}
+</style>
+
+<link rel="stylesheet" href="assets/site.css">
+
+<!-- Schema.org Organization + LocalBusiness -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "Спектр Металла",
+  "image": "https://spectr-metalla.ru/roof-tile.png",
+  "url": "https://spectr-metalla.ru/",
+  "telephone": "+7 923 681-97-09",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "проспект Мира, 191",
+    "addressLocality": "Омск",
+    "postalCode": "644085",
+    "addressCountry": "RU"
+  },
+  "openingHours": "Mo-Sa 09:00-19:00"
+}
+</script>
+</head>
+
+<body>
+
+<div class="bg-stage" aria-hidden="true">
+  <div class="glow g1"></div><div class="glow g2"></div>
+</div>
+
+<div class="progress" aria-hidden="true"><span id="progressBar"></span></div>
+
+<header class="header" id="header">
+  <div class="container nav">
+    <a href="index.html" class="wordmark">Спектр Металла</a>
+    <nav>
+      <ul class="nav-list">
+        <li><a href="catalog.html">Каталог</a></li>
+        <li><a href="calculator.html" class="active">Калькулятор</a></li>
+        <li><a href="buyers.html">Покупателям</a></li>
+        <li><a href="delivery.html">Доставка</a></li>
+        <li><a href="blog.html">Статьи</a></li>
+        <li><a href="contacts.html">Контакты</a></li>
+      </ul>
+    </nav>
+    <div style="display:flex;align-items:center;gap:16px">
+      <a href="price-spectr-metalla.txt" download class="btn-download">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+        Прайс
+      </a>
+      <a href="tel:+79236819709" class="nav-tel">+7 923 681-97-09</a>
+      <button class="burger" aria-label="Открыть меню"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+    </div>
+  </div>
+</header>
+
+<main class="shell" id="top">
+
+  <section class="hero">
+    <div class="container hero-inner">
+      <h1>Кальку<em>лятор.</em></h1>
+      <p class="hero-desc">Посчитайте ориентировочную стоимость кровли, забора или водосточной системы. Менеджер подтвердит точную цену с учётом доставки за 30 минут.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+
+      <div class="calc-tabs">
+        <button class="calc-tab active" data-calc="roof">Кровля</button>
+        <button class="calc-tab" data-calc="fence">Забор</button>
+        <button class="calc-tab" data-calc="gutter">Водосток</button>
+      </div>
+
+      <!-- ═══ КРОВЛЯ ═══ -->
+      <div class="calc-card" data-panel="roof">
+        <div class="calc-form">
+          <h3>Кровля</h3>
+          <p>Введите размеры скатов крыши. Калькулятор учтёт нахлёсты и подберёт количество листов.</p>
+
+          <div class="field-row">
+            <div class="field">
+              <label for="r-len">Длина ската, м</label>
+              <input id="r-len" type="number" value="10" min="1" step="0.1">
+            </div>
+            <div class="field">
+              <label for="r-wid">Ширина ската, м</label>
+              <input id="r-wid" type="number" value="6" min="1" step="0.1">
+            </div>
+          </div>
+
+          <div class="field-row">
+            <div class="field">
+              <label for="r-slopes">Количество скатов</label>
+              <select id="r-slopes">
+                <option value="1">1 (односкатная)</option>
+                <option value="2" selected>2 (двускатная)</option>
+                <option value="4">4 (четырёхскатная)</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="r-mat">Материал</label>
+              <select id="r-mat">
+                <option value="540">Металлочерепица Монтеррей — от 540 ₽/м²</option>
+                <option value="380" selected>Профнастил С21 — от 380 ₽/м²</option>
+                <option value="920">Фальцевая кровля — от 920 ₽/м²</option>
+                <option value="790">Андалузия MAT — от 790 ₽/м²</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="r-extras">Доборные элементы</label>
+            <select id="r-extras">
+              <option value="0">Без доборки</option>
+              <option value="0.1" selected>Базовая доборка (+10%)</option>
+              <option value="0.18">Полная доборка (+18%)</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="calc-result" id="r-result">
+          <div>
+            <div class="label">Ориентировочная стоимость</div>
+            <div class="price"><em id="r-price">22 800</em> ₽</div>
+            <div class="unit">с учётом нахлёстов · без доставки</div>
+          </div>
+          <div class="calc-breakdown">
+            <div class="calc-row"><span class="key">Площадь кровли</span><span class="val" id="r-area">60 м²</span></div>
+            <div class="calc-row"><span class="key">С нахлёстами (+5%)</span><span class="val" id="r-area-real">63 м²</span></div>
+            <div class="calc-row"><span class="key">Материал</span><span class="val" id="r-mat-cost">23 940 ₽</span></div>
+            <div class="calc-row"><span class="key">Доборка</span><span class="val" id="r-extras-cost">2 394 ₽</span></div>
+          </div>
+          <p class="calc-note">Расчёт ориентировочный. Менеджер уточнит размеры и пришлёт точную цену с доставкой за 30 минут.</p>
+          <div class="calc-actions">
+            <a href="https://wa.me/79236819709?text=Здравствуйте,%20хочу%20уточнить%20расчёт%20кровли" target="_blank" rel="noopener" class="btn btn-accent btn-block">Уточнить расчёт</a>
+            <a href="contacts.html" class="btn btn-ghost btn-block">Оставить заявку</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══ ЗАБОР ═══ -->
+      <div class="calc-card" data-panel="fence" style="display:none">
+        <div class="calc-form">
+          <h3>Забор</h3>
+          <p>Введите периметр участка и высоту. Подберём количество планок и расходники.</p>
+
+          <div class="field-row">
+            <div class="field">
+              <label for="f-per">Периметр, м</label>
+              <input id="f-per" type="number" value="40" min="1" step="0.5">
+            </div>
+            <div class="field">
+              <label for="f-hgt">Высота, м</label>
+              <input id="f-hgt" type="number" value="2" min="0.5" step="0.1">
+            </div>
+          </div>
+
+          <div class="field-row">
+            <div class="field">
+              <label for="f-type">Тип материала</label>
+              <select id="f-type">
+                <option value="380" selected>Профнастил С8 — 380 ₽/м²</option>
+                <option value="496">Профнастил С8 0.45мм — 496 ₽/м²</option>
+                <option value="65" data-mode="piece">Евроштакетник М — 65 ₽/шт</option>
+                <option value="75" data-mode="piece">Штакетник Premium — 75 ₽/шт</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="f-post">Столбы 60×60, шаг 2.5 м</label>
+              <select id="f-post">
+                <option value="1" selected>Включить</option>
+                <option value="0">Не нужны</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="calc-result" id="f-result">
+          <div>
+            <div class="label">Ориентировочная стоимость</div>
+            <div class="price"><em id="f-price">36 880</em> ₽</div>
+            <div class="unit">материалы · без монтажа и доставки</div>
+          </div>
+          <div class="calc-breakdown">
+            <div class="calc-row"><span class="key">Полотно</span><span class="val" id="f-fabric">30 400 ₽</span></div>
+            <div class="calc-row"><span class="key">Столбы (16 шт)</span><span class="val" id="f-posts">6 480 ₽</span></div>
+            <div class="calc-row"><span class="key">Объём по площади</span><span class="val" id="f-area">80 м²</span></div>
+          </div>
+          <p class="calc-note">Не входит крепёж, ворота-калитка и монтаж. Точную смету пришлёт менеджер.</p>
+          <div class="calc-actions">
+            <a href="https://wa.me/79236819709?text=Здравствуйте,%20хочу%20уточнить%20расчёт%20забора" target="_blank" rel="noopener" class="btn btn-accent btn-block">Уточнить расчёт</a>
+            <a href="contacts.html" class="btn btn-ghost btn-block">Оставить заявку</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══ ВОДОСТОК ═══ -->
+      <div class="calc-card" data-panel="gutter" style="display:none">
+        <div class="calc-form">
+          <h3>Водосточная система</h3>
+          <p>Введите длину карнизов и высоту дома. Подберём комплект — желоба, трубы, воронки.</p>
+
+          <div class="field-row">
+            <div class="field">
+              <label for="g-eaves">Карниз — общая длина, м</label>
+              <input id="g-eaves" type="number" value="24" min="1" step="0.5">
+            </div>
+            <div class="field">
+              <label for="g-height">Высота дома, м</label>
+              <input id="g-height" type="number" value="6" min="2" step="0.5">
+            </div>
+          </div>
+
+          <div class="field-row">
+            <div class="field">
+              <label for="g-down">Количество стояков</label>
+              <select id="g-down">
+                <option value="2" selected>2 (стандарт)</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="g-mat">Тип системы</label>
+              <select id="g-mat">
+                <option value="290" selected>Полукруглая Ø125 — 290 ₽/м.п.</option>
+                <option value="420">Прямоугольная — 420 ₽/м.п.</option>
+                <option value="520">Ø150 XL — 520 ₽/м.п.</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="calc-result" id="g-result">
+          <div>
+            <div class="label">Ориентировочная стоимость</div>
+            <div class="price"><em id="g-price">12 040</em> ₽</div>
+            <div class="unit">комплект · без монтажа</div>
+          </div>
+          <div class="calc-breakdown">
+            <div class="calc-row"><span class="key">Желоб + воронки</span><span class="val" id="g-gutters">6 960 ₽</span></div>
+            <div class="calc-row"><span class="key">Трубы стояков</span><span class="val" id="g-pipes">3 480 ₽</span></div>
+            <div class="calc-row"><span class="key">Кронштейны + хомуты</span><span class="val" id="g-mounts">1 600 ₽</span></div>
+          </div>
+          <p class="calc-note">В комплект входят желоба, трубы, воронки, кронштейны и крепления. Цвет — в тон кровли.</p>
+          <div class="calc-actions">
+            <a href="https://wa.me/79236819709?text=Здравствуйте,%20хочу%20уточнить%20расчёт%20водостока" target="_blank" rel="noopener" class="btn btn-accent btn-block">Уточнить расчёт</a>
+            <a href="contacts.html" class="btn btn-ghost btn-block">Оставить заявку</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-row">
+        <span class="wordmark">Спектр Металла</span>
+        <ul class="footer-nav">
+          <li><a href="catalog.html">Каталог</a></li>
+          <li><a href="calculator.html">Калькулятор</a></li>
+          <li><a href="buyers.html">Покупателям</a></li>
+          <li><a href="delivery.html">Доставка</a></li>
+          <li><a href="blog.html">Статьи</a></li>
+          <li><a href="contacts.html">Контакты</a></li>
+          <li><a href="tel:+79236819709">+7 923 681-97-09</a></li>
+        </ul>
+      </div>
+      <div class="footer-bot">
+        <span>© <span id="yr">2026</span> · Спектр Металла · г. Омск</span>
+        <span>SM // SPECTRUM·METAL</span>
+      </div>
+    </div>
+  </footer>
+
+</main>
+
+<!-- ═══ MOBILE MENU ═══ -->
+<aside class="mobile-menu" id="mobileMenu">
+  <div class="mobile-menu-head">
+    <a href="index.html" class="wordmark">Спектр Металла</a>
+    <button class="mobile-menu-close" aria-label="Закрыть"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 6l12 12M6 18L18 6"/></svg></button>
+  </div>
+  <ul class="mobile-menu-list">
+    <li><a href="catalog.html">Каталог<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></li>
+    <li><a href="calculator.html" class="active">Калькулятор</a></li>
+    <li><a href="buyers.html">Покупателям</a></li>
+    <li><a href="delivery.html">Доставка</a></li>
+    <li><a href="blog.html">Статьи</a></li>
+    <li><a href="contacts.html">Контакты</a></li>
+    <li><a href="price-spectr-metalla.txt" download>Скачать прайс</a></li>
+  </ul>
+  <div class="mobile-menu-foot">
+    <a href="tel:+79236819709" class="phone">+7 923 681-97-09</a>
+    <span class="addr">г. Омск, пр. Мира, 191 · Пн–Сб · 09:00–19:00</span>
+  </div>
+</aside>
+
+<!-- ═══ STICKY BAR ═══ -->
+<div class="sticky-bar" aria-hidden="false">
+  <div class="sticky-bar-inner">
+    <a class="sb-btn sb-call" href="tel:+79236819709"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92V21a1 1 0 0 1-1.11 1A19.86 19.86 0 0 1 2 4.11 1 1 0 0 1 3 3h4.09a1 1 0 0 1 1 .75l1 4a1 1 0 0 1-.27 1L7.21 10.79a16 16 0 0 0 6 6l2.06-1.61a1 1 0 0 1 1-.27l4 1a1 1 0 0 1 .75 1Z"/></svg>Звонок</a>
+    <a class="sb-btn sb-wa" href="https://wa.me/79236819709" target="_blank" rel="noopener"><svg viewBox="0 0 32 32" fill="currentColor"><path d="M16 3C9.4 3 4 8.4 4 15c0 2.4.7 4.6 1.9 6.5L4 29l7.7-1.8c1.8 1 3.8 1.5 5.9 1.5h.4C24.6 28.7 30 23.3 30 16.7 30 9.4 24.6 3 16 3Z"/></svg>WhatsApp</a>
+    <a class="sb-btn sb-quote" href="contacts.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h18v13H3z"/><path d="M3 7l9-4 9 4"/></svg>Расчёт</a>
+  </div>
+</div>
+
+<!-- ═══ CART ═══ -->
+<button class="cart-fab" aria-label="Открыть заявку">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><path d="M3 6h18M16 10a4 4 0 0 1-8 0"/></svg>
+  <span class="badge">0</span>
+</button>
+<div class="cart-overlay" aria-hidden="true"></div>
+<aside class="cart-panel" aria-hidden="true">
+  <div class="cart-head"><h3>Заявка</h3><button class="cart-close" aria-label="Закрыть"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 6l12 12M6 18L18 6"/></svg></button></div>
+  <div class="cart-body"></div>
+  <div class="cart-foot">
+    <div class="cart-summary"><span>Итого ориентировочно</span><b>0 ₽</b></div>
+    <div class="cart-actions">
+      <button class="btn btn-accent btn-block cart-send">Отправить в WhatsApp</button>
+      <button class="btn btn-ghost btn-block cart-clear">Очистить заявку</button>
+    </div>
+  </div>
+</aside>
+
+<script>
+document.getElementById('yr').textContent = new Date().getFullYear();
+const bar = document.getElementById('progressBar');const header = document.getElementById('header');
+function onScroll(){const h=document.documentElement,max=h.scrollHeight-h.clientHeight,p=max>0?(h.scrollTop/max):0;bar.style.width=(p*100).toFixed(2)+'%';if(h.scrollTop>20)header.classList.add('scrolled');else header.classList.remove('scrolled')}
+document.addEventListener('scroll',onScroll,{passive:true});onScroll();
+
+/* ═══ КАЛЬКУЛЯТОРЫ ═══ */
+const fmt = n => Math.round(n).toLocaleString('ru-RU');
+
+/* tabs */
+document.querySelectorAll('.calc-tab').forEach(btn => btn.addEventListener('click', () => {
+  document.querySelectorAll('.calc-tab').forEach(b => b.classList.toggle('active', b === btn));
+  document.querySelectorAll('[data-panel]').forEach(p => p.style.display = p.dataset.panel === btn.dataset.calc ? '' : 'none');
+}));
+
+/* roof */
+function calcRoof(){
+  const len = +document.getElementById('r-len').value || 0;
+  const wid = +document.getElementById('r-wid').value || 0;
+  const slopes = +document.getElementById('r-slopes').value;
+  const matPrice = +document.getElementById('r-mat').value;
+  const extras = +document.getElementById('r-extras').value;
+  const area = len * wid * slopes;
+  const areaReal = area * 1.05; // нахлёсты +5%
+  const matCost = areaReal * matPrice;
+  const extrasCost = matCost * extras;
+  const total = matCost + extrasCost;
+  document.getElementById('r-area').textContent = fmt(area) + ' м²';
+  document.getElementById('r-area-real').textContent = fmt(areaReal) + ' м²';
+  document.getElementById('r-mat-cost').textContent = fmt(matCost) + ' ₽';
+  document.getElementById('r-extras-cost').textContent = fmt(extrasCost) + ' ₽';
+  document.getElementById('r-price').textContent = fmt(total);
+}
+['r-len','r-wid','r-slopes','r-mat','r-extras'].forEach(id => document.getElementById(id).addEventListener('input', calcRoof));
+calcRoof();
+
+/* fence */
+function calcFence(){
+  const per = +document.getElementById('f-per').value || 0;
+  const hgt = +document.getElementById('f-hgt').value || 0;
+  const typeSel = document.getElementById('f-type');
+  const price = +typeSel.value;
+  const isPiece = typeSel.selectedOptions[0].dataset.mode === 'piece';
+  const post = +document.getElementById('f-post').value;
+  const area = per * hgt;
+
+  let fabricCost;
+  if (isPiece) {
+    // штакетник — шаг ~10см, перекрытие
+    const pieces = Math.ceil(per * 9);
+    fabricCost = pieces * price;
+  } else {
+    fabricCost = area * price;
+  }
+  const postsCount = Math.ceil(per / 2.5);
+  const postCost = post ? postsCount * 405 : 0;
+  const total = fabricCost + postCost;
+
+  document.getElementById('f-fabric').textContent = fmt(fabricCost) + ' ₽';
+  document.getElementById('f-posts').textContent = post ? `${postsCount} шт · ${fmt(postCost)} ₽` : '—';
+  document.getElementById('f-area').textContent = fmt(area) + ' м²';
+  document.getElementById('f-price').textContent = fmt(total);
+}
+['f-per','f-hgt','f-type','f-post'].forEach(id => document.getElementById(id).addEventListener('input', calcFence));
+calcFence();
+
+/* gutter */
+function calcGutter(){
+  const eaves = +document.getElementById('g-eaves').value || 0;
+  const hgt = +document.getElementById('g-height').value || 0;
+  const down = +document.getElementById('g-down').value;
+  const price = +document.getElementById('g-mat').value;
+  const gutters = eaves * price;
+  const pipesLen = down * hgt;
+  const pipesCost = pipesLen * price;
+  const mounts = (Math.ceil(eaves / 0.6) + down * 3) * 80;
+  const total = gutters + pipesCost + mounts;
+  document.getElementById('g-gutters').textContent = fmt(gutters) + ' ₽';
+  document.getElementById('g-pipes').textContent = `${fmt(pipesLen)} м · ${fmt(pipesCost)} ₽`;
+  document.getElementById('g-mounts').textContent = fmt(mounts) + ' ₽';
+  document.getElementById('g-price').textContent = fmt(total);
+}
+['g-eaves','g-height','g-down','g-mat'].forEach(id => document.getElementById(id).addEventListener('input', calcGutter));
+calcGutter();
+</script>
+
+<script src="assets/site.js" defer></script>
+
+</body>
+</html>

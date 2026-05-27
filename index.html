@@ -187,48 +187,83 @@ p{margin:0}
 /* ─── BUTTONS ─── */
 .btn{
   position:relative;display:inline-flex;align-items:center;gap:12px;
-  padding:14px 22px;border-radius:var(--r-sm);
-  font-family:var(--f-secondary);
-  font-weight:500;font-size:12.5px;letter-spacing:.02em;
+  padding:14px 28px;border-radius:999px;
+  font-family:var(--f-secondary);font-weight:500;font-size:12.5px;letter-spacing:.04em;
   border:1px solid transparent;outline:none;
-  transition:background .3s var(--ease), color .3s var(--ease), border-color .3s var(--ease), transform .3s var(--ease);
-  white-space:nowrap;text-decoration:none;
-  text-transform:uppercase;
+  transition:background .35s var(--ease), color .35s var(--ease), border-color .35s var(--ease), transform .3s var(--ease), box-shadow .35s var(--ease);
+  white-space:nowrap;text-decoration:none;text-transform:uppercase;
+  backdrop-filter:blur(14px) saturate(160%);
+  -webkit-backdrop-filter:blur(14px) saturate(160%);
 }
-.btn svg{width:16px;height:16px;flex:0 0 auto;transition:transform .3s var(--ease)}
+.btn svg{width:15px;height:15px;flex:0 0 auto;transition:transform .3s var(--ease)}
 .btn:hover svg{transform:translateX(3px)}
 
-/* primary на тёмной секции — белая кнопка с тёмным текстом */
+/* primary — glass-white pill */
 .btn-primary{
-  background:var(--text-on-dark-bright);
-  color:var(--bg-dark);
-}
-.btn-primary:hover{background:#ffffff;transform:translateY(-1px)}
-
-/* primary на светлой секции — тёмная кнопка с белым текстом */
-.section--light .btn-primary{
-  background:var(--bg-dark);
+  background:rgba(243,244,246,.14);
   color:var(--text-on-dark-bright);
+  border-color:rgba(255,255,255,.22);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.12), 0 6px 24px rgba(0,0,0,.25);
 }
-.section--light .btn-primary:hover{background:#000000;transform:translateY(-1px)}
-
-/* ghost — outline */
-.btn-ghost{
-  background:transparent;color:var(--text-on-dark-bright);
-  border-color:var(--line-dark-strong);
+.btn-primary:hover{
+  background:rgba(243,244,246,.24);
+  border-color:rgba(255,255,255,.4);
+  transform:translateY(-1px);
 }
-.btn-ghost:hover{border-color:var(--text-on-dark-bright)}
 
-.section--light .btn-ghost{color:var(--text-on-light);border-color:var(--line-light-strong)}
-.section--light .btn-ghost:hover{border-color:var(--text-on-light);background:transparent}
+/* на светлой секции (на главной) — тёмная стеклянная вместо светлой */
+.section--light .btn-primary{
+  background:rgba(17,24,39,.78);
+  color:var(--text-on-dark-bright);
+  border-color:rgba(17,24,39,.25);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.06), 0 6px 24px rgba(17,24,39,.18);
+}
+.section--light .btn-primary:hover{
+  background:rgba(17,24,39,.92);
+  border-color:rgba(17,24,39,.4);
+}
 
-/* красный CTA — для самых важных action-точек */
+/* accent — warm-red glass pill (для «Получить расчёт» и подобных) */
 .btn-accent{
-  background:var(--accent);color:#ffffff;
+  background:color-mix(in srgb, var(--accent) 65%, transparent);
+  color:#fff;
+  border-color:color-mix(in srgb, var(--accent) 80%, transparent);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.18),
+    0 8px 28px color-mix(in srgb, var(--accent) 35%, transparent);
 }
-.btn-accent:hover{background:var(--accent-hover);transform:translateY(-1px)}
+.btn-accent:hover{
+  background:color-mix(in srgb, var(--accent-hover) 80%, transparent);
+  border-color:var(--accent-hover);
+  transform:translateY(-1px);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.22),
+    0 12px 32px color-mix(in srgb, var(--accent) 45%, transparent);
+}
 
-.btn-sm{padding:11px 16px;font-size:11.5px}
+/* ghost — almost-transparent glass pill */
+.btn-ghost{
+  background:rgba(255,255,255,.04);
+  color:var(--text-on-dark-bright);
+  border-color:rgba(255,255,255,.16);
+}
+.btn-ghost:hover{
+  background:rgba(255,255,255,.08);
+  border-color:rgba(255,255,255,.32);
+}
+
+/* на светлой секции — ghost адаптируется */
+.section--light .btn-ghost{
+  background:rgba(17,24,39,.04);
+  color:var(--text-on-light, var(--text-on-dark-bright));
+  border-color:rgba(17,24,39,.18);
+}
+.section--light .btn-ghost:hover{
+  background:rgba(17,24,39,.08);
+  border-color:rgba(17,24,39,.4);
+}
+
+.btn-sm{padding:11px 22px;font-size:11.5px}
 .btn-block{width:100%;justify-content:center}
 
 /* ─── HEADER ─── */
@@ -979,6 +1014,53 @@ p{margin:0}
   .hero-desc,.hero-actions,.hero-info,.hero-product,.hp-card{opacity:1;animation:none}
 }
 </style>
+
+<!-- ═══ SEO: OG + Schema.org — вставлено site-bootstrap ═══ -->
+<link rel="canonical" href="https://spectr-metalla.ru/index.html" />
+<meta property="og:type" content="website" />
+<meta property="og:locale" content="ru_RU" />
+<meta property="og:site_name" content="Спектр Металла" />
+<meta property="og:title" content="Спектр Металла — кровля, фасад, металлоизделия в Омске" />
+<meta property="og:description" content="Производство и продажа кровельных и фасадных материалов в Омске. Изготовление по размерам — от 30 минут." />
+<meta property="og:url" content="https://spectr-metalla.ru/index.html" />
+<meta property="og:image" content="https://spectr-metalla.ru/roof-tile.png" />
+<meta name="twitter:card" content="summary_large_image" />
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "@id": "https://spectr-metalla.ru/#org",
+  "name": "Спектр Металла",
+  "description": "Производство и продажа кровельных, фасадных материалов, профнастила, металлочерепицы, водосточных систем, доборных элементов. Изготовление металлоизделий по размерам клиента.",
+  "image": "https://spectr-metalla.ru/roof-tile.png",
+  "url": "https://spectr-metalla.ru/",
+  "telephone": ["+7 923 681-97-09","+7 929 360-80-30"],
+  "priceRange": "₽₽",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "проспект Мира, 191",
+    "addressLocality": "Омск",
+    "postalCode": "644085",
+    "addressRegion": "Омская область",
+    "addressCountry": "RU"
+  },
+  "openingHoursSpecification": [{
+    "@type": "OpeningHoursSpecification",
+    "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],
+    "opens": "09:00",
+    "closes": "19:00"
+  }],
+  "areaServed": [
+    {"@type":"City","name":"Омск"},
+    {"@type":"State","name":"Омская область"},
+    {"@type":"Country","name":"Россия"}
+  ],
+  "sameAs": []
+}
+</script>
+<link rel="stylesheet" href="assets/site.css">
+<!-- ═══ end SEO ═══ -->
 </head>
 <body>
 
@@ -992,19 +1074,43 @@ p{margin:0}
     <nav>
       <ul class="nav-list">
         <li><a href="catalog.html">Каталог</a></li>
+        <li><a href="calculator.html">Калькулятор</a></li><li><a href="buyers.html">Покупателям</a></li>
         <li><a href="delivery.html">Доставка</a></li>
-        <li><a href="contacts.html">Контакты</a></li>
+        <li><a href="blog.html">Статьи</a></li><li><a href="contacts.html">Контакты</a></li>
       </ul>
     </nav>
 
     <div style="display:flex;align-items:center;gap:20px">
-      <a href="tel:+74950000000" class="nav-tel">+7 (495) 000-00-00</a>
-      <button class="burger" aria-label="Меню">
+      <a href="price-spectr-metalla.txt" download class="btn-download"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>Прайс</a>
+      <a href="tel:+79236819709" class="nav-tel">+7 923 681-97-09</a>
+      <button class="burger" aria-label="Открыть меню">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
       </button>
     </div>
   </div>
 </header>
+
+<!-- ═══ Mobile menu (site-bootstrap) ═══ -->
+<aside class="mobile-menu" id="mobileMenu">
+  <div class="mobile-menu-head">
+    <a href="index.html" class="wordmark">Спектр Металла</a>
+    <button class="mobile-menu-close" aria-label="Закрыть"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 6l12 12M6 18L18 6"/></svg></button>
+  </div>
+  <ul class="mobile-menu-list">
+    <li><a href="catalog.html">Каталог</a></li>
+    <li><a href="calculator.html">Калькулятор</a></li>
+    <li><a href="buyers.html">Покупателям</a></li>
+    <li><a href="delivery.html">Доставка</a></li>
+    <li><a href="blog.html">Статьи</a></li>
+    <li><a href="contacts.html">Контакты</a></li>
+    <li><a href="price-spectr-metalla.txt" download>Скачать прайс</a></li>
+  </ul>
+  <div class="mobile-menu-foot">
+    <a href="tel:+79236819709" class="phone">+7 923 681-97-09</a>
+    <span class="addr">г. Омск, пр. Мира, 191 · Пн–Сб · 09:00–19:00</span>
+  </div>
+</aside>
+
 
 
 <main class="shell" id="top">
@@ -1014,13 +1120,6 @@ p{margin:0}
     <div class="container hero-inner">
 
       <div class="hero-text">
-        <div class="hero-label">
-          <span class="dot"></span>
-          <span>SM · Спектр Металла</span>
-          <span class="bar"></span>
-          <span>с 2009</span>
-        </div>
-
         <h1 class="hero-title">
           <span class="line l1"><span>Металл</span></span>
           <span class="line l2"><span>для&nbsp;дома —</span></span>
@@ -1270,7 +1369,7 @@ p{margin:0}
           <div class="section-index">03 — Доставка</div>
           <h2 class="reveal">Привозим металл<br/>на ваш участок.</h2>
         </div>
-        <p class="lead reveal d2">Доставляем по Москве и области своим транспортом, по России — проверенными ТК. Цену называем до оплаты — без сюрпризов на адресе.</p>
+        <p class="lead reveal d2">Доставляем по Омску и области своим транспортом, по России — проверенными ТК. Цену называем до оплаты — без сюрпризов на адресе.</p>
       </div>
 
       <div class="delivery-grid reveal">
@@ -1283,7 +1382,7 @@ p{margin:0}
           </div>
           <div class="del-feature-bot">
             <div class="del-price">
-              <strong>от 1 500 ₽</strong>по Москве и области
+              <strong>от 1 500 ₽</strong>по Омску и области
             </div>
             <a href="#contacts" class="btn btn-primary btn-sm">Рассчитать доставку</a>
           </div>
@@ -1351,7 +1450,7 @@ p{margin:0}
         <details class="faq-item" open>
           <summary>Есть ли доставка по области?<span class="plus" aria-hidden="true"></span></summary>
           <div class="answer">
-            <p>Да, доставляем по <strong>Москве и Московской области</strong> своим транспортом — Газель, бортовой манипулятор или фура в зависимости от объёма. Цену называем заранее, до оплаты заказа. По России отправляем проверенными транспортными компаниями.</p>
+            <p>Да, доставляем по <strong>Омску и Омской области</strong> своим транспортом — Газель, бортовой манипулятор или фура в зависимости от объёма. Цену называем заранее, до оплаты заказа. По России отправляем проверенными транспортными компаниями.</p>
           </div>
         </details>
 
@@ -1404,19 +1503,19 @@ p{margin:0}
         <div class="contact-card">
           <div class="contact-row">
             <span class="label">Телефон</span>
-            <a href="tel:+74950000000" class="value">+7 (495) 000-00-00
+            <a href="tel:+79236819709" class="value">+7 923 681-97-09
               <span class="value-sub">Звонок бесплатный</span>
             </a>
           </div>
           <div class="contact-row">
             <span class="label">Мессенджеры</span>
-            <a href="https://wa.me/74950000000" target="_blank" rel="noopener" class="value">WhatsApp · Telegram
+            <a href="https://wa.me/79236819709" target="_blank" rel="noopener" class="value">WhatsApp · Telegram
               <span class="value-sub">Ответим в течение 10 минут</span>
             </a>
           </div>
           <div class="contact-row">
             <span class="label">Адрес</span>
-            <span class="value">Россия, Московская область
+            <span class="value">644085, г. Омск, проспект Мира, 191
               <span class="value-sub">Производство и склад в одном месте</span>
             </span>
           </div>
@@ -1428,8 +1527,8 @@ p{margin:0}
           </div>
 
           <div class="contact-cta">
-            <a href="https://wa.me/74950000000" target="_blank" rel="noopener" class="btn btn-accent">Написать в WhatsApp</a>
-            <a href="tel:+74950000000" class="btn btn-ghost">Позвонить</a>
+            <a href="https://wa.me/79236819709" target="_blank" rel="noopener" class="btn btn-accent">Написать в WhatsApp</a>
+            <a href="tel:+79236819709" class="btn btn-ghost">Позвонить</a>
           </div>
         </div>
 
@@ -1466,7 +1565,8 @@ p{margin:0}
         <span class="wordmark">Спектр Металла</span>
         <ul class="footer-nav">
           <li><a href="catalog.html">Каталог</a></li>
-          <li><a href="delivery.html">Доставка</a></li>
+        <li><a href="buyers.html">Покупателям</a></li>
+        <li><a href="delivery.html">Доставка</a></li>
           <li><a href="contacts.html">Контакты</a></li>
         </ul>
       </div>
@@ -1555,7 +1655,7 @@ document.querySelectorAll('.cat').forEach(card=>{
 
   function loop(){
     // плавная интерполяция — медленно, дорого, без рывков
-    const ease = 0.06;
+    const ease = 0.085;
     curRX += (targetRX - curRX) * ease;
     curRY += (targetRY - curRY) * ease;
     curTY += (targetTY - curTY) * ease;
@@ -1575,9 +1675,9 @@ document.querySelectorAll('.cat').forEach(card=>{
     const r = stage.getBoundingClientRect();
     const x = (e.clientX - r.left - r.width/2)  / r.width;
     const y = (e.clientY - r.top  - r.height/2) / r.height;
-    // премиум, очень слабый поворот (макс ±5°)
-    targetRY = baseRot + x * 5;
-    targetRX = -y * 4;
+    // премиум поворот — заметнее, но без агрессии (макс ±8°)
+    targetRY = baseRot + x * 8;
+    targetRX = -y * 6;
     mouseInside = true;
     trigger();
   });
@@ -1597,6 +1697,33 @@ document.querySelectorAll('.cat').forEach(card=>{
   }, {passive: true});
 })();
 </script>
+
+
+<!-- ═══ Sticky bar (site-bootstrap) ═══ -->
+<div class="sticky-bar" aria-hidden="false">
+  <div class="sticky-bar-inner">
+    <a class="sb-btn sb-call" href="tel:+79236819709"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92V21a1 1 0 0 1-1.11 1A19.86 19.86 0 0 1 2 4.11 1 1 0 0 1 3 3h4.09a1 1 0 0 1 1 .75l1 4a1 1 0 0 1-.27 1L7.21 10.79a16 16 0 0 0 6 6l2.06-1.61a1 1 0 0 1 1-.27l4 1a1 1 0 0 1 .75 1Z"/></svg>Звонок</a>
+    <a class="sb-btn sb-wa" href="https://wa.me/79236819709" target="_blank" rel="noopener"><svg viewBox="0 0 32 32" fill="currentColor"><path d="M16 3C9.4 3 4 8.4 4 15c0 2.4.7 4.6 1.9 6.5L4 29l7.7-1.8c1.8 1 3.8 1.5 5.9 1.5h.4C24.6 28.7 30 23.3 30 16.7 30 9.4 24.6 3 16 3Z"/></svg>WhatsApp</a>
+    <a class="sb-btn sb-quote" href="calculator.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 7H6a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V8a1 1 0 0 0-1-1h-3"/><path d="M9 3h6v4H9z"/><path d="M9 13h6M9 17h4"/></svg>Расчёт</a>
+  </div>
+</div>
+
+<!-- ═══ Cart (site-bootstrap) ═══ -->
+<button class="cart-fab" aria-label="Заявка"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><path d="M3 6h18M16 10a4 4 0 0 1-8 0"/></svg><span class="badge">0</span></button>
+<div class="cart-overlay" aria-hidden="true"></div>
+<aside class="cart-panel" aria-hidden="true">
+  <div class="cart-head"><h3>Заявка</h3><button class="cart-close" aria-label="Закрыть"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 6l12 12M6 18L18 6"/></svg></button></div>
+  <div class="cart-body"></div>
+  <div class="cart-foot">
+    <div class="cart-summary"><span>Итого ориентировочно</span><b>0 ₽</b></div>
+    <div class="cart-actions">
+      <button class="btn btn-accent btn-block cart-send">Отправить в WhatsApp</button>
+      <button class="btn btn-ghost btn-block cart-clear">Очистить заявку</button>
+    </div>
+  </div>
+</aside>
+
+<script src="assets/site.js" defer></script>
 
 </body>
 </html>
