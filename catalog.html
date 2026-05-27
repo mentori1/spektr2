@@ -1,0 +1,812 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="theme-color" content="#06070a" />
+<title>Каталог металлоизделий · Спектр Металла</title>
+<meta name="description" content="Каталог: металлочерепица, профнастил, фальцевая кровля, фасадные панели, доборные элементы, водосточные системы. Собственное производство, изготовление от 30 минут." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@500;700;800;900&family=Unbounded:wght@400;500;600;700&family=Manrope:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+/* ════════════════════════════════════════════════════════════════
+   ТЕМА  (синхронизируй с index.html для единого визуала)
+   ════════════════════════════════════════════════════════════════ */
+:root{
+  /* surfaces */
+  --bg-dark:            #06070a;   /* основной — глубокий почти чёрный */
+  --bg-graphite:        #0f1115;   /* следующий уровень глубины */
+  --bg-card:            #14171c;   /* фон glass-карточек (за блюром) */
+  --bg-near-black:      #04050a;   /* footer */
+
+  /* text */
+  --text-on-dark:       #c9ccd2;
+  --text-on-dark-bright:#f3f4f6;
+  --text-on-dark-dim:   #7d828a;
+  --text-on-dark-deep:  #4a4f57;
+
+  /* accent */
+  --accent:             #b91c1c;
+  --accent-hover:       #dc2626;
+  --accent-glow:        rgba(220,38,38,.35);
+
+  /* lines */
+  --line:               rgba(255,255,255,.07);
+  --line-strong:        rgba(255,255,255,.14);
+  --line-glass:         rgba(255,255,255,.08);
+
+  /* type */
+  --f-display:          "Big Shoulders Display","Unbounded",system-ui,sans-serif;
+  --f-secondary:        "Unbounded","Manrope",system-ui,sans-serif;
+  --f-body:             "Manrope",system-ui,sans-serif;
+  --f-mono:             "JetBrains Mono",ui-monospace,monospace;
+
+  /* scale */
+  --gut:                clamp(20px, 4vw, 80px);
+  --section-y:          clamp(80px, 11vw, 180px);
+  --r-sm:               4px;
+  --r-md:               10px;
+  --r-lg:               18px;
+
+  /* easing */
+  --ease:               cubic-bezier(.2,.7,.2,1);
+  --ease-out:           cubic-bezier(.16,1,.3,1);
+}
+
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--f-body);font-weight:400;font-size:16px;line-height:1.55;
+  color:var(--text-on-dark);
+  background:var(--bg-dark);
+  -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;
+  overflow-x:hidden;text-rendering:optimizeLegibility;
+}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none;transition:color .25s var(--ease)}
+button{font-family:inherit;cursor:pointer}
+
+/* ─── BG: floating gradient lights + noise ─── */
+.bg-stage{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.bg-stage .glow{
+  position:absolute;border-radius:50%;
+  filter:blur(120px);opacity:.5;
+  will-change:transform;
+}
+.bg-stage .g1{
+  width:55vw;height:55vw;top:-15vw;left:-15vw;
+  background:radial-gradient(circle, color-mix(in srgb, var(--accent) 28%, transparent), transparent 60%);
+  animation:drift1 28s ease-in-out infinite;
+}
+.bg-stage .g2{
+  width:60vw;height:60vw;bottom:-20vw;right:-20vw;
+  background:radial-gradient(circle, color-mix(in srgb, #4b5563 50%, transparent), transparent 60%);
+  animation:drift2 36s ease-in-out infinite;
+}
+.bg-stage .g3{
+  width:40vw;height:40vw;top:40%;left:50%;
+  background:radial-gradient(circle, color-mix(in srgb, var(--accent) 12%, transparent), transparent 70%);
+  animation:drift3 44s ease-in-out infinite;
+  opacity:.3;
+}
+@keyframes drift1{
+  0%,100%{transform:translate(0,0) scale(1)}
+  50%{transform:translate(8vw,6vw) scale(1.1)}
+}
+@keyframes drift2{
+  0%,100%{transform:translate(0,0) scale(1)}
+  50%{transform:translate(-6vw,-4vw) scale(.95)}
+}
+@keyframes drift3{
+  0%,100%{transform:translate(-50%,-50%) scale(1)}
+  50%{transform:translate(-40%,-60%) scale(1.15)}
+}
+
+body::after{
+  content:"";position:fixed;inset:0;z-index:1;pointer-events:none;
+  opacity:.06;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 .85 0'/></filter><rect width='160' height='160' filter='url(%23n)'/></svg>");
+}
+
+.shell{position:relative;z-index:2}
+.container{max-width:1440px;margin:0 auto;padding:0 var(--gut)}
+
+/* ─── TYPE ─── */
+h1,h2,h3,h4{margin:0;color:var(--text-on-dark-bright);font-weight:600;letter-spacing:-.015em}
+h1{
+  font-family:var(--f-display);font-weight:900;
+  font-size:clamp(40px, 7vw, 104px);line-height:.92;letter-spacing:-.03em;text-transform:uppercase;
+}
+h2{
+  font-family:var(--f-display);font-weight:800;
+  font-size:clamp(28px, 3.6vw, 56px);line-height:1;letter-spacing:-.015em;text-transform:uppercase;
+}
+h3{font-family:var(--f-secondary);font-size:clamp(16px, 1.4vw, 19px);line-height:1.25;font-weight:500}
+p{margin:0}
+
+.eyebrow{
+  display:inline-flex;align-items:center;gap:12px;
+  font-family:var(--f-mono);text-transform:uppercase;font-size:11px;letter-spacing:.28em;
+  color:var(--text-on-dark-dim);font-weight:500;
+}
+.eyebrow::before{content:"";width:24px;height:1px;background:var(--accent)}
+
+.lead{
+  font-size:clamp(13.5px,1vw,15.5px);line-height:1.65;max-width:54ch;font-weight:400;
+  color:var(--text-on-dark);
+}
+
+/* ─── BUTTONS ─── */
+.btn{
+  position:relative;display:inline-flex;align-items:center;gap:12px;
+  padding:14px 22px;border-radius:var(--r-sm);
+  font-family:var(--f-secondary);font-weight:500;font-size:12.5px;letter-spacing:.02em;
+  border:1px solid transparent;outline:none;
+  transition:background .3s var(--ease), color .3s var(--ease), border-color .3s var(--ease), transform .3s var(--ease);
+  white-space:nowrap;text-decoration:none;text-transform:uppercase;
+}
+.btn svg{width:15px;height:15px;flex:0 0 auto;transition:transform .3s var(--ease)}
+.btn:hover svg{transform:translateX(3px)}
+.btn-primary{background:var(--text-on-dark-bright);color:var(--bg-dark)}
+.btn-primary:hover{background:#fff;transform:translateY(-1px)}
+.btn-ghost{background:transparent;color:var(--text-on-dark-bright);border-color:var(--line-strong)}
+.btn-ghost:hover{border-color:var(--text-on-dark-bright)}
+.btn-accent{background:var(--accent);color:#fff}
+.btn-accent:hover{background:var(--accent-hover);transform:translateY(-1px)}
+.btn-sm{padding:11px 16px;font-size:11.5px}
+
+/* ─── HEADER ─── */
+.header{
+  position:fixed;top:0;left:0;right:0;z-index:50;padding:22px 0;
+  background:transparent;border-bottom:1px solid transparent;
+  transition:padding .3s var(--ease), background .3s var(--ease), border-color .3s var(--ease);
+}
+.header.scrolled{
+  padding:14px 0;background:rgba(6,7,10,.78);
+  backdrop-filter:blur(16px) saturate(140%);-webkit-backdrop-filter:blur(16px) saturate(140%);
+  border-bottom-color:var(--line);
+}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:24px}
+.wordmark{
+  font-family:var(--f-display);font-weight:800;font-size:14px;
+  letter-spacing:.22em;color:var(--text-on-dark-bright);text-transform:uppercase;
+  display:inline-flex;align-items:center;gap:12px;
+}
+.wordmark::before{content:"";width:8px;height:8px;background:var(--accent);display:inline-block}
+.nav-list{display:flex;align-items:center;gap:2px;list-style:none;margin:0;padding:0}
+.nav-list a{
+  display:inline-block;padding:10px 18px;font-family:var(--f-secondary);
+  font-size:12.5px;font-weight:500;color:var(--text-on-dark-dim);
+  letter-spacing:.12em;text-transform:uppercase;
+}
+.nav-list a:hover, .nav-list a.active{color:var(--text-on-dark-bright)}
+.nav-list a.active{position:relative}
+.nav-list a.active::after{
+  content:"";position:absolute;left:18px;right:18px;bottom:5px;height:1px;background:var(--accent);
+}
+.nav-tel{font-family:var(--f-mono);font-size:13px;color:var(--text-on-dark);letter-spacing:.04em}
+.nav-tel:hover{color:var(--text-on-dark-bright)}
+.burger{display:none;background:transparent;border:1px solid var(--line-strong);width:42px;height:42px;border-radius:var(--r-sm);color:var(--text-on-dark-bright);align-items:center;justify-content:center}
+.burger svg{width:18px;height:18px}
+
+/* ════════════════════════════════════════════════════════════════
+   HERO
+   ════════════════════════════════════════════════════════════════ */
+.hero{
+  position:relative;padding:clamp(140px,16vw,220px) 0 clamp(72px,9vw,120px);
+  min-height:88vh;display:flex;align-items:center;
+}
+.hero-inner{
+  position:relative;display:grid;grid-template-columns:1.15fr .85fr;
+  gap:clamp(40px,7vw,100px);align-items:center;width:100%;
+}
+.hero-text{position:relative;z-index:3}
+.hero-label{
+  display:inline-flex;align-items:center;gap:14px;
+  font-family:var(--f-mono);font-size:11px;letter-spacing:.28em;
+  color:var(--text-on-dark-dim);text-transform:uppercase;margin-bottom:32px;
+}
+.hero-label .dot{width:6px;height:6px;background:var(--accent);border-radius:50%}
+.hero-label .bar{width:40px;height:1px;background:var(--line-strong)}
+.hero-title{margin:0 0 28px;color:var(--text-on-dark-bright)}
+.hero-title em{font-style:normal;color:var(--accent)}
+.hero-desc{
+  font-family:var(--f-body);font-size:clamp(14px,.95vw,16px);
+  color:var(--text-on-dark);max-width:48ch;line-height:1.6;margin-bottom:36px;
+}
+.hero-actions{display:flex;flex-wrap:wrap;gap:14px;margin-bottom:48px}
+.hero-stats{
+  display:flex;gap:24px 56px;flex-wrap:wrap;
+  padding-top:24px;border-top:1px solid var(--line);
+}
+.hero-stats span{display:flex;flex-direction:column;gap:6px;font-family:var(--f-mono);font-size:11px;letter-spacing:.18em;color:var(--text-on-dark-dim);text-transform:uppercase}
+.hero-stats b{
+  font-family:var(--f-display);font-weight:800;font-size:20px;
+  color:var(--text-on-dark-bright);text-transform:none;letter-spacing:-.005em;
+}
+
+/* hero viz — industrial render (CSS only) */
+.hero-viz{
+  position:relative;aspect-ratio:4/5;width:100%;max-width:520px;justify-self:end;
+  border-radius:var(--r-md);overflow:hidden;
+  box-shadow:0 30px 80px -30px rgba(0,0,0,.7), 0 0 0 1px var(--line);
+  will-change:transform;
+}
+.hero-viz .plate{
+  position:absolute;inset:0;
+  background:
+    linear-gradient(135deg,#2a2c30 0%,#16181c 28%,#34373c 50%,#16181c 72%,#2a2c30 100%);
+}
+.hero-viz .plate::before{
+  content:"";position:absolute;inset:0;
+  background:repeating-linear-gradient(90deg, rgba(255,255,255,.04) 0 1px, transparent 1px 3px, rgba(0,0,0,.06) 3px 4px, transparent 4px 6px);
+  mix-blend-mode:overlay;opacity:.7;
+}
+.hero-viz .plate::after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(115deg, transparent 30%, rgba(255,255,255,.04) 47%, rgba(255,255,255,.12) 50%, rgba(255,255,255,.04) 53%, transparent 65%);
+  transform:translateX(-110%);
+  animation:metalSweep 14s var(--ease) infinite;animation-delay:3s;
+}
+@keyframes metalSweep{0%,28%{transform:translateX(-110%)}60%,100%{transform:translateX(110%)}}
+.hero-viz .accent-bar{position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--accent)}
+.hero-viz .edge-top{position:absolute;left:0;right:0;top:0;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.25) 30%,rgba(255,255,255,.25) 70%,transparent)}
+.hero-viz .edge-bot{position:absolute;left:0;right:0;bottom:0;height:1px;background:rgba(0,0,0,.5)}
+
+/* corners */
+.hero-viz .corner{position:absolute;width:14px;height:14px;border-color:var(--text-on-dark-bright);opacity:.5}
+.hero-viz .corner.tl{top:12px;left:12px;border-top:1px solid;border-left:1px solid}
+.hero-viz .corner.tr{top:12px;right:12px;border-top:1px solid;border-right:1px solid}
+.hero-viz .corner.bl{bottom:12px;left:12px;border-bottom:1px solid;border-left:1px solid}
+.hero-viz .corner.br{bottom:12px;right:12px;border-bottom:1px solid;border-right:1px solid}
+
+.hero-viz .label{position:absolute;font-family:var(--f-mono);font-size:10px;color:rgba(255,255,255,.55);letter-spacing:.24em;text-transform:uppercase}
+.hero-viz .label.tl{top:24px;left:32px}
+.hero-viz .label.tr{top:24px;right:24px;text-align:right}
+.hero-viz .label.bl{bottom:24px;left:32px}
+.hero-viz .label.br{bottom:24px;right:24px;text-align:right}
+
+.hero-viz .stamp{
+  position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+  font-family:var(--f-display);font-weight:900;font-size:clamp(36px,5.5vw,80px);
+  letter-spacing:.04em;text-transform:uppercase;color:transparent;
+  -webkit-text-stroke:1px rgba(255,255,255,.22);text-stroke:1px rgba(255,255,255,.22);
+}
+.hero-viz .stamp small{display:block;font-size:.22em;letter-spacing:.3em;-webkit-text-stroke:.5px rgba(255,255,255,.4);margin-top:8px}
+
+/* ════════════════════════════════════════════════════════════════
+   CATEGORIES GRID
+   ════════════════════════════════════════════════════════════════ */
+.section{position:relative;padding:var(--section-y) 0}
+.section-head{
+  display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,6vw,96px);
+  align-items:end;margin-bottom:clamp(48px,7vw,80px);
+}
+.section-head h2{max-width:14ch}
+.section-head .lead{max-width:46ch}
+.section-index{
+  font-family:var(--f-mono);font-size:11px;letter-spacing:.28em;
+  color:var(--text-on-dark-dim);text-transform:uppercase;
+  display:inline-flex;align-items:center;gap:14px;margin-bottom:24px;
+}
+.section-index::before{content:"";width:32px;height:1px;background:var(--accent)}
+
+.grid-cats{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:22px;
+}
+
+.product{
+  position:relative;display:flex;flex-direction:column;
+  border-radius:var(--r-md);
+  overflow:hidden;
+  background:rgba(255,255,255,.025);
+  backdrop-filter:blur(20px) saturate(140%);
+  -webkit-backdrop-filter:blur(20px) saturate(140%);
+  border:1px solid var(--line-glass);
+  text-decoration:none;color:inherit;
+  transition:transform .5s var(--ease-out), border-color .5s var(--ease-out), background .5s var(--ease-out);
+  will-change:transform;
+}
+.product:hover{
+  border-color:color-mix(in srgb, var(--accent) 45%, transparent);
+  background:rgba(255,255,255,.04);
+}
+.product::after{
+  /* красный glow при hover */
+  content:"";position:absolute;inset:-1px;border-radius:inherit;pointer-events:none;
+  box-shadow:0 0 0 0 var(--accent-glow);
+  transition:box-shadow .5s var(--ease-out);
+}
+.product:hover::after{box-shadow:0 20px 60px -20px var(--accent-glow), 0 0 0 1px color-mix(in srgb, var(--accent) 30%, transparent)}
+
+.product-image{
+  position:relative;aspect-ratio:4/3;overflow:hidden;
+  background:linear-gradient(135deg,#2a2c30 0%,#16181c 50%,#2a2c30 100%);
+}
+.product-image::before{
+  /* специфический паттерн каждой категории через background-position */
+  content:"";position:absolute;inset:0;
+  background-image:var(--pattern, none);
+  background-size:var(--pattern-size, 40px 40px);
+  background-position:center;
+  opacity:.4;mix-blend-mode:overlay;
+  transition:transform .8s var(--ease-out), opacity .6s var(--ease);
+}
+.product-image::after{
+  /* sweep при загрузке */
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(115deg, transparent 35%, rgba(255,255,255,.06) 50%, transparent 65%);
+  transform:translateX(-110%);transition:transform .8s var(--ease-out);
+}
+.product:hover .product-image::before{transform:scale(1.08);opacity:.6}
+.product:hover .product-image::after{transform:translateX(110%)}
+
+.product-image .tag{
+  position:absolute;top:18px;left:18px;
+  font-family:var(--f-mono);font-size:10px;letter-spacing:.24em;
+  color:var(--text-on-dark-bright);text-transform:uppercase;
+  padding:6px 10px;background:rgba(0,0,0,.6);backdrop-filter:blur(8px);
+  border:1px solid var(--line-strong);border-radius:var(--r-sm);
+}
+.product-image .num{
+  position:absolute;bottom:18px;right:22px;
+  font-family:var(--f-display);font-weight:900;font-size:clamp(48px,5.5vw,80px);
+  line-height:.85;color:transparent;
+  -webkit-text-stroke:1px rgba(255,255,255,.22);text-stroke:1px rgba(255,255,255,.22);
+  letter-spacing:-.03em;pointer-events:none;
+}
+
+.product-body{
+  padding:24px 26px 26px;display:flex;flex-direction:column;gap:12px;flex:1;
+}
+.product-name{
+  font-family:var(--f-display);font-weight:800;font-size:clamp(18px,1.5vw,22px);
+  line-height:1.1;color:var(--text-on-dark-bright);text-transform:uppercase;letter-spacing:-.01em;
+}
+.product-desc{font-size:13px;color:var(--text-on-dark-dim);line-height:1.55;flex:1}
+.product-specs{
+  display:flex;flex-wrap:wrap;gap:6px;margin-top:4px;
+}
+.product-specs span{
+  font-family:var(--f-mono);font-size:10.5px;letter-spacing:.04em;
+  color:var(--text-on-dark);padding:5px 9px;
+  border:1px solid var(--line);border-radius:var(--r-sm);
+  background:rgba(255,255,255,.02);
+}
+.product-foot{
+  display:flex;justify-content:space-between;align-items:center;gap:14px;
+  padding-top:16px;margin-top:6px;border-top:1px solid var(--line);
+}
+.product-price{font-family:var(--f-mono);font-size:12px;color:var(--text-on-dark-bright);letter-spacing:.04em}
+.product-price b{color:var(--accent);font-weight:500}
+.product-cta{
+  display:inline-flex;align-items:center;gap:10px;
+  font-family:var(--f-secondary);font-size:11.5px;font-weight:500;
+  letter-spacing:.16em;text-transform:uppercase;color:var(--text-on-dark-dim);
+  transition:color .3s var(--ease), gap .3s var(--ease);
+}
+.product:hover .product-cta{color:var(--accent-hover);gap:14px}
+.product-cta svg{width:14px;height:14px}
+
+/* паттерны категорий */
+.p-tile-roofing{
+  --pattern:repeating-linear-gradient(0deg, transparent 0 12px, rgba(255,255,255,.4) 12px 13px, transparent 13px 14px),
+    repeating-linear-gradient(90deg, transparent 0 30px, rgba(255,255,255,.3) 30px 31px, transparent 31px 32px);
+  --pattern-size:60px 28px;
+}
+.p-tile-corrugated{
+  --pattern:repeating-linear-gradient(90deg, rgba(255,255,255,.5) 0 1px, transparent 1px 12px);
+  --pattern-size:auto;
+}
+.p-tile-seam{
+  --pattern:repeating-linear-gradient(90deg, transparent 0 60px, rgba(255,255,255,.5) 60px 62px, transparent 62px 120px),
+    repeating-linear-gradient(0deg, transparent 0 200px, rgba(255,255,255,.3) 200px 201px);
+  --pattern-size:auto;
+}
+.p-tile-facade{
+  --pattern:repeating-linear-gradient(0deg, rgba(255,255,255,.4) 0 1px, transparent 1px 40px),
+    repeating-linear-gradient(90deg, rgba(255,255,255,.4) 0 1px, transparent 1px 120px);
+  --pattern-size:auto;
+}
+.p-tile-bend{
+  --pattern:linear-gradient(135deg, transparent 40%, rgba(255,255,255,.4) 40%, rgba(255,255,255,.4) 41%, transparent 41%, transparent 49%, rgba(255,255,255,.5) 49%, rgba(255,255,255,.5) 50%, transparent 50%);
+  --pattern-size:80px 80px;
+}
+.p-tile-gutter{
+  --pattern:radial-gradient(ellipse 80% 30% at 50% 100%, rgba(255,255,255,.5) 0%, transparent 60%);
+  --pattern-size:auto;
+}
+
+/* ════════════════════════════════════════════════════════════════
+   FINAL CTA
+   ════════════════════════════════════════════════════════════════ */
+.final-cta{
+  position:relative;padding:clamp(64px,8vw,120px) 0;
+  margin-bottom:var(--section-y);
+}
+.final-cta-card{
+  position:relative;
+  border-radius:var(--r-lg);overflow:hidden;
+  background:rgba(255,255,255,.03);
+  backdrop-filter:blur(24px) saturate(140%);-webkit-backdrop-filter:blur(24px) saturate(140%);
+  border:1px solid var(--line-glass);
+  padding:clamp(40px,5vw,72px);
+  display:grid;grid-template-columns:1.2fr .8fr;gap:48px;align-items:center;
+}
+.final-cta-card::before{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(80% 100% at 100% 50%, color-mix(in srgb, var(--accent) 12%, transparent), transparent 60%);
+}
+.final-cta-card h2{margin:18px 0 18px;max-width:14ch}
+.final-cta-actions{display:flex;flex-wrap:wrap;gap:14px;justify-content:flex-end}
+
+/* ════════════════════════════════════════════════════════════════
+   FOOTER
+   ════════════════════════════════════════════════════════════════ */
+.footer{background:var(--bg-near-black);color:var(--text-on-dark-dim);padding:48px 0 32px;position:relative;z-index:2}
+.footer-row{display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap}
+.footer-nav{display:flex;gap:32px;flex-wrap:wrap;list-style:none;padding:0;margin:0;font-family:var(--f-secondary);font-size:12px;letter-spacing:.12em;text-transform:uppercase}
+.footer-nav a{color:var(--text-on-dark-dim)}
+.footer-nav a:hover{color:var(--text-on-dark-bright)}
+.footer-bot{margin-top:32px;padding-top:20px;border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap;font-size:11px;color:var(--text-on-dark-dim);font-family:var(--f-mono);letter-spacing:.06em;text-transform:uppercase}
+
+/* ─── REVEAL ─── */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity 1.2s var(--ease-out), transform 1.2s var(--ease-out)}
+.reveal.in{opacity:1;transform:translateY(0)}
+.reveal.d1{transition-delay:.1s}.reveal.d2{transition-delay:.2s}.reveal.d3{transition-delay:.3s}
+.reveal.d4{transition-delay:.4s}.reveal.d5{transition-delay:.5s}
+
+/* progress */
+.progress{position:fixed;top:0;left:0;right:0;height:1px;z-index:60;pointer-events:none}
+.progress span{display:block;height:100%;width:0;background:var(--accent);transition:width .15s linear}
+
+/* ─── RESPONSIVE ─── */
+@media (max-width:1100px){
+  .grid-cats{grid-template-columns:repeat(2,1fr)}
+  .hero-inner,.final-cta-card,.section-head{grid-template-columns:1fr;gap:40px}
+  .hero-viz{justify-self:start;max-width:460px}
+  .final-cta-actions{justify-content:flex-start}
+}
+@media (max-width:720px){
+  .nav-list,.nav-tel{display:none}
+  .burger{display:inline-flex}
+  .grid-cats{grid-template-columns:1fr}
+  .hero{padding-top:120px;min-height:auto}
+  .hero-stats{flex-direction:column;gap:14px}
+  .footer-row{flex-direction:column;align-items:flex-start;gap:20px}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.001ms !important;transition-duration:.001ms !important}
+}
+</style>
+</head>
+<body>
+
+<div class="bg-stage" aria-hidden="true">
+  <div class="glow g1"></div>
+  <div class="glow g2"></div>
+  <div class="glow g3"></div>
+</div>
+
+<div class="progress" aria-hidden="true"><span id="progressBar"></span></div>
+
+<!-- HEADER -->
+<header class="header" id="header">
+  <div class="container nav">
+    <a href="index.html" class="wordmark">Спектр Металла</a>
+    <nav>
+      <ul class="nav-list">
+        <li><a href="catalog.html" class="active">Каталог</a></li>
+        <li><a href="delivery.html">Доставка</a></li>
+        <li><a href="contacts.html">Контакты</a></li>
+      </ul>
+    </nav>
+    <div style="display:flex;align-items:center;gap:20px">
+      <a href="tel:+74950000000" class="nav-tel">+7 (495) 000-00-00</a>
+      <button class="burger" aria-label="Меню">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+
+<main class="shell" id="top">
+
+  <!-- ════════ HERO ════════ -->
+  <section class="hero">
+    <div class="container hero-inner">
+
+      <div class="hero-text reveal">
+        <div class="hero-label">
+          <span class="dot"></span>
+          <span>SM · Каталог</span>
+          <span class="bar"></span>
+          <span>2026 / RU</span>
+        </div>
+        <h1 class="hero-title">
+          Каталог<br/>металло<em>изделий.</em>
+        </h1>
+        <p class="hero-desc">
+          Кровельные и фасадные системы, профнастил и изделия собственного производства. Изготовление по размерам клиента от 30 минут.
+        </p>
+        <div class="hero-actions">
+          <a href="#categories" class="btn btn-primary">
+            Открыть каталог
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+          <a href="contacts.html" class="btn btn-ghost">Получить расчёт</a>
+        </div>
+
+        <div class="hero-stats">
+          <span><b>6</b>основных категорий</span>
+          <span><b>30+</b>SKU в каждой линейке</span>
+          <span><b>11 RAL</b>цветов в наличии</span>
+        </div>
+      </div>
+
+      <div class="hero-viz" id="heroViz" aria-hidden="true">
+        <div class="plate"></div>
+        <div class="edge-top"></div>
+        <div class="edge-bot"></div>
+        <div class="accent-bar"></div>
+        <span class="corner tl"></span><span class="corner tr"></span>
+        <span class="corner bl"></span><span class="corner br"></span>
+        <span class="label tl">SM / Каталог</span>
+        <span class="label tr">06 категорий<br/>Премиум</span>
+        <span class="label bl">Собственное<br/>производство</span>
+        <span class="label br">2026 / RU</span>
+        <span class="stamp">SM<small>Spectrum · Metal</small></span>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ════════ CATEGORIES ════════ -->
+  <section class="section" id="categories">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <div class="section-index">01 — Линейка</div>
+          <h2 class="reveal">Шесть<br/>направлений.</h2>
+        </div>
+        <p class="lead reveal d2">От листа профнастила до фальцевой кровли премиум-класса. Любая позиция доступна под индивидуальный размер и цвет RAL.</p>
+      </div>
+
+      <div class="grid-cats">
+
+        <a href="contacts.html" class="product reveal">
+          <div class="product-image p-tile-roofing">
+            <span class="tag">01 · Кровля</span>
+            <span class="num">01</span>
+          </div>
+          <div class="product-body">
+            <div class="product-name">Металлочерепица</div>
+            <p class="product-desc">Классическая волна. Монтеррей, Каскад, Андалузия, Андалусия Premium.</p>
+            <div class="product-specs">
+              <span>0.45–0.5 мм</span><span>RAL 7–9</span><span>PUR / PE / MAT</span>
+            </div>
+            <div class="product-foot">
+              <span class="product-price"><b>от</b> 540 ₽/м²</span>
+              <span class="product-cta">Подробнее
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+              </span>
+            </div>
+          </div>
+        </a>
+
+        <a href="contacts.html" class="product reveal d1">
+          <div class="product-image p-tile-corrugated">
+            <span class="tag">02 · Универсал</span>
+            <span class="num">02</span>
+          </div>
+          <div class="product-body">
+            <div class="product-name">Профнастил</div>
+            <p class="product-desc">Универсальный лист для кровли, фасада, забора, перекрытий. Любая длина под заказ.</p>
+            <div class="product-specs">
+              <span>С8 / С21 / Н35 / Н60</span><span>0.4–0.7 мм</span><span>11 цветов</span>
+            </div>
+            <div class="product-foot">
+              <span class="product-price"><b>от</b> 380 ₽/м²</span>
+              <span class="product-cta">Подробнее
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+              </span>
+            </div>
+          </div>
+        </a>
+
+        <a href="contacts.html" class="product reveal d2">
+          <div class="product-image p-tile-seam">
+            <span class="tag">03 · Премиум</span>
+            <span class="num">03</span>
+          </div>
+          <div class="product-body">
+            <div class="product-name">Фальцевая кровля</div>
+            <p class="product-desc">Кликфальц и двойной стоячий фальц — премиальная эстетика и срок службы 50+ лет.</p>
+            <div class="product-specs">
+              <span>Кликфальц</span><span>Pural / Quarzit</span><span>Россия / EU</span>
+            </div>
+            <div class="product-foot">
+              <span class="product-price"><b>от</b> 920 ₽/м²</span>
+              <span class="product-cta">Подробнее
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+              </span>
+            </div>
+          </div>
+        </a>
+
+        <a href="contacts.html" class="product reveal d1">
+          <div class="product-image p-tile-facade">
+            <span class="tag">04 · Фасад</span>
+            <span class="num">04</span>
+          </div>
+          <div class="product-body">
+            <div class="product-name">Фасадные панели</div>
+            <p class="product-desc">Сайдинг, линеарные панели, металлокассеты. Замок-захват, длина под заказ.</p>
+            <div class="product-specs">
+              <span>L-panel / Cassette</span><span>0.5–0.7 мм</span><span>под RAL</span>
+            </div>
+            <div class="product-foot">
+              <span class="product-price"><b>от</b> 690 ₽/м²</span>
+              <span class="product-cta">Подробнее
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+              </span>
+            </div>
+          </div>
+        </a>
+
+        <a href="contacts.html" class="product reveal d2">
+          <div class="product-image p-tile-bend">
+            <span class="tag">05 · Доборка</span>
+            <span class="num">05</span>
+          </div>
+          <div class="product-body">
+            <div class="product-name">Доборные элементы</div>
+            <p class="product-desc">Коньки, ендовы, отливы, планки примыкания, торцевые планки — точная гибка ±0.5°.</p>
+            <div class="product-specs">
+              <span>Гибка по чертежу</span><span>длина до 12 м</span><span>в цвет кровли</span>
+            </div>
+            <div class="product-foot">
+              <span class="product-price"><b>от</b> 120 ₽/м.п.</span>
+              <span class="product-cta">Подробнее
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+              </span>
+            </div>
+          </div>
+        </a>
+
+        <a href="contacts.html" class="product reveal d3">
+          <div class="product-image p-tile-gutter">
+            <span class="tag">06 · Водосток</span>
+            <span class="num">06</span>
+          </div>
+          <div class="product-body">
+            <div class="product-name">Водосточные системы</div>
+            <p class="product-desc">Полукруглые и прямоугольные сечения. Комплект на крышу: труба, желоб, воронка, крепления.</p>
+            <div class="product-specs">
+              <span>Ø 125 / 150 мм</span><span>в цвет кровли</span><span>гарантия 15 лет</span>
+            </div>
+            <div class="product-foot">
+              <span class="product-price"><b>от</b> 290 ₽/м.п.</span>
+              <span class="product-cta">Подробнее
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+              </span>
+            </div>
+          </div>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ════════ FINAL CTA ════════ -->
+  <section class="final-cta">
+    <div class="container">
+      <div class="final-cta-card reveal">
+        <div>
+          <div class="eyebrow">Не нашли позицию</div>
+          <h2>Сделаем по<br/>вашему чертежу.</h2>
+          <p class="lead" style="margin-top:18px">Изготавливаем нестандартные изделия из листового металла — отливы, парапеты, экраны, нестандартные доборные элементы.</p>
+        </div>
+        <div class="final-cta-actions">
+          <a href="contacts.html" class="btn btn-accent">
+            Получить расчёт
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+          <a href="tel:+74950000000" class="btn btn-ghost">+7 (495) 000-00-00</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ════════ FOOTER ════════ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-row">
+        <span class="wordmark">Спектр Металла</span>
+        <ul class="footer-nav">
+          <li><a href="catalog.html">Каталог</a></li>
+          <li><a href="delivery.html">Доставка</a></li>
+          <li><a href="contacts.html">Контакты</a></li>
+        </ul>
+      </div>
+      <div class="footer-bot">
+        <span>© <span id="yr">2026</span> · Спектр Металла</span>
+        <span>SM // SPECTRUM·METAL // ENGINEERED IN RU</span>
+      </div>
+    </div>
+  </footer>
+
+</main>
+
+<script>
+document.getElementById('yr').textContent = new Date().getFullYear();
+
+/* progress + header */
+const bar = document.getElementById('progressBar');
+const header = document.getElementById('header');
+function onScroll(){
+  const h = document.documentElement;
+  const max = h.scrollHeight - h.clientHeight;
+  const p = max > 0 ? (h.scrollTop / max) : 0;
+  bar.style.width = (p*100).toFixed(2) + '%';
+  if(h.scrollTop > 20) header.classList.add('scrolled'); else header.classList.remove('scrolled');
+}
+document.addEventListener('scroll', onScroll, {passive:true});
+onScroll();
+
+/* reveal on scroll */
+const io = new IntersectionObserver((entries)=>{
+  for(const e of entries){
+    if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+  }
+}, {threshold:.12, rootMargin:'0px 0px -60px 0px'});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+/* hero parallax — slow mouse follow */
+const viz = document.getElementById('heroViz');
+if (viz) {
+  let raf = 0, tx = 0, ty = 0;
+  document.querySelector('.hero').addEventListener('mousemove', (e) => {
+    const r = viz.getBoundingClientRect();
+    tx = ((e.clientX - r.left - r.width/2) / r.width) * 8;
+    ty = ((e.clientY - r.top - r.height/2) / r.height) * 8;
+    if (!raf) raf = requestAnimationFrame(apply);
+  });
+  function apply(){ raf = 0; viz.style.transform = `translate(${tx}px, ${ty}px)`; }
+}
+
+/* hover tilt on category cards */
+document.querySelectorAll('.product').forEach(card => {
+  card.addEventListener('mousemove', (e) => {
+    const r = card.getBoundingClientRect();
+    const x = (e.clientX - r.left) / r.width - .5;
+    const y = (e.clientY - r.top) / r.height - .5;
+    card.style.transform = `translateY(-6px) perspective(1000px) rotateY(${x*2.5}deg) rotateX(${-y*2.5}deg)`;
+  });
+  card.addEventListener('mouseleave', () => { card.style.transform = ''; });
+});
+
+/* smooth anchor scroll */
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', (e) => {
+    const id = a.getAttribute('href');
+    if (id.length < 2) return;
+    const el = document.querySelector(id);
+    if (!el) return;
+    e.preventDefault();
+    const y = el.getBoundingClientRect().top + window.scrollY - 80;
+    window.scrollTo({top: y, behavior: 'smooth'});
+  });
+});
+</script>
+
+</body>
+</html>

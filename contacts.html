@@ -1,0 +1,609 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="theme-color" content="#06070a" />
+<title>Контакты · Спектр Металла</title>
+<meta name="description" content="Свяжитесь с нами: телефон, мессенджеры, адрес производства, режим работы. Расчёт стоимости в течение 30 минут." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@500;700;800;900&family=Unbounded:wght@400;500;600;700&family=Manrope:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+/* ════════ ТЕМА (синхронизируй с index.html и др. страницами) ════════ */
+:root{
+  --bg-dark:#06070a;--bg-graphite:#0f1115;--bg-card:#14171c;--bg-near-black:#04050a;
+  --text-on-dark:#c9ccd2;--text-on-dark-bright:#f3f4f6;--text-on-dark-dim:#7d828a;--text-on-dark-deep:#4a4f57;
+  --accent:#b91c1c;--accent-hover:#dc2626;--accent-glow:rgba(220,38,38,.35);
+  --line:rgba(255,255,255,.07);--line-strong:rgba(255,255,255,.14);--line-glass:rgba(255,255,255,.08);
+  --f-display:"Big Shoulders Display","Unbounded",system-ui,sans-serif;
+  --f-secondary:"Unbounded","Manrope",system-ui,sans-serif;
+  --f-body:"Manrope",system-ui,sans-serif;
+  --f-mono:"JetBrains Mono",ui-monospace,monospace;
+  --gut:clamp(20px,4vw,80px);--section-y:clamp(80px,11vw,180px);
+  --r-sm:4px;--r-md:10px;--r-lg:18px;
+  --ease:cubic-bezier(.2,.7,.2,1);--ease-out:cubic-bezier(.16,1,.3,1);
+}
+
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--f-body);font-size:16px;line-height:1.55;color:var(--text-on-dark);
+  background:var(--bg-dark);-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;
+  overflow-x:hidden;text-rendering:optimizeLegibility;
+}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none;transition:color .25s var(--ease)}
+button{font-family:inherit;cursor:pointer}
+
+/* ─── BG ─── */
+.bg-stage{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.bg-stage .glow{position:absolute;border-radius:50%;filter:blur(120px);opacity:.5;will-change:transform}
+.bg-stage .g1{width:55vw;height:55vw;top:-15vw;left:-15vw;background:radial-gradient(circle, color-mix(in srgb, var(--accent) 26%, transparent), transparent 60%);animation:drift1 28s ease-in-out infinite}
+.bg-stage .g2{width:60vw;height:60vw;bottom:-20vw;right:-20vw;background:radial-gradient(circle, color-mix(in srgb, #4b5563 50%, transparent), transparent 60%);animation:drift2 36s ease-in-out infinite}
+.bg-stage .g3{width:42vw;height:42vw;top:48%;left:48%;background:radial-gradient(circle, color-mix(in srgb, var(--accent) 12%, transparent), transparent 70%);animation:drift3 44s ease-in-out infinite;opacity:.3}
+@keyframes drift1{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(8vw,6vw) scale(1.1)}}
+@keyframes drift2{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(-6vw,-4vw) scale(.95)}}
+@keyframes drift3{0%,100%{transform:translate(-50%,-50%) scale(1)}50%{transform:translate(-40%,-60%) scale(1.15)}}
+body::after{content:"";position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.06;mix-blend-mode:overlay;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 .85 0'/></filter><rect width='160' height='160' filter='url(%23n)'/></svg>")}
+
+.shell{position:relative;z-index:2}
+.container{max-width:1440px;margin:0 auto;padding:0 var(--gut)}
+
+/* ─── TYPE ─── */
+h1,h2,h3,h4{margin:0;color:var(--text-on-dark-bright);font-weight:600;letter-spacing:-.015em}
+h1{font-family:var(--f-display);font-weight:900;font-size:clamp(40px,7vw,104px);line-height:.92;letter-spacing:-.03em;text-transform:uppercase}
+h2{font-family:var(--f-display);font-weight:800;font-size:clamp(28px,3.6vw,56px);line-height:1;letter-spacing:-.015em;text-transform:uppercase}
+h3{font-family:var(--f-secondary);font-size:clamp(16px,1.4vw,19px);line-height:1.25;font-weight:500}
+p{margin:0}
+
+.eyebrow{display:inline-flex;align-items:center;gap:12px;font-family:var(--f-mono);text-transform:uppercase;font-size:11px;letter-spacing:.28em;color:var(--text-on-dark-dim);font-weight:500}
+.eyebrow::before{content:"";width:24px;height:1px;background:var(--accent)}
+.lead{font-size:clamp(13.5px,1vw,15.5px);line-height:1.65;max-width:54ch;font-weight:400;color:var(--text-on-dark)}
+
+/* ─── BUTTONS ─── */
+.btn{position:relative;display:inline-flex;align-items:center;gap:12px;padding:14px 22px;border-radius:var(--r-sm);font-family:var(--f-secondary);font-weight:500;font-size:12.5px;letter-spacing:.02em;border:1px solid transparent;outline:none;transition:background .3s var(--ease), color .3s var(--ease), border-color .3s var(--ease), transform .3s var(--ease);white-space:nowrap;text-decoration:none;text-transform:uppercase}
+.btn svg{width:15px;height:15px;flex:0 0 auto;transition:transform .3s var(--ease)}
+.btn:hover svg{transform:translateX(3px)}
+.btn-primary{background:var(--text-on-dark-bright);color:var(--bg-dark)}
+.btn-primary:hover{background:#fff;transform:translateY(-1px)}
+.btn-ghost{background:transparent;color:var(--text-on-dark-bright);border-color:var(--line-strong)}
+.btn-ghost:hover{border-color:var(--text-on-dark-bright)}
+.btn-accent{background:var(--accent);color:#fff}
+.btn-accent:hover{background:var(--accent-hover);transform:translateY(-1px)}
+.btn-block{width:100%;justify-content:center}
+
+/* ─── HEADER ─── */
+.header{position:fixed;top:0;left:0;right:0;z-index:50;padding:22px 0;background:transparent;border-bottom:1px solid transparent;transition:padding .3s var(--ease), background .3s var(--ease), border-color .3s var(--ease)}
+.header.scrolled{padding:14px 0;background:rgba(6,7,10,.78);backdrop-filter:blur(16px) saturate(140%);-webkit-backdrop-filter:blur(16px) saturate(140%);border-bottom-color:var(--line)}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:24px}
+.wordmark{font-family:var(--f-display);font-weight:800;font-size:14px;letter-spacing:.22em;color:var(--text-on-dark-bright);text-transform:uppercase;display:inline-flex;align-items:center;gap:12px}
+.wordmark::before{content:"";width:8px;height:8px;background:var(--accent);display:inline-block}
+.nav-list{display:flex;align-items:center;gap:2px;list-style:none;margin:0;padding:0}
+.nav-list a{display:inline-block;padding:10px 18px;font-family:var(--f-secondary);font-size:12.5px;font-weight:500;color:var(--text-on-dark-dim);letter-spacing:.12em;text-transform:uppercase;position:relative}
+.nav-list a:hover, .nav-list a.active{color:var(--text-on-dark-bright)}
+.nav-list a.active::after{content:"";position:absolute;left:18px;right:18px;bottom:5px;height:1px;background:var(--accent)}
+.nav-tel{font-family:var(--f-mono);font-size:13px;color:var(--text-on-dark);letter-spacing:.04em}
+.nav-tel:hover{color:var(--text-on-dark-bright)}
+.burger{display:none;background:transparent;border:1px solid var(--line-strong);width:42px;height:42px;border-radius:var(--r-sm);color:var(--text-on-dark-bright);align-items:center;justify-content:center}
+.burger svg{width:18px;height:18px}
+
+/* ════════════════════════════════════════════════════════════════
+   HERO
+   ════════════════════════════════════════════════════════════════ */
+.hero{position:relative;padding:clamp(140px,16vw,220px) 0 clamp(48px,7vw,80px);min-height:62vh;display:flex;align-items:center}
+.hero-inner{position:relative;max-width:1100px}
+.hero-label{display:inline-flex;align-items:center;gap:14px;font-family:var(--f-mono);font-size:11px;letter-spacing:.28em;color:var(--text-on-dark-dim);text-transform:uppercase;margin-bottom:32px}
+.hero-label .dot{width:6px;height:6px;background:var(--accent);border-radius:50%}
+.hero-label .bar{width:40px;height:1px;background:var(--line-strong)}
+.hero-title{margin:0 0 28px;color:var(--text-on-dark-bright)}
+.hero-title em{font-style:normal;color:var(--accent)}
+.hero-desc{font-family:var(--f-body);font-size:clamp(14px,1.05vw,18px);color:var(--text-on-dark);max-width:62ch;line-height:1.6}
+
+/* ════════════════════════════════════════════════════════════════
+   CONTACT BLOCK — split: info | form
+   ════════════════════════════════════════════════════════════════ */
+.contact{padding:clamp(48px,8vw,120px) 0}
+.contact-grid{display:grid;grid-template-columns:1fr 1.05fr;gap:clamp(40px,6vw,80px);align-items:flex-start}
+
+/* LEFT — info */
+.contact-info{position:relative}
+.contact-info .eyebrow{margin-bottom:20px}
+.contact-row{
+  display:flex;justify-content:space-between;align-items:baseline;gap:24px;
+  padding:28px 0;
+  border-bottom:1px solid var(--line);
+  transition:padding-left .35s var(--ease);
+}
+.contact-row:first-child{padding-top:0}
+.contact-row:hover{padding-left:8px}
+.contact-row .label{
+  font-family:var(--f-mono);font-size:11px;letter-spacing:.28em;
+  color:var(--text-on-dark-dim);text-transform:uppercase;
+  flex:0 0 auto;width:120px;
+}
+.contact-row .value{
+  font-family:var(--f-display);font-weight:700;font-size:clamp(17px,1.5vw,22px);
+  color:var(--text-on-dark-bright);text-align:right;letter-spacing:-.005em;flex:1;text-transform:none;
+}
+.contact-row a.value:hover{color:var(--accent-hover)}
+.contact-row .value-sub{
+  display:block;font-family:var(--f-body);font-size:12px;font-weight:400;
+  color:var(--text-on-dark-dim);margin-top:4px;letter-spacing:0;
+}
+
+.contact-cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px}
+
+/* RIGHT — premium glass form */
+.form-glass{
+  position:relative;
+  border-radius:var(--r-lg);overflow:hidden;
+  background:rgba(255,255,255,.03);
+  backdrop-filter:blur(28px) saturate(140%);-webkit-backdrop-filter:blur(28px) saturate(140%);
+  border:1px solid var(--line-glass);
+  padding:clamp(32px,4vw,52px);
+}
+.form-glass::before{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(80% 100% at 100% 0%, color-mix(in srgb, var(--accent) 18%, transparent), transparent 60%);
+}
+.form-glass-head{position:relative;display:flex;justify-content:space-between;align-items:baseline;gap:24px;margin-bottom:32px;padding-bottom:24px;border-bottom:1px solid var(--line)}
+.form-glass-head h3{
+  font-family:var(--f-display);font-weight:800;font-size:clamp(20px,2vw,28px);
+  color:var(--text-on-dark-bright);text-transform:uppercase;letter-spacing:-.01em;
+}
+.form-glass-head .badge{
+  font-family:var(--f-mono);font-size:10px;letter-spacing:.24em;
+  color:var(--accent);text-transform:uppercase;
+  display:inline-flex;align-items:center;gap:8px;
+}
+.form-glass-head .badge::before{content:"";width:6px;height:6px;background:var(--accent);border-radius:50%;box-shadow:0 0 12px var(--accent-glow)}
+
+.form-glass > p{font-size:13.5px;color:var(--text-on-dark);margin-bottom:28px;line-height:1.6}
+
+.field{position:relative;margin-bottom:18px}
+.field label{
+  display:block;font-family:var(--f-mono);font-size:10.5px;letter-spacing:.24em;
+  color:var(--text-on-dark-dim);text-transform:uppercase;margin-bottom:10px;
+}
+.field input,.field textarea{
+  width:100%;background:rgba(0,0,0,.35);
+  border:1px solid var(--line-strong);
+  border-radius:var(--r-sm);padding:16px 18px;
+  color:var(--text-on-dark-bright);font-family:var(--f-body);font-size:14.5px;
+  transition:border-color .3s var(--ease), background .3s var(--ease), box-shadow .3s var(--ease);
+  outline:none;
+}
+.field textarea{min-height:120px;resize:vertical}
+.field input::placeholder,.field textarea::placeholder{color:var(--text-on-dark-deep)}
+.field input:focus,.field textarea:focus{
+  border-color:var(--accent);background:rgba(0,0,0,.5);
+  box-shadow:0 0 0 4px color-mix(in srgb, var(--accent) 16%, transparent);
+}
+.form-hint{font-size:11px;color:var(--text-on-dark-dim);margin-top:16px;line-height:1.55}
+.form-hint a{color:var(--text-on-dark);text-decoration:underline;text-underline-offset:2px}
+
+/* ════════════════════════════════════════════════════════════════
+   MAP block + office card
+   ════════════════════════════════════════════════════════════════ */
+.section{position:relative;padding:var(--section-y) 0}
+.section-head{display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,6vw,96px);align-items:end;margin-bottom:clamp(40px,6vw,72px)}
+.section-head h2{max-width:14ch}
+.section-head .lead{max-width:46ch}
+.section-index{font-family:var(--f-mono);font-size:11px;letter-spacing:.28em;color:var(--text-on-dark-dim);text-transform:uppercase;display:inline-flex;align-items:center;gap:14px;margin-bottom:24px}
+.section-index::before{content:"";width:32px;height:1px;background:var(--accent)}
+
+.map-wrap{
+  position:relative;border-radius:var(--r-lg);overflow:hidden;
+  border:1px solid var(--line-glass);
+  background:
+    radial-gradient(60% 60% at 50% 50%, rgba(255,255,255,.025), transparent 70%),
+    #08090d;
+  aspect-ratio:16/9;
+}
+.map-wrap svg{position:absolute;inset:0;width:100%;height:100%}
+.dark-map-grid{stroke:rgba(255,255,255,.04);stroke-width:1;fill:none}
+.dark-map-road{stroke:rgba(255,255,255,.12);stroke-width:1.2;fill:none}
+.dark-map-road.major{stroke:rgba(255,255,255,.22);stroke-width:1.8}
+.dark-map-river{stroke:rgba(120,140,160,.22);stroke-width:2.4;fill:none;stroke-linecap:round}
+.dark-map-region{fill:rgba(255,255,255,.02);stroke:rgba(255,255,255,.07);stroke-width:.5}
+
+/* glowing pin */
+.map-pin-wrap{transform-origin:center}
+.map-pin-dot{fill:var(--accent);stroke:#fff;stroke-width:1.5;filter:drop-shadow(0 0 12px var(--accent-glow))}
+.map-pin-ring{fill:none;stroke:var(--accent);opacity:.6}
+.map-pin-ring.r1{animation:mapPulse 3s ease-out infinite}
+.map-pin-ring.r2{animation:mapPulse 3s ease-out infinite;animation-delay:1s}
+.map-pin-ring.r3{animation:mapPulse 3s ease-out infinite;animation-delay:2s}
+@keyframes mapPulse{from{r:8;opacity:.7}to{r:50;opacity:0}}
+
+.map-label{font-family:"JetBrains Mono",monospace;font-size:10px;fill:rgba(255,255,255,.85);letter-spacing:.18em;text-transform:uppercase;font-weight:500}
+.map-label.dim{fill:rgba(255,255,255,.4);font-size:9px}
+
+.map-wrap .crosshair{stroke:rgba(255,255,255,.2);stroke-width:.8;stroke-dasharray:3 3}
+
+/* corners + labels */
+.map-wrap .corner{position:absolute;width:14px;height:14px;border-color:var(--text-on-dark-bright);opacity:.5;z-index:3}
+.map-wrap .corner.tl{top:14px;left:14px;border-top:1px solid;border-left:1px solid}
+.map-wrap .corner.tr{top:14px;right:14px;border-top:1px solid;border-right:1px solid}
+.map-wrap .corner.bl{bottom:14px;left:14px;border-bottom:1px solid;border-left:1px solid}
+.map-wrap .corner.br{bottom:14px;right:14px;border-bottom:1px solid;border-right:1px solid}
+.map-wrap .meta{
+  position:absolute;font-family:var(--f-mono);font-size:10px;color:rgba(255,255,255,.55);letter-spacing:.24em;text-transform:uppercase;z-index:3;
+}
+.map-wrap .meta.tl{top:30px;left:32px}
+.map-wrap .meta.tr{top:30px;right:32px;text-align:right}
+.map-wrap .meta.bl{bottom:30px;left:32px}
+.map-wrap .meta.br{bottom:30px;right:32px;text-align:right}
+
+/* office card overlay */
+.office-card{
+  position:absolute;bottom:32px;left:32px;
+  background:rgba(10,11,14,.85);
+  backdrop-filter:blur(20px) saturate(140%);-webkit-backdrop-filter:blur(20px) saturate(140%);
+  border:1px solid var(--line-glass);
+  border-radius:var(--r-md);
+  padding:20px 24px;
+  min-width:280px;max-width:340px;
+  z-index:4;
+}
+.office-card h4{
+  font-family:var(--f-display);font-weight:800;font-size:18px;
+  color:var(--text-on-dark-bright);text-transform:uppercase;letter-spacing:-.005em;margin-bottom:8px;
+}
+.office-card .addr{font-size:13px;color:var(--text-on-dark);line-height:1.6;margin-bottom:14px}
+.office-card .info{display:flex;flex-direction:column;gap:6px;font-family:var(--f-mono);font-size:11px;letter-spacing:.16em;color:var(--text-on-dark-dim);text-transform:uppercase}
+.office-card .info b{color:var(--text-on-dark-bright);font-weight:500}
+
+/* ════════════════════════════════════════════════════════════════
+   FOOTER
+   ════════════════════════════════════════════════════════════════ */
+.footer{background:var(--bg-near-black);color:var(--text-on-dark-dim);padding:48px 0 32px;position:relative;z-index:2;margin-top:0}
+.footer-row{display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap}
+.footer-nav{display:flex;gap:32px;flex-wrap:wrap;list-style:none;padding:0;margin:0;font-family:var(--f-secondary);font-size:12px;letter-spacing:.12em;text-transform:uppercase}
+.footer-nav a{color:var(--text-on-dark-dim)}
+.footer-nav a:hover{color:var(--text-on-dark-bright)}
+.footer-bot{margin-top:32px;padding-top:20px;border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap;font-size:11px;color:var(--text-on-dark-dim);font-family:var(--f-mono);letter-spacing:.06em;text-transform:uppercase}
+
+/* ─── REVEAL ─── */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity 1.2s var(--ease-out), transform 1.2s var(--ease-out)}
+.reveal.in{opacity:1;transform:translateY(0)}
+.reveal.d1{transition-delay:.1s}.reveal.d2{transition-delay:.2s}.reveal.d3{transition-delay:.3s}
+
+.progress{position:fixed;top:0;left:0;right:0;height:1px;z-index:60;pointer-events:none}
+.progress span{display:block;height:100%;width:0;background:var(--accent);transition:width .15s linear}
+
+/* ─── RESPONSIVE ─── */
+@media (max-width:1100px){
+  .contact-grid,.section-head{grid-template-columns:1fr;gap:40px}
+  .map-wrap{aspect-ratio:4/3}
+  .office-card{position:relative;left:auto;bottom:auto;margin:0 32px 32px}
+}
+@media (max-width:720px){
+  .nav-list,.nav-tel{display:none}
+  .burger{display:inline-flex}
+  .hero{padding-top:120px;min-height:auto}
+  .contact-row{flex-direction:column;align-items:flex-start;gap:6px;padding:22px 0}
+  .contact-row .value{text-align:left;font-size:22px}
+  .office-card{left:14px;right:14px;margin:0}
+  .map-wrap{aspect-ratio:3/4}
+  .footer-row{flex-direction:column;align-items:flex-start;gap:20px}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.001ms !important;transition-duration:.001ms !important}
+}
+</style>
+</head>
+<body>
+
+<div class="bg-stage" aria-hidden="true">
+  <div class="glow g1"></div><div class="glow g2"></div><div class="glow g3"></div>
+</div>
+
+<div class="progress" aria-hidden="true"><span id="progressBar"></span></div>
+
+<!-- HEADER -->
+<header class="header" id="header">
+  <div class="container nav">
+    <a href="index.html" class="wordmark">Спектр Металла</a>
+    <nav>
+      <ul class="nav-list">
+        <li><a href="catalog.html">Каталог</a></li>
+        <li><a href="delivery.html">Доставка</a></li>
+        <li><a href="contacts.html" class="active">Контакты</a></li>
+      </ul>
+    </nav>
+    <div style="display:flex;align-items:center;gap:20px">
+      <a href="tel:+74950000000" class="nav-tel">+7 (495) 000-00-00</a>
+      <button class="burger" aria-label="Меню">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+
+<main class="shell" id="top">
+
+  <!-- ════════ HERO ════════ -->
+  <section class="hero">
+    <div class="container hero-inner reveal">
+      <div class="hero-label">
+        <span class="dot"></span>
+        <span>SM · Связь с производством</span>
+        <span class="bar"></span>
+        <span>Россия · 2026</span>
+      </div>
+      <h1 class="hero-title">
+        Свяжитесь<br/>с&nbsp;<em>нами.</em>
+      </h1>
+      <p class="hero-desc">
+        Менеджер на связи в рабочее время. Опишите задачу телефоном, в WhatsApp или через форму — пришлём расчёт в течение 30 минут.
+      </p>
+    </div>
+  </section>
+
+
+  <!-- ════════ CONTACT BLOCK ════════ -->
+  <section class="contact">
+    <div class="container contact-grid">
+
+      <!-- LEFT: info -->
+      <div class="contact-info reveal">
+        <div class="eyebrow">— Связь</div>
+
+        <div class="contact-row">
+          <span class="label">Телефон</span>
+          <a href="tel:+74950000000" class="value">+7 (495) 000-00-00
+            <span class="value-sub">Звонок бесплатный</span>
+          </a>
+        </div>
+
+        <div class="contact-row">
+          <span class="label">WhatsApp</span>
+          <a href="https://wa.me/74950000000" target="_blank" rel="noopener" class="value">wa.me/74950000000
+            <span class="value-sub">Чертёж и фото — туда же</span>
+          </a>
+        </div>
+
+        <div class="contact-row">
+          <span class="label">Telegram</span>
+          <a href="https://t.me/spectrum_metal" target="_blank" rel="noopener" class="value">@spectrum_metal
+            <span class="value-sub">Ответим за 10 минут</span>
+          </a>
+        </div>
+
+        <div class="contact-row">
+          <span class="label">E-mail</span>
+          <a href="mailto:hello@spectrum-metal.ru" class="value">hello@spectrum-metal.ru
+            <span class="value-sub">Для коммерческих запросов</span>
+          </a>
+        </div>
+
+        <div class="contact-row">
+          <span class="label">Адрес</span>
+          <span class="value">Московская область
+            <span class="value-sub">Производство и склад — одна площадка</span>
+          </span>
+        </div>
+
+        <div class="contact-row">
+          <span class="label">График</span>
+          <span class="value">Пн–Сб · 09:00 — 19:00
+            <span class="value-sub">Воскресенье — по согласованию</span>
+          </span>
+        </div>
+
+        <div class="contact-cta">
+          <a href="https://wa.me/74950000000?text=Здравствуйте,%20хочу%20рассчитать%20стоимость" target="_blank" rel="noopener" class="btn btn-accent">Написать в WhatsApp</a>
+          <a href="tel:+74950000000" class="btn btn-ghost">Позвонить</a>
+        </div>
+      </div>
+
+      <!-- RIGHT: glass form -->
+      <form class="form-glass reveal d2" id="leadForm" onsubmit="event.preventDefault();this.querySelector('button[type=submit]').innerHTML='✓ Заявка отправлена'">
+        <div class="form-glass-head">
+          <h3>Получить расчёт</h3>
+          <span class="badge">Live · 30 мин</span>
+        </div>
+        <p>Опишите задачу — менеджер пришлёт цену в течение 30 минут с момента заявки.</p>
+
+        <div class="field">
+          <label for="f-name">Имя</label>
+          <input id="f-name" type="text" placeholder="Как к Вам обращаться" required />
+        </div>
+        <div class="field">
+          <label for="f-phone">Телефон</label>
+          <input id="f-phone" type="tel" placeholder="+7 ___ ___-__-__" required />
+        </div>
+        <div class="field">
+          <label for="f-msg">Что считаем?</label>
+          <textarea id="f-msg" placeholder="Например: профнастил С8, забор 40 м, высота 2 м, цвет RAL 6005, доставка в Истру"></textarea>
+        </div>
+        <button type="submit" class="btn btn-accent btn-block">
+          Рассчитать стоимость
+        </button>
+        <p class="form-hint">Отправляя форму, вы соглашаетесь с <a href="#">политикой обработки персональных данных</a>.</p>
+      </form>
+
+    </div>
+  </section>
+
+
+  <!-- ════════ MAP ════════ -->
+  <section class="section">
+    <div class="container">
+
+      <div class="section-head">
+        <div>
+          <div class="section-index">02 — На карте</div>
+          <h2 class="reveal">Производство<br/>и&nbsp;склад.</h2>
+        </div>
+        <p class="lead reveal d2">Одна площадка — собственный цех, склад и отгрузка. Удобный подъезд для большегрузов. Самовывоз — по согласованию.</p>
+      </div>
+
+      <div class="map-wrap reveal">
+
+        <!-- corners + meta -->
+        <span class="corner tl"></span><span class="corner tr"></span>
+        <span class="corner bl"></span><span class="corner br"></span>
+        <span class="meta tl">MAP / 01<br/>Spectrum · Metal</span>
+        <span class="meta tr">55.7558° N<br/>37.6173° E</span>
+        <span class="meta br">SM·LOC / 2026</span>
+
+        <!-- dark abstract map: roads / rivers / pin -->
+        <svg viewBox="0 0 1000 562" preserveAspectRatio="xMidYMid slice">
+          <!-- background grid -->
+          <g class="dark-map-grid">
+            <path d="M0,80 H1000 M0,160 H1000 M0,240 H1000 M0,320 H1000 M0,400 H1000 M0,480 H1000"/>
+            <path d="M80,0 V562 M200,0 V562 M320,0 V562 M440,0 V562 M560,0 V562 M680,0 V562 M800,0 V562 M920,0 V562"/>
+          </g>
+
+          <!-- регионы (абстрактные кляксы) -->
+          <path class="dark-map-region" d="M0,40 C150,20 320,30 500,40 C680,50 840,70 1000,50 L1000,180 C870,200 720,210 550,200 C380,190 220,180 80,200 C40,210 0,200 0,180 Z"/>
+          <path class="dark-map-region" d="M0,200 C170,180 360,210 540,230 C720,250 880,260 1000,240 L1000,400 C840,420 660,410 480,400 C300,390 130,400 0,420 Z"/>
+          <path class="dark-map-region" d="M0,420 C190,410 380,430 580,450 C780,470 900,470 1000,450 L1000,562 L0,562 Z"/>
+
+          <!-- большой ring road / окружная -->
+          <ellipse cx="500" cy="281" rx="170" ry="120" class="dark-map-road major" stroke-dasharray="0"/>
+
+          <!-- основные радиальные дороги от центра -->
+          <path class="dark-map-road major" d="M500,281 L820,80"/>
+          <path class="dark-map-road major" d="M500,281 L900,330"/>
+          <path class="dark-map-road major" d="M500,281 L780,500"/>
+          <path class="dark-map-road major" d="M500,281 L260,500"/>
+          <path class="dark-map-road major" d="M500,281 L120,330"/>
+          <path class="dark-map-road major" d="M500,281 L200,80"/>
+
+          <!-- мелкие дороги -->
+          <path class="dark-map-road" d="M150,150 L850,420"/>
+          <path class="dark-map-road" d="M850,150 L150,420"/>
+          <path class="dark-map-road" d="M100,281 L900,281"/>
+          <path class="dark-map-road" d="M500,40 L500,520"/>
+
+          <!-- река (изгибающаяся) -->
+          <path class="dark-map-river" d="M0,360 C150,330 250,380 380,340 C480,310 560,360 660,330 C780,290 880,340 1000,310"/>
+          <path class="dark-map-river" d="M0,440 C180,420 320,460 480,430 C640,400 780,440 1000,420" opacity=".6"/>
+
+          <!-- crosshair lines on pin -->
+          <line x1="500" y1="0" x2="500" y2="562" class="crosshair"/>
+          <line x1="0" y1="281" x2="1000" y2="281" class="crosshair"/>
+
+          <!-- pulse rings -->
+          <g class="map-pin-wrap" transform="translate(500,281)">
+            <circle r="0" class="map-pin-ring r1"/>
+            <circle r="0" class="map-pin-ring r2"/>
+            <circle r="0" class="map-pin-ring r3"/>
+            <circle r="7" class="map-pin-dot"/>
+          </g>
+
+          <!-- city labels nearby -->
+          <text x="514" y="276" class="map-label">Спектр Металла</text>
+          <text x="514" y="294" class="map-label dim">cklad · prod · ship</text>
+
+          <text x="200" y="74"  class="map-label dim">Тверь</text>
+          <text x="820" y="74"  class="map-label dim">Ярославль</text>
+          <text x="120" y="330" class="map-label dim">Смоленск</text>
+          <text x="900" y="330" class="map-label dim">Нижний</text>
+          <text x="260" y="510" class="map-label dim">Тула</text>
+          <text x="780" y="510" class="map-label dim">Рязань</text>
+        </svg>
+
+        <!-- office floating card -->
+        <div class="office-card">
+          <div style="font-family:var(--f-mono);font-size:10.5px;letter-spacing:.24em;color:var(--accent);text-transform:uppercase;margin-bottom:8px;display:inline-flex;align-items:center;gap:8px">
+            <span style="width:8px;height:8px;border-radius:50%;background:var(--accent);box-shadow:0 0 12px var(--accent-glow)"></span>
+            Производство
+          </div>
+          <h4>Спектр Металла</h4>
+          <p class="addr">Россия, Московская область<br/>координаты уточнит менеджер</p>
+          <div class="info">
+            <span>Тел · <b>+7 (495) 000-00-00</b></span>
+            <span>График · <b>Пн–Сб · 09:00 — 19:00</b></span>
+            <span>Подъезд для фур · <b>Да</b></span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ════════ FOOTER ════════ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-row">
+        <span class="wordmark">Спектр Металла</span>
+        <ul class="footer-nav">
+          <li><a href="catalog.html">Каталог</a></li>
+          <li><a href="delivery.html">Доставка</a></li>
+          <li><a href="contacts.html">Контакты</a></li>
+        </ul>
+      </div>
+      <div class="footer-bot">
+        <span>© <span id="yr">2026</span> · Спектр Металла</span>
+        <span>SM // SPECTRUM·METAL // ENGINEERED IN RU</span>
+      </div>
+    </div>
+  </footer>
+
+</main>
+
+<script>
+document.getElementById('yr').textContent = new Date().getFullYear();
+
+const bar = document.getElementById('progressBar');
+const header = document.getElementById('header');
+function onScroll(){
+  const h = document.documentElement;
+  const max = h.scrollHeight - h.clientHeight;
+  const p = max > 0 ? (h.scrollTop / max) : 0;
+  bar.style.width = (p*100).toFixed(2) + '%';
+  if(h.scrollTop > 20) header.classList.add('scrolled'); else header.classList.remove('scrolled');
+}
+document.addEventListener('scroll', onScroll, {passive:true});
+onScroll();
+
+const io = new IntersectionObserver((entries)=>{
+  for(const e of entries){
+    if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+  }
+}, {threshold:.12, rootMargin:'0px 0px -60px 0px'});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+/* mouse parallax — лёгкое смещение pin / radial-glow на карте */
+const map = document.querySelector('.map-wrap');
+if (map) {
+  let raf = 0, tx = 0, ty = 0;
+  map.addEventListener('mousemove', (e) => {
+    const r = map.getBoundingClientRect();
+    tx = ((e.clientX - r.left) / r.width - .5) * 14;
+    ty = ((e.clientY - r.top) / r.height - .5) * 10;
+    if (!raf) raf = requestAnimationFrame(apply);
+  });
+  map.addEventListener('mouseleave', () => { tx = 0; ty = 0; if (!raf) raf = requestAnimationFrame(apply); });
+  function apply(){
+    raf = 0;
+    const svg = map.querySelector('svg');
+    if (svg) svg.style.transform = `translate(${tx}px, ${ty}px)`;
+  }
+}
+
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', (e) => {
+    const id = a.getAttribute('href');
+    if (id.length < 2) return;
+    const el = document.querySelector(id);
+    if (!el) return;
+    e.preventDefault();
+    const y = el.getBoundingClientRect().top + window.scrollY - 80;
+    window.scrollTo({top: y, behavior: 'smooth'});
+  });
+});
+</script>
+
+</body>
+</html>

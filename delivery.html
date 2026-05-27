@@ -1,0 +1,725 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="theme-color" content="#06070a" />
+<title>Доставка и логистика · Спектр Металла</title>
+<meta name="description" content="Доставка металлоизделий по Москве, области и всей России. Собственный транспорт, средний срок 48 часов, 1000+ выполненных объектов." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@500;700;800;900&family=Unbounded:wght@400;500;600;700&family=Manrope:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+/* ════════ ТЕМА (синхронизируй с index.html и др. страницами) ════════ */
+:root{
+  --bg-dark:#06070a;--bg-graphite:#0f1115;--bg-card:#14171c;--bg-near-black:#04050a;
+  --text-on-dark:#c9ccd2;--text-on-dark-bright:#f3f4f6;--text-on-dark-dim:#7d828a;--text-on-dark-deep:#4a4f57;
+  --accent:#b91c1c;--accent-hover:#dc2626;--accent-glow:rgba(220,38,38,.35);
+  --line:rgba(255,255,255,.07);--line-strong:rgba(255,255,255,.14);--line-glass:rgba(255,255,255,.08);
+  --f-display:"Big Shoulders Display","Unbounded",system-ui,sans-serif;
+  --f-secondary:"Unbounded","Manrope",system-ui,sans-serif;
+  --f-body:"Manrope",system-ui,sans-serif;
+  --f-mono:"JetBrains Mono",ui-monospace,monospace;
+  --gut:clamp(20px,4vw,80px);--section-y:clamp(80px,11vw,180px);
+  --r-sm:4px;--r-md:10px;--r-lg:18px;
+  --ease:cubic-bezier(.2,.7,.2,1);--ease-out:cubic-bezier(.16,1,.3,1);
+}
+
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--f-body);font-size:16px;line-height:1.55;color:var(--text-on-dark);
+  background:var(--bg-dark);-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;
+  overflow-x:hidden;text-rendering:optimizeLegibility;
+}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none;transition:color .25s var(--ease)}
+button{font-family:inherit;cursor:pointer}
+
+/* ─── BG ─── */
+.bg-stage{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.bg-stage .glow{position:absolute;border-radius:50%;filter:blur(120px);opacity:.5;will-change:transform}
+.bg-stage .g1{width:55vw;height:55vw;top:-15vw;left:-15vw;background:radial-gradient(circle, color-mix(in srgb, var(--accent) 26%, transparent), transparent 60%);animation:drift1 28s ease-in-out infinite}
+.bg-stage .g2{width:60vw;height:60vw;bottom:-20vw;right:-20vw;background:radial-gradient(circle, color-mix(in srgb, #4b5563 50%, transparent), transparent 60%);animation:drift2 36s ease-in-out infinite}
+.bg-stage .g3{width:42vw;height:42vw;top:45%;left:30%;background:radial-gradient(circle, color-mix(in srgb, var(--accent) 10%, transparent), transparent 70%);animation:drift3 44s ease-in-out infinite;opacity:.3}
+@keyframes drift1{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(8vw,6vw) scale(1.1)}}
+@keyframes drift2{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(-6vw,-4vw) scale(.95)}}
+@keyframes drift3{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(-4vw,4vw) scale(1.12)}}
+body::after{content:"";position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.06;mix-blend-mode:overlay;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 .85 0'/></filter><rect width='160' height='160' filter='url(%23n)'/></svg>")}
+
+.shell{position:relative;z-index:2}
+.container{max-width:1440px;margin:0 auto;padding:0 var(--gut)}
+
+/* ─── TYPE ─── */
+h1,h2,h3,h4{margin:0;color:var(--text-on-dark-bright);font-weight:600;letter-spacing:-.015em}
+h1{font-family:var(--f-display);font-weight:900;font-size:clamp(40px,7vw,104px);line-height:.92;letter-spacing:-.03em;text-transform:uppercase}
+h2{font-family:var(--f-display);font-weight:800;font-size:clamp(28px,3.6vw,56px);line-height:1;letter-spacing:-.015em;text-transform:uppercase}
+h3{font-family:var(--f-secondary);font-size:clamp(16px,1.4vw,19px);line-height:1.25;font-weight:500}
+p{margin:0}
+
+.eyebrow{display:inline-flex;align-items:center;gap:12px;font-family:var(--f-mono);text-transform:uppercase;font-size:11px;letter-spacing:.28em;color:var(--text-on-dark-dim);font-weight:500}
+.eyebrow::before{content:"";width:24px;height:1px;background:var(--accent)}
+.lead{font-size:clamp(13.5px,1vw,15.5px);line-height:1.65;max-width:54ch;font-weight:400;color:var(--text-on-dark)}
+
+/* ─── BUTTONS ─── */
+.btn{position:relative;display:inline-flex;align-items:center;gap:12px;padding:14px 22px;border-radius:var(--r-sm);font-family:var(--f-secondary);font-weight:500;font-size:12.5px;letter-spacing:.02em;border:1px solid transparent;outline:none;transition:background .3s var(--ease), color .3s var(--ease), border-color .3s var(--ease), transform .3s var(--ease);white-space:nowrap;text-decoration:none;text-transform:uppercase}
+.btn svg{width:15px;height:15px;flex:0 0 auto;transition:transform .3s var(--ease)}
+.btn:hover svg{transform:translateX(3px)}
+.btn-primary{background:var(--text-on-dark-bright);color:var(--bg-dark)}
+.btn-primary:hover{background:#fff;transform:translateY(-1px)}
+.btn-ghost{background:transparent;color:var(--text-on-dark-bright);border-color:var(--line-strong)}
+.btn-ghost:hover{border-color:var(--text-on-dark-bright)}
+.btn-accent{background:var(--accent);color:#fff}
+.btn-accent:hover{background:var(--accent-hover);transform:translateY(-1px)}
+.btn-sm{padding:11px 16px;font-size:11.5px}
+
+/* ─── HEADER ─── */
+.header{position:fixed;top:0;left:0;right:0;z-index:50;padding:22px 0;background:transparent;border-bottom:1px solid transparent;transition:padding .3s var(--ease), background .3s var(--ease), border-color .3s var(--ease)}
+.header.scrolled{padding:14px 0;background:rgba(6,7,10,.78);backdrop-filter:blur(16px) saturate(140%);-webkit-backdrop-filter:blur(16px) saturate(140%);border-bottom-color:var(--line)}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:24px}
+.wordmark{font-family:var(--f-display);font-weight:800;font-size:14px;letter-spacing:.22em;color:var(--text-on-dark-bright);text-transform:uppercase;display:inline-flex;align-items:center;gap:12px}
+.wordmark::before{content:"";width:8px;height:8px;background:var(--accent);display:inline-block}
+.nav-list{display:flex;align-items:center;gap:2px;list-style:none;margin:0;padding:0}
+.nav-list a{display:inline-block;padding:10px 18px;font-family:var(--f-secondary);font-size:12.5px;font-weight:500;color:var(--text-on-dark-dim);letter-spacing:.12em;text-transform:uppercase;position:relative}
+.nav-list a:hover, .nav-list a.active{color:var(--text-on-dark-bright)}
+.nav-list a.active::after{content:"";position:absolute;left:18px;right:18px;bottom:5px;height:1px;background:var(--accent)}
+.nav-tel{font-family:var(--f-mono);font-size:13px;color:var(--text-on-dark);letter-spacing:.04em}
+.nav-tel:hover{color:var(--text-on-dark-bright)}
+.burger{display:none;background:transparent;border:1px solid var(--line-strong);width:42px;height:42px;border-radius:var(--r-sm);color:var(--text-on-dark-bright);align-items:center;justify-content:center}
+.burger svg{width:18px;height:18px}
+
+/* ════════════════════════════════════════════════════════════════
+   HERO с logistics-визуалом
+   ════════════════════════════════════════════════════════════════ */
+.hero{position:relative;padding:clamp(140px,16vw,220px) 0 clamp(72px,9vw,120px);min-height:88vh;display:flex;align-items:center}
+.hero-inner{position:relative;display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(40px,7vw,100px);align-items:center;width:100%}
+.hero-text{position:relative;z-index:3}
+.hero-label{display:inline-flex;align-items:center;gap:14px;font-family:var(--f-mono);font-size:11px;letter-spacing:.28em;color:var(--text-on-dark-dim);text-transform:uppercase;margin-bottom:32px}
+.hero-label .dot{width:6px;height:6px;background:var(--accent);border-radius:50%}
+.hero-label .bar{width:40px;height:1px;background:var(--line-strong)}
+.hero-title{margin:0 0 28px}
+.hero-title em{font-style:normal;color:var(--accent)}
+.hero-desc{font-family:var(--f-body);font-size:clamp(14px,.95vw,16px);color:var(--text-on-dark);max-width:48ch;line-height:1.6;margin-bottom:36px}
+.hero-actions{display:flex;flex-wrap:wrap;gap:14px;margin-bottom:48px}
+
+/* logistics visualization — animated SVG */
+.logistics-viz{
+  position:relative;aspect-ratio:1/1;width:100%;max-width:540px;justify-self:end;
+  border-radius:var(--r-md);overflow:hidden;
+  border:1px solid var(--line-glass);
+  background:
+    radial-gradient(60% 60% at 35% 35%, color-mix(in srgb, var(--accent) 14%, transparent), transparent 70%),
+    linear-gradient(135deg, #14171c 0%, #06070a 100%);
+  box-shadow:0 30px 80px -30px rgba(0,0,0,.7);
+  will-change:transform;
+}
+.logistics-viz .corner{position:absolute;width:14px;height:14px;border-color:var(--text-on-dark-bright);opacity:.5}
+.logistics-viz .corner.tl{top:12px;left:12px;border-top:1px solid;border-left:1px solid}
+.logistics-viz .corner.tr{top:12px;right:12px;border-top:1px solid;border-right:1px solid}
+.logistics-viz .corner.bl{bottom:12px;left:12px;border-bottom:1px solid;border-left:1px solid}
+.logistics-viz .corner.br{bottom:12px;right:12px;border-bottom:1px solid;border-right:1px solid}
+.logistics-viz .label{position:absolute;font-family:var(--f-mono);font-size:10px;color:rgba(255,255,255,.55);letter-spacing:.24em;text-transform:uppercase}
+.logistics-viz .label.tl{top:24px;left:32px}
+.logistics-viz .label.tr{top:24px;right:24px;text-align:right}
+.logistics-viz .label.bl{bottom:24px;left:32px}
+.logistics-viz .label.br{bottom:24px;right:24px;text-align:right}
+
+.logistics-viz svg{position:absolute;inset:8% 6% 12% 6%;width:88%;height:84%}
+.logistics-viz .route{fill:none;stroke:var(--accent);stroke-width:1.4;stroke-dasharray:4 5;stroke-dashoffset:0;animation:dashFlow 4s linear infinite}
+.logistics-viz .route-faint{fill:none;stroke:rgba(255,255,255,.18);stroke-width:1;stroke-dasharray:2 5}
+@keyframes dashFlow{to{stroke-dashoffset:-90}}
+.logistics-viz .node{fill:var(--bg-dark);stroke:rgba(255,255,255,.4);stroke-width:1}
+.logistics-viz .node.hub{fill:var(--accent);stroke:#fff;stroke-width:1.5}
+.logistics-viz .pulse{fill:none;stroke:var(--accent);opacity:.7;transform-origin:center;transform-box:fill-box}
+.logistics-viz .pulse.p1{animation:pulse 3s ease-out infinite}
+.logistics-viz .pulse.p2{animation:pulse 3s ease-out infinite;animation-delay:1s}
+.logistics-viz .pulse.p3{animation:pulse 3s ease-out infinite;animation-delay:2s}
+@keyframes pulse{from{r:6;opacity:.8}to{r:40;opacity:0}}
+.logistics-viz .city-label{font-family:"JetBrains Mono",monospace;font-size:8px;fill:rgba(255,255,255,.55);letter-spacing:.18em;text-transform:uppercase}
+
+/* ════════════════════════════════════════════════════════════════
+   STATS
+   ════════════════════════════════════════════════════════════════ */
+.stats{
+  background:var(--bg-graphite);
+  padding:clamp(48px,6vw,80px) 0;
+  border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+}
+.stats-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(20px,3vw,48px)}
+.stat{display:flex;flex-direction:column;gap:14px;padding-left:24px;border-left:1px solid var(--line)}
+.stat-num{
+  font-family:var(--f-display);font-weight:900;
+  font-size:clamp(36px,5vw,68px);
+  line-height:.9;letter-spacing:-.03em;text-transform:uppercase;
+  color:var(--text-on-dark-bright);
+}
+.stat-num em{font-style:normal;color:var(--accent)}
+.stat-label{font-family:var(--f-mono);font-size:11px;letter-spacing:.24em;color:var(--text-on-dark-dim);text-transform:uppercase}
+.stat-desc{font-size:13.5px;color:var(--text-on-dark-dim);line-height:1.6;max-width:30ch;margin-top:4px}
+
+/* ════════════════════════════════════════════════════════════════
+   SECTION FRAME
+   ════════════════════════════════════════════════════════════════ */
+.section{position:relative;padding:var(--section-y) 0}
+.section-head{display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,6vw,96px);align-items:end;margin-bottom:clamp(48px,7vw,80px)}
+.section-head h2{max-width:14ch}
+.section-head .lead{max-width:46ch}
+.section-index{font-family:var(--f-mono);font-size:11px;letter-spacing:.28em;color:var(--text-on-dark-dim);text-transform:uppercase;display:inline-flex;align-items:center;gap:14px;margin-bottom:24px}
+.section-index::before{content:"";width:32px;height:1px;background:var(--accent)}
+
+/* ════════════════════════════════════════════════════════════════
+   TIMELINE  — 5 этапов
+   ════════════════════════════════════════════════════════════════ */
+.timeline{position:relative;display:grid;gap:0;max-width:1180px;margin:0 auto}
+.timeline::before{
+  content:"";position:absolute;left:62px;top:0;bottom:0;width:1px;
+  background:linear-gradient(180deg, transparent 0%, var(--line-strong) 10%, var(--line-strong) 90%, transparent 100%);
+}
+.tl-step{
+  position:relative;display:grid;
+  grid-template-columns:130px 1fr 1.4fr;
+  gap:32px;align-items:flex-start;
+  padding:clamp(28px,3.5vw,48px) 0;
+  border-bottom:1px solid var(--line);
+  transition:padding-left .4s var(--ease);
+}
+.tl-step:last-child{border-bottom:none}
+.tl-step:hover{padding-left:12px}
+.tl-step:hover .tl-node{
+  background:var(--accent);border-color:var(--accent);
+  box-shadow:0 0 0 6px color-mix(in srgb, var(--accent) 16%, transparent), 0 0 40px var(--accent-glow);
+}
+.tl-step:hover .tl-num{color:var(--accent)}
+.tl-num-wrap{position:relative;display:flex;align-items:center;gap:24px;z-index:2}
+.tl-node{
+  position:relative;width:14px;height:14px;border-radius:50%;
+  background:var(--bg-dark);
+  border:2px solid var(--text-on-dark-dim);
+  flex:0 0 auto;
+  transition:all .4s var(--ease);
+  z-index:2;
+}
+.tl-num{
+  font-family:var(--f-display);font-weight:900;font-size:clamp(36px,4.5vw,56px);
+  line-height:1;letter-spacing:-.03em;color:var(--text-on-dark-dim);
+  text-transform:uppercase;transition:color .4s var(--ease);
+}
+.tl-content h3{
+  font-family:var(--f-display);font-weight:800;font-size:clamp(18px,1.7vw,24px);
+  line-height:1.05;color:var(--text-on-dark-bright);text-transform:uppercase;letter-spacing:-.01em;margin-bottom:10px;
+}
+.tl-content .meta{font-family:var(--f-mono);font-size:11px;letter-spacing:.22em;color:var(--text-on-dark-dim);text-transform:uppercase;margin-top:8px}
+.tl-desc{font-size:13.5px;color:var(--text-on-dark);line-height:1.7;max-width:48ch}
+
+/* ════════════════════════════════════════════════════════════════
+   MAP — geographic coverage
+   ════════════════════════════════════════════════════════════════ */
+.map-block{
+  position:relative;
+  border-radius:var(--r-lg);overflow:hidden;
+  background:
+    radial-gradient(70% 80% at 50% 30%, rgba(255,255,255,.03), transparent 70%),
+    linear-gradient(135deg, #14171c 0%, #06070a 100%);
+  border:1px solid var(--line-glass);
+  padding:clamp(36px,5vw,72px);
+  display:grid;grid-template-columns:1fr 1.4fr;gap:clamp(32px,5vw,72px);align-items:center;
+}
+.map-info h3{
+  font-family:var(--f-display);font-weight:800;font-size:clamp(22px,2.5vw,34px);
+  line-height:1.05;color:var(--text-on-dark-bright);text-transform:uppercase;letter-spacing:-.015em;
+  margin-bottom:18px;max-width:14ch;
+}
+.map-info .lead{margin-bottom:32px}
+.map-list{list-style:none;margin:0;padding:0;display:grid;gap:14px}
+.map-list li{
+  display:flex;justify-content:space-between;align-items:baseline;gap:16px;
+  padding-bottom:14px;border-bottom:1px solid var(--line);
+}
+.map-list li:last-child{border-bottom:none}
+.map-list .city{font-family:var(--f-display);font-weight:700;font-size:15px;color:var(--text-on-dark-bright);text-transform:uppercase;letter-spacing:.02em}
+.map-list .city .dot{display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--accent);margin-right:10px;box-shadow:0 0 12px var(--accent-glow);vertical-align:middle}
+.map-list .when{font-family:var(--f-mono);font-size:11px;color:var(--text-on-dark-dim);letter-spacing:.16em;text-transform:uppercase}
+
+.map-canvas{
+  position:relative;aspect-ratio:5/4;
+  border:1px solid var(--line);border-radius:var(--r-md);overflow:hidden;
+  background:
+    radial-gradient(60% 60% at 50% 50%, rgba(255,255,255,.025), transparent 70%),
+    #0a0b10;
+}
+.map-canvas svg{position:absolute;inset:0;width:100%;height:100%}
+.map-outline{fill:none;stroke:rgba(255,255,255,.18);stroke-width:1;stroke-linejoin:round}
+.map-region{fill:rgba(255,255,255,.018);stroke:rgba(255,255,255,.08);stroke-width:.5}
+.map-route{fill:none;stroke:color-mix(in srgb, var(--accent) 75%, transparent);stroke-width:1.2;stroke-dasharray:3 4;animation:dashFlow 4s linear infinite}
+.map-pin{fill:var(--accent);stroke:#fff;stroke-width:.8;filter:drop-shadow(0 0 6px var(--accent-glow))}
+.map-pin.hub{fill:#fff;stroke:var(--accent);stroke-width:1.5}
+.map-pulse{fill:none;stroke:var(--accent);opacity:.6;transform-origin:center;transform-box:fill-box}
+.map-pulse.p1{animation:pulse 3.2s ease-out infinite}
+.map-pulse.p2{animation:pulse 3.2s ease-out infinite;animation-delay:.8s}
+.map-pulse.p3{animation:pulse 3.2s ease-out infinite;animation-delay:1.6s}
+.map-pulse.p4{animation:pulse 3.2s ease-out infinite;animation-delay:2.4s}
+.map-city{font-family:"JetBrains Mono",monospace;font-size:9px;fill:rgba(255,255,255,.72);letter-spacing:.16em;text-transform:uppercase}
+.map-city.dim{fill:rgba(255,255,255,.4)}
+
+.map-canvas .legend{
+  position:absolute;top:18px;left:20px;
+  display:flex;flex-direction:column;gap:6px;
+  font-family:var(--f-mono);font-size:9.5px;letter-spacing:.18em;color:rgba(255,255,255,.5);text-transform:uppercase;
+}
+.map-canvas .meta-br{position:absolute;bottom:18px;right:20px;font-family:var(--f-mono);font-size:9.5px;letter-spacing:.18em;color:rgba(255,255,255,.5);text-transform:uppercase}
+
+/* ════════════════════════════════════════════════════════════════
+   FINAL CTA
+   ════════════════════════════════════════════════════════════════ */
+.final-cta{position:relative;padding:clamp(64px,8vw,120px) 0;margin-bottom:var(--section-y)}
+.final-cta-card{
+  position:relative;border-radius:var(--r-lg);overflow:hidden;
+  background:rgba(255,255,255,.03);
+  backdrop-filter:blur(24px) saturate(140%);-webkit-backdrop-filter:blur(24px) saturate(140%);
+  border:1px solid var(--line-glass);
+  padding:clamp(40px,5vw,72px);
+  display:grid;grid-template-columns:1.2fr .8fr;gap:48px;align-items:center;
+}
+.final-cta-card::before{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(80% 100% at 100% 50%, color-mix(in srgb, var(--accent) 12%, transparent), transparent 60%)}
+.final-cta-card h2{margin:18px 0 18px;max-width:14ch}
+.final-cta-actions{display:flex;flex-wrap:wrap;gap:14px;justify-content:flex-end}
+
+/* ─── FOOTER ─── */
+.footer{background:var(--bg-near-black);color:var(--text-on-dark-dim);padding:48px 0 32px;position:relative;z-index:2}
+.footer-row{display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap}
+.footer-nav{display:flex;gap:32px;flex-wrap:wrap;list-style:none;padding:0;margin:0;font-family:var(--f-secondary);font-size:12px;letter-spacing:.12em;text-transform:uppercase}
+.footer-nav a{color:var(--text-on-dark-dim)}
+.footer-nav a:hover{color:var(--text-on-dark-bright)}
+.footer-bot{margin-top:32px;padding-top:20px;border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap;font-size:11px;color:var(--text-on-dark-dim);font-family:var(--f-mono);letter-spacing:.06em;text-transform:uppercase}
+
+/* ─── REVEAL ─── */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity 1.2s var(--ease-out), transform 1.2s var(--ease-out)}
+.reveal.in{opacity:1;transform:translateY(0)}
+.reveal.d1{transition-delay:.1s}.reveal.d2{transition-delay:.2s}.reveal.d3{transition-delay:.3s}.reveal.d4{transition-delay:.4s}.reveal.d5{transition-delay:.5s}
+
+.progress{position:fixed;top:0;left:0;right:0;height:1px;z-index:60;pointer-events:none}
+.progress span{display:block;height:100%;width:0;background:var(--accent);transition:width .15s linear}
+
+/* ─── RESPONSIVE ─── */
+@media (max-width:1100px){
+  .hero-inner,.final-cta-card,.section-head,.map-block{grid-template-columns:1fr;gap:40px}
+  .logistics-viz{justify-self:start;max-width:480px}
+  .stats-grid{grid-template-columns:1fr;gap:32px}
+  .stat:nth-child(2n+1){border-left:1px solid var(--line)}
+  .final-cta-actions{justify-content:flex-start}
+  .timeline::before{left:32px}
+  .tl-step{grid-template-columns:80px 1fr;gap:24px;padding:32px 0}
+  .tl-content{grid-column:1 / -1;margin-top:8px}
+}
+@media (max-width:720px){
+  .nav-list,.nav-tel{display:none}
+  .burger{display:inline-flex}
+  .hero{padding-top:120px;min-height:auto}
+  .footer-row{flex-direction:column;align-items:flex-start;gap:20px}
+  .tl-num{font-size:34px}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.001ms !important;transition-duration:.001ms !important}
+}
+</style>
+</head>
+<body>
+
+<div class="bg-stage" aria-hidden="true">
+  <div class="glow g1"></div><div class="glow g2"></div><div class="glow g3"></div>
+</div>
+
+<div class="progress" aria-hidden="true"><span id="progressBar"></span></div>
+
+<!-- HEADER -->
+<header class="header" id="header">
+  <div class="container nav">
+    <a href="index.html" class="wordmark">Спектр Металла</a>
+    <nav>
+      <ul class="nav-list">
+        <li><a href="catalog.html">Каталог</a></li>
+        <li><a href="delivery.html" class="active">Доставка</a></li>
+        <li><a href="contacts.html">Контакты</a></li>
+      </ul>
+    </nav>
+    <div style="display:flex;align-items:center;gap:20px">
+      <a href="tel:+74950000000" class="nav-tel">+7 (495) 000-00-00</a>
+      <button class="burger" aria-label="Меню">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+
+<main class="shell" id="top">
+
+  <!-- ════════ HERO ════════ -->
+  <section class="hero">
+    <div class="container hero-inner">
+
+      <div class="hero-text reveal">
+        <div class="hero-label">
+          <span class="dot"></span>
+          <span>SM · Logistics</span>
+          <span class="bar"></span>
+          <span>МО · РФ · СНГ</span>
+        </div>
+        <h1 class="hero-title">
+          Доставка<br/>и&nbsp;<em>логистика.</em>
+        </h1>
+        <p class="hero-desc">
+          Собственный транспорт по Москве и области, проверенные ТК по России и СНГ. От согласования до выгрузки на объекте — всё под одним менеджером.
+        </p>
+        <div class="hero-actions">
+          <a href="contacts.html" class="btn btn-accent">
+            Рассчитать доставку
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+          <a href="catalog.html" class="btn btn-ghost">К каталогу</a>
+        </div>
+      </div>
+
+      <!-- logistics SVG viz: routes from central hub -->
+      <div class="logistics-viz" id="logisticsViz" aria-hidden="true">
+        <span class="corner tl"></span><span class="corner tr"></span>
+        <span class="corner bl"></span><span class="corner br"></span>
+        <span class="label tl">RM-01<br/>Logistics</span>
+        <span class="label tr">live route<br/>monitor</span>
+        <span class="label bl">МО / РФ / СНГ</span>
+        <span class="label br">2026 / RU</span>
+
+        <svg viewBox="0 0 400 400" preserveAspectRatio="xMidYMid meet">
+          <!-- compass / grid -->
+          <circle cx="200" cy="200" r="160" class="route-faint"/>
+          <circle cx="200" cy="200" r="100" class="route-faint"/>
+          <circle cx="200" cy="200" r="50"  class="route-faint"/>
+
+          <!-- routes (red, animated) -->
+          <path class="route" d="M200,200 Q260,140 320,80"/>
+          <path class="route" d="M200,200 Q280,220 340,260"/>
+          <path class="route" d="M200,200 Q140,260 80,320"/>
+          <path class="route" d="M200,200 Q120,180 60,150"/>
+          <path class="route" d="M200,200 Q220,120 240,40"/>
+
+          <!-- destination nodes -->
+          <circle cx="320" cy="80"  r="5" class="node"/>
+          <circle cx="340" cy="260" r="5" class="node"/>
+          <circle cx="80"  cy="320" r="5" class="node"/>
+          <circle cx="60"  cy="150" r="5" class="node"/>
+          <circle cx="240" cy="40"  r="5" class="node"/>
+
+          <!-- central hub -->
+          <circle cx="200" cy="200" r="8"  class="node hub"/>
+          <circle cx="200" cy="200" r="6"  class="pulse p1"/>
+          <circle cx="200" cy="200" r="6"  class="pulse p2"/>
+          <circle cx="200" cy="200" r="6"  class="pulse p3"/>
+
+          <!-- city labels -->
+          <text x="200" y="186" text-anchor="middle" class="city-label">— hub —</text>
+          <text x="200" y="226" text-anchor="middle" class="city-label" fill="rgba(255,255,255,.85)">МОСКВА</text>
+
+          <text x="328" y="74"  class="city-label">СПБ</text>
+          <text x="348" y="266" class="city-label">КАЗАНЬ</text>
+          <text x="68"  y="334" class="city-label">КРАСНОДАР</text>
+          <text x="22"  y="146" class="city-label">МИНСК</text>
+          <text x="248" y="36"  class="city-label">НИЖНИЙ</text>
+        </svg>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ════════ STATS ════════ -->
+  <section class="stats">
+    <div class="container stats-grid">
+      <div class="stat reveal">
+        <div class="stat-label">— 01 · Скорость</div>
+        <div class="stat-num"><em>48</em> часов</div>
+        <p class="stat-desc">Средний срок от заявки до выгрузки на объекте в Москве и области.</p>
+      </div>
+      <div class="stat reveal d1">
+        <div class="stat-label">— 02 · Опыт</div>
+        <div class="stat-num"><em>1000+</em></div>
+        <p class="stat-desc">Закрытых объектов: частные дома, СНТ, коммерческие крыши, ангары.</p>
+      </div>
+      <div class="stat reveal d2">
+        <div class="stat-label">— 03 · Транспорт</div>
+        <div class="stat-num">Свой<br/><em>парк</em></div>
+        <p class="stat-desc">Газель, бортовой манипулятор, фура — выбираем под объём и подъезд.</p>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ════════ TIMELINE ════════ -->
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <div class="section-index">01 — Этапы</div>
+          <h2 class="reveal">Пять шагов —<br/>от заявки<br/>до объекта.</h2>
+        </div>
+        <p class="lead reveal d2">Заказ ведёт один менеджер. На каждом этапе — фиксируемые сроки. Без передачи между отделами и потерянных деталей.</p>
+      </div>
+
+      <div class="timeline">
+
+        <div class="tl-step reveal">
+          <div class="tl-num-wrap">
+            <span class="tl-node"></span>
+            <span class="tl-num">01</span>
+          </div>
+          <div>
+            <h3>Заявка</h3>
+            <div class="meta">15 мин · согласование</div>
+          </div>
+          <p class="tl-desc">Принимаем размеры, согласовываем профиль, цвет, толщину и комплектацию доборки. Менеджер фиксирует ТЗ письменно — для прозрачности и контроля.</p>
+        </div>
+
+        <div class="tl-step reveal">
+          <div class="tl-num-wrap">
+            <span class="tl-node"></span>
+            <span class="tl-num">02</span>
+          </div>
+          <div>
+            <h3>Производство</h3>
+            <div class="meta">30 мин — 3 дня</div>
+          </div>
+          <p class="tl-desc">Стандартные позиции — из наличия. Под размер — изготовление на собственном оборудовании: профилирование, гибка, окраска по RAL.</p>
+        </div>
+
+        <div class="tl-step reveal">
+          <div class="tl-num-wrap">
+            <span class="tl-node"></span>
+            <span class="tl-num">03</span>
+          </div>
+          <div>
+            <h3>Упаковка</h3>
+            <div class="meta">защитная плёнка · маркировка</div>
+          </div>
+          <p class="tl-desc">Каждый лист — в защитной плёнке, длинномеры — в обрешётке. Маркировка партии, паспорт качества, перечень в накладной.</p>
+        </div>
+
+        <div class="tl-step reveal">
+          <div class="tl-num-wrap">
+            <span class="tl-node"></span>
+            <span class="tl-num">04</span>
+          </div>
+          <div>
+            <h3>Отгрузка</h3>
+            <div class="meta">собственный транспорт</div>
+          </div>
+          <p class="tl-desc">Выбираем транспорт под объём и подъезд: Газель для добора, борт-манипулятор для длинномеров, фура для коммерческих партий.</p>
+        </div>
+
+        <div class="tl-step reveal">
+          <div class="tl-num-wrap">
+            <span class="tl-node"></span>
+            <span class="tl-num">05</span>
+          </div>
+          <div>
+            <h3>Доставка на объект</h3>
+            <div class="meta">по согласованному времени</div>
+          </div>
+          <p class="tl-desc">Привозим в согласованное время. Поможем с выгрузкой вручную или манипулятором. Документы — на руки, приёмка по накладной.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ════════ MAP ════════ -->
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <div class="section-index">02 — География</div>
+          <h2 class="reveal">Возим по всей<br/>стране.</h2>
+        </div>
+        <p class="lead reveal d2">Москва и область — собственным транспортом, по России — проверенными ТК. Стоимость доставки и срок называем до оплаты.</p>
+      </div>
+
+      <div class="map-block reveal">
+        <div class="map-info">
+          <div class="eyebrow">— Зоны доставки</div>
+          <h3>Покрываем всю европейскую часть РФ.</h3>
+          <p class="lead">Регулярные отправки — Москва, СПб, Казань, Нижний Новгород, Краснодар, Ростов. По запросу — Урал и Сибирь.</p>
+
+          <ul class="map-list">
+            <li>
+              <span class="city"><span class="dot"></span>Москва · МО</span>
+              <span class="when">48 часов</span>
+            </li>
+            <li>
+              <span class="city"><span class="dot"></span>Санкт-Петербург</span>
+              <span class="when">3–4 дня</span>
+            </li>
+            <li>
+              <span class="city"><span class="dot"></span>Нижний Новгород</span>
+              <span class="when">2–3 дня</span>
+            </li>
+            <li>
+              <span class="city"><span class="dot"></span>Казань · Ростов</span>
+              <span class="when">3–5 дней</span>
+            </li>
+            <li>
+              <span class="city"><span class="dot"></span>Краснодар · Сочи</span>
+              <span class="when">5–7 дней</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="map-canvas">
+          <div class="legend">
+            <span>— Map / RF</span>
+            <span>— Active routes</span>
+          </div>
+          <div class="meta-br">SM·LOG / 2026</div>
+
+          <svg viewBox="0 0 500 400" preserveAspectRatio="xMidYMid meet">
+            <!-- упрощённый контур европейской части РФ — абстрактный -->
+            <path class="map-region" d="M80,80 C120,40 200,30 280,50 C360,70 420,90 450,140 C480,200 470,260 430,310 C390,360 320,370 240,360 C160,350 90,310 60,250 C40,200 50,120 80,80 Z"/>
+            <path class="map-outline" d="M80,80 C120,40 200,30 280,50 C360,70 420,90 450,140 C480,200 470,260 430,310 C390,360 320,370 240,360 C160,350 90,310 60,250 C40,200 50,120 80,80 Z"/>
+
+            <!-- мелкие подсказки границ внутри -->
+            <path class="map-region" d="M180,140 C220,130 280,140 320,180 C340,210 320,250 280,260 C240,270 200,250 180,220 C160,190 160,150 180,140 Z" opacity=".6"/>
+
+            <!-- routes from Moscow hub -->
+            <path class="map-route" d="M230,200 L160,120"/>
+            <path class="map-route" d="M230,200 L300,140"/>
+            <path class="map-route" d="M230,200 L350,220"/>
+            <path class="map-route" d="M230,200 L290,300"/>
+            <path class="map-route" d="M230,200 L160,290"/>
+            <path class="map-route" d="M230,200 L120,200"/>
+
+            <!-- nodes / cities -->
+            <circle cx="230" cy="200" r="7" class="map-pin hub"/>
+            <circle cx="230" cy="200" r="6" class="map-pulse p1"/>
+            <circle cx="230" cy="200" r="6" class="map-pulse p2"/>
+            <circle cx="230" cy="200" r="6" class="map-pulse p3"/>
+            <text x="244" y="196" class="map-city">Москва</text>
+
+            <circle cx="160" cy="120" r="4" class="map-pin"/>
+            <text x="170" y="116" class="map-city">СПб</text>
+
+            <circle cx="300" cy="140" r="4" class="map-pin"/>
+            <text x="308" y="136" class="map-city">Нижний</text>
+
+            <circle cx="350" cy="220" r="4" class="map-pin"/>
+            <text x="358" y="216" class="map-city">Казань</text>
+
+            <circle cx="290" cy="300" r="4" class="map-pin"/>
+            <text x="298" y="296" class="map-city">Ростов</text>
+
+            <circle cx="160" cy="290" r="4" class="map-pin"/>
+            <text x="170" y="286" class="map-city">Краснодар</text>
+
+            <circle cx="120" cy="200" r="3" class="map-pin"/>
+            <text x="128" y="196" class="map-city dim">Минск</text>
+
+            <circle cx="400" cy="180" r="3" class="map-pin"/>
+            <text x="408" y="176" class="map-city dim">Самара</text>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ════════ FINAL CTA ════════ -->
+  <section class="final-cta">
+    <div class="container">
+      <div class="final-cta-card reveal">
+        <div>
+          <div class="eyebrow">Готовы посчитать?</div>
+          <h2>Назовите адрес —<br/>скажем цену.</h2>
+          <p class="lead" style="margin-top:18px">Менеджер посчитает стоимость доставки до подтверждения заказа. Без скрытых надбавок и переплат на адресе.</p>
+        </div>
+        <div class="final-cta-actions">
+          <a href="contacts.html" class="btn btn-accent">
+            Рассчитать доставку
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+          <a href="tel:+74950000000" class="btn btn-ghost">+7 (495) 000-00-00</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ════════ FOOTER ════════ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-row">
+        <span class="wordmark">Спектр Металла</span>
+        <ul class="footer-nav">
+          <li><a href="catalog.html">Каталог</a></li>
+          <li><a href="delivery.html">Доставка</a></li>
+          <li><a href="contacts.html">Контакты</a></li>
+        </ul>
+      </div>
+      <div class="footer-bot">
+        <span>© <span id="yr">2026</span> · Спектр Металла</span>
+        <span>SM // SPECTRUM·METAL // ENGINEERED IN RU</span>
+      </div>
+    </div>
+  </footer>
+
+</main>
+
+<script>
+document.getElementById('yr').textContent = new Date().getFullYear();
+
+const bar = document.getElementById('progressBar');
+const header = document.getElementById('header');
+function onScroll(){
+  const h = document.documentElement;
+  const max = h.scrollHeight - h.clientHeight;
+  const p = max > 0 ? (h.scrollTop / max) : 0;
+  bar.style.width = (p*100).toFixed(2) + '%';
+  if(h.scrollTop > 20) header.classList.add('scrolled'); else header.classList.remove('scrolled');
+}
+document.addEventListener('scroll', onScroll, {passive:true});
+onScroll();
+
+const io = new IntersectionObserver((entries)=>{
+  for(const e of entries){
+    if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+  }
+}, {threshold:.12, rootMargin:'0px 0px -60px 0px'});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+/* mouse parallax on logistics viz */
+const viz = document.getElementById('logisticsViz');
+if (viz) {
+  let raf = 0, tx = 0, ty = 0;
+  document.querySelector('.hero').addEventListener('mousemove', (e) => {
+    const r = viz.getBoundingClientRect();
+    tx = ((e.clientX - r.left - r.width/2) / r.width) * 10;
+    ty = ((e.clientY - r.top - r.height/2) / r.height) * 10;
+    if (!raf) raf = requestAnimationFrame(apply);
+  });
+  function apply(){ raf = 0; viz.style.transform = `translate(${tx}px, ${ty}px)`; }
+}
+
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', (e) => {
+    const id = a.getAttribute('href');
+    if (id.length < 2) return;
+    const el = document.querySelector(id);
+    if (!el) return;
+    e.preventDefault();
+    const y = el.getBoundingClientRect().top + window.scrollY - 80;
+    window.scrollTo({top: y, behavior: 'smooth'});
+  });
+});
+</script>
+
+</body>
+</html>
