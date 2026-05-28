@@ -1013,6 +1013,118 @@ p{margin:0}
   .hero-title .line span{transform:translateY(0)}
   .hero-desc,.hero-actions,.hero-info,.hero-product,.hp-card{opacity:1;animation:none}
 }
+
+/* ════════ DARK MODE OVERRIDES — главная в едином тёмном стиле ════════ */
+/* Перекрашиваем все элементы, которые были спроектированы под светлый фон,
+   в тёмный glassmorphism — как на catalog/buyers/delivery/contacts. */
+
+/* секция теперь тёмная */
+.section--dark{background:transparent;color:var(--text-on-dark)}
+.section--dark h1,.section--dark h2,.section--dark h3,.section--dark h4{color:var(--text-on-dark-bright)}
+.section--dark .eyebrow{color:var(--text-on-dark-dim)}
+.section--dark .lead{color:var(--text-on-dark)}
+.section--dark .section-index{color:var(--text-on-dark-dim)}
+
+/* CATALOG — карточки .cat теперь тёмные glassmorphism */
+.section--dark .cats{border-color:rgba(255,255,255,.08)}
+.section--dark .cat{
+  background:rgba(255,255,255,.025);
+  backdrop-filter:blur(16px) saturate(140%);-webkit-backdrop-filter:blur(16px) saturate(140%);
+  border-color:rgba(255,255,255,.08);
+  box-shadow:none;
+  color:var(--text-on-dark);
+}
+.section--dark .cat:hover{
+  background:rgba(255,255,255,.05);
+  border-color:rgba(255,255,255,.22);
+  box-shadow:0 24px 50px rgba(0,0,0,.4);
+}
+.section--dark .cat-num{color:var(--text-on-dark-dim)}
+.section--dark .cat-name{color:var(--text-on-dark-bright)}
+.section--dark .cat-desc{color:var(--text-on-dark-dim)}
+.section--dark .cat-foot{border-top-color:rgba(255,255,255,.08)}
+.section--dark .cat-price{color:var(--text-on-dark)}
+.section--dark .cat-arrow{color:var(--text-on-dark-dim)}
+.section--dark .cat:hover .cat-arrow{color:var(--accent-hover)}
+/* featured-тайл уже тёмный — оставляем как есть */
+
+/* DELIVERY — карточки на тёмном */
+.section--dark .del-feature{
+  background:rgba(255,255,255,.025);
+  backdrop-filter:blur(20px) saturate(140%);-webkit-backdrop-filter:blur(20px) saturate(140%);
+  border:1px solid rgba(255,255,255,.08);
+  color:var(--text-on-dark);
+}
+.section--dark .del-feature::before{
+  /* большая цифра-водяной знак — делаем красноватый stroke вместо тёмного */
+  -webkit-text-stroke:1px rgba(255,255,255,.05) !important;
+  text-stroke:1px rgba(255,255,255,.05) !important;
+  color:transparent;
+}
+.section--dark .del-feature-top h3{color:var(--text-on-dark-bright)}
+.section--dark .del-feature-top p{color:var(--text-on-dark)}
+.section--dark .del-price{color:var(--text-on-dark-dim)}
+.section--dark .del-price strong{color:var(--text-on-dark-bright)}
+.section--dark .del-card{
+  background:rgba(255,255,255,.025);
+  backdrop-filter:blur(16px) saturate(140%);-webkit-backdrop-filter:blur(16px) saturate(140%);
+  border:1px solid rgba(255,255,255,.08);
+  box-shadow:none;
+}
+.section--dark .del-card:hover{
+  background:rgba(255,255,255,.05);
+  border-color:rgba(255,255,255,.22);
+  box-shadow:0 16px 40px rgba(0,0,0,.4);
+}
+.section--dark .del-card-num{color:var(--text-on-dark-dim)}
+.section--dark .del-card h4{color:var(--text-on-dark-bright)}
+.section--dark .del-card p{color:var(--text-on-dark-dim)}
+.section--dark .del-extras{border-top-color:rgba(255,255,255,.08)}
+.section--dark .del-extra-num{color:var(--accent-hover)}
+.section--dark .del-extra-item h4{color:var(--text-on-dark-bright)}
+.section--dark .del-extra-item p{color:var(--text-on-dark-dim)}
+
+/* FAQ — на тёмном */
+.section--dark .faq{
+  border-top:1px solid rgba(255,255,255,.08);
+  border-bottom:1px solid rgba(255,255,255,.08);
+  background:transparent;
+}
+.section--dark .faq-item{
+  background:transparent;
+  border-bottom:1px solid rgba(255,255,255,.08);
+}
+.section--dark .faq-item:first-child{border-top:none}
+.section--dark .faq-item[open]{background:rgba(255,255,255,.02)}
+.section--dark .faq-item summary{color:var(--text-on-dark-bright)}
+.section--dark .faq-item summary:hover{color:var(--accent-hover)}
+.section--dark .faq-item[open] summary{color:var(--accent)}
+.section--dark .faq-item .plus{color:var(--text-on-dark-dim);border-color:rgba(255,255,255,.18)}
+.section--dark .faq-item[open] .plus{color:var(--accent);border-color:var(--accent)}
+.section--dark .faq-item .answer{color:var(--text-on-dark)}
+.section--dark .faq-item .answer strong{color:var(--text-on-dark-bright)}
+
+/* кнопки на тёмных секциях — переключение со светлой логики на дефолт */
+.section--dark .btn-primary{
+  background:rgba(243,244,246,.14);
+  color:var(--text-on-dark-bright);
+  border-color:rgba(255,255,255,.22);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.12),0 6px 24px rgba(0,0,0,.25);
+}
+.section--dark .btn-primary:hover{
+  background:rgba(243,244,246,.24);
+  border-color:rgba(255,255,255,.4);
+}
+.section--dark .btn-ghost{
+  background:rgba(255,255,255,.04);
+  color:var(--text-on-dark-bright);
+  border-color:rgba(255,255,255,.16);
+}
+.section--dark .btn-ghost:hover{
+  background:rgba(255,255,255,.08);
+  border-color:rgba(255,255,255,.32);
+}
+
 </style>
 
 <!-- ═══ SEO: OG + Schema.org — вставлено site-bootstrap ═══ -->
@@ -1211,7 +1323,7 @@ p{margin:0}
 
 
   <!-- ════════ CATALOG — Light section ════════ -->
-  <section class="section section--light" id="catalog">
+  <section class="section section--dark" id="catalog">
     <div class="container">
 
       <div class="section-head">
@@ -1361,7 +1473,7 @@ p{margin:0}
 
 
   <!-- ════════ DELIVERY — Light minimal ════════ -->
-  <section class="section section--light" id="delivery">
+  <section class="section section--dark" id="delivery">
     <div class="container">
 
       <div class="section-head">
@@ -1435,7 +1547,7 @@ p{margin:0}
 
 
   <!-- ════════ FAQ — Light minimal ════════ -->
-  <section class="section section--light" id="faq">
+  <section class="section section--dark" id="faq">
     <div class="container">
 
       <div class="section-head">
